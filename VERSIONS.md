@@ -2,4 +2,10 @@
 
 | Tag | Date | Highlights |
 |---|---|---|
-| (unreleased) | TBD | initial scaffold |
+| (unreleased) | 2026-07-09 | Curriculum plan authored: 12 modules (156h) + 3 projects (140h) = ~296h. Bootstrap session — `.aicg/curriculum-plan.json` and `.aicg/job-requirements.json` seeded from authoritative public references (OpenAI Platform / Anthropic API / Gemini / Bedrock / Foundry / Vertex; OpenAI Agents SDK / Anthropic Claude Agent SDK / LangChain / LangGraph / LlamaIndex / MCP / Instructor / Outlines; LiteLLM / OpenRouter / Portkey; vLLM / TGI / SGLang; Phoenix / Langfuse / Weave / Braintrust / LangSmith / Promptfoo / DeepEval / RAGAS / TruLens; NeMo Guardrails / Guardrails AI / Llama Guard / provider moderation; OWASP LLM Top 10 / OWASP Agentic Top 10 / MITRE ATLAS / Google SAIF; LaunchDarkly / OpenFeature; NIST AI RMF / EU AI Act / ISO/IEC 42001 / 25059; foundational eval literature). Live job-posting sweep deferred to next autonomous research cycle (see `JOB_REQUIREMENTS.md` Status). Lessons and project READMEs not yet drafted. |
+| (planned) | TBD | Autonomous research cycle: ≥25 in-window job postings sampled, requirement frequencies backfilled, any unsupported requirements demoted. Ownership contracts against peer `llm-application-developer` (build-altitude on-ramp), `agentic-ai-engineer` (framework depth), `ai-eval-engineer` (eval program), `rag-engineer` (RAG engineering), `model-evaluation-engineer` (benchmark methodology), `ai-risk-engineer` (harm models), `ai-infra-mlops` / `ai-infra-ml-platform` / `ai-infra-performance` (platform / serving) re-validated against actual posting evidence. |
+| (planned) | TBD | Lessons drafted for mod-101 → mod-104 (foundations + prompting + RAG + tool calling). |
+| (planned) | TBD | Lessons drafted for mod-105 → mod-108 (product agents + eval + guardrails + routing). |
+| (planned) | TBD | Lessons drafted for mod-109 → mod-112 (cost/latency + observability + shipping + ownership). |
+| (planned) | TBD | Project READMEs drafted: 101 vertical product agent capstone, 102 eval- and guardrail-hardened release, 103 applied-AI feature platform slice. |
+| (planned) | TBD | First cohort run; rubric and pacing feedback folded back into `.aicg/curriculum-plan.json`. |
