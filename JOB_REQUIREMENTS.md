@@ -2,18 +2,27 @@
 
 **Role level:** 30 (deep specialist, AI Engineering family — peer to `agentic-ai-engineer` and `ai-eval-engineer` at the same level; one level above the build-altitude peer `llm-application-developer` at level 25)
 **Track:** `applied-ai-engineer-learning`
-**Research window:** 2026-05-05 → 2026-08-05 (last 90 days)
-**Today:** 2026-08-05
+**Research window:** 2026-06-07 → 2026-09-05 (last 90 days)
+**Today:** 2026-09-05
 
 This file documents the requirements catalog used to seed and now maintain the Applied AI Engineer curriculum. Raw normalized data lives in [`.aicg/job-requirements.json`](.aicg/job-requirements.json); the planned curriculum lives in [`.aicg/curriculum-plan.json`](.aicg/curriculum-plan.json); this cycle's proposed additions (empty) live in [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json).
 
-## Status — 2026-08 cycle: live-posting pass complete, no curriculum additions
+## Status — 2026-09 cycle: second live pass, no curriculum additions
 
-This cycle completed the first live posting pass for the track. **30 in-window postings** were sampled across ATS aggregators (Greenhouse, Lever, Ashby, Workday, Avature) and direct careers pages, spanning frontier labs (OpenAI, Anthropic, Cohere, Google DeepMind / Google Cloud, xAI), applied-AI product companies (Notion, Ramp, Cognition, Sierra, Glean, Zapier, Cresta, Snorkel, Splitero, Gradial, Hasbro, Future, Hightouch, Appian, commercetools, Cargomatic, Human Agency, General Matter, Intuit), enterprise (Stripe, Oscar Health, GitLab), and hyperscaler applied-AI product teams (Google Cloud CES Applied AI, SpaceX Applied AI).
+The 2026-08 cycle's 30 postings (`post-slice-a-01` … `post-slice-c-10`, all observed 2026-08-05) remain within the 90-day window ending 2026-09-05 and are retained as the base sample. **6 additional postings were freshly observed this cycle**, bringing the total sample to **36 in-window postings**:
 
-Titles accepted: `Applied AI Engineer`, `Applied LLM Engineer`, `Applied Generative AI Engineer`, `AI Engineer` (when the JD emphasised shipping LLM features in a product), `Applied AI Software Engineer`, and `Software Engineer, Agents / AI Agent` (when the JD emphasised product-embedded agents rather than agent-framework internals). Postings carrying `Senior / Staff / Principal / Lead / Manager / Director / Head` modifiers, generic ML / Data Science / Research Scientist titles, pretraining / foundation-research roles, pure MLOps / platform / infra roles, and pure peer-track shapes (LLM Application Developer at level 25, Agentic AI Engineer, AI Evaluation Engineer, RAG Engineer) were filtered out.
+| Post ID | Employer | Title | Location | Date posted |
+|---|---|---|---|---|
+| `post-slice-d-01` | Cognition | Product Engineer | SF / NYC | 2026-08-06 |
+| `post-slice-d-02` | Clera | Applied AI Engineer – AI & Automation | Berlin, DE | 2026-09-04 |
+| `post-slice-d-03` | Monte Carlo | Applied AI Engineer | Remote (Americas) | 2026-08-27 |
+| `post-slice-d-04` | Anthropic | Applied AI Engineer | Tokyo, JP | n/a (in-window observed) |
+| `post-slice-d-05` | Anthropic | Applied AI Engineer, Beneficial Deployments (Life Sciences) | SF / NYC | n/a (in-window observed) |
+| `post-slice-d-06` | Anthropic | Applied AI Engineer, Enterprise | Munich, DE | n/a (in-window observed) |
 
-Every requirement in the catalog now carries at least one in-window posting citation in [`.aicg/job-requirements.json`](.aicg/job-requirements.json). **No net-new modules, exercises, or projects are proposed this cycle** — the continuity-bias gate (≥3 postings AND ≥30% frequency AND not incrementally coverable by an existing module) was cleared by zero candidate additions. The empty [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json) is the expected output when the market shape matches the existing curriculum, as it does this cycle.
+Titles accepted this cycle (unchanged from 2026-08): `Applied AI Engineer`, `Applied LLM Engineer`, `Applied Generative AI Engineer`, `Product AI Engineer` / `AI Product Engineer`, `AI Software Engineer`, `AI Engineer` (when the JD emphasised shipping LLM features in a product), `Applied AI Software Engineer`, `Software Engineer, Agents / AI Agent`, and `Forward Deployed Engineer, Applied AI`. Postings carrying `Senior / Staff / Principal / Lead / Manager / Director / Head` modifiers, generic ML / Data Science / Research Scientist titles, pretraining / foundation-research roles, pure MLOps / platform / infra roles, and pure peer-track shapes (LLM Application Developer at level 25, Agentic AI Engineer, AI Evaluation Engineer, RAG Engineer) were filtered out. Fetch attempts against ~15 additional candidate URLs (Paraform, Cohere Agents & Automations, Ramp Fullstack, xAI, Webflow, BLEN, Speak, AGI Inc, Brain Co, Raspberry AI, Camber, three OpenAI variant slugs) returned 404s, closed listings, or JS-rendered shells — those are excluded rather than force-fitted (see next-cycle note in `.aicg/job-requirements.json` for the browser-capable-fetcher follow-up).
+
+Every requirement in the catalog carries at least one in-window posting citation in [`.aicg/job-requirements.json`](.aicg/job-requirements.json), with per-requirement `evidence_post_ids` and `evidence_frequency` recomputed against the 36-posting sample. **No net-new modules, exercises, or projects are proposed this cycle** — the continuity-bias gate (≥3 postings AND ≥30% frequency AND not incrementally coverable by an existing module) was cleared by zero candidate additions for the second cycle in a row. The empty [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json) is the expected output when the market shape matches the existing curriculum, as it does this cycle.
 
 ## Authoritative references (grounding)
 
@@ -36,32 +45,33 @@ The requirements catalog is anchored to the following public references, which a
 
 ## Methodology
 
-1. Sourced ~60 candidate postings via `WebSearch` across ATS aggregators (`boards.greenhouse.io`, `jobs.lever.co`, `jobs.ashbyhq.com`, `*.myworkdayjobs.com`) plus direct careers pages, mixing all six accepted title variants against three company segments (frontier labs + applied-AI product cos, enterprise + verticals, hyperscalers + startups).
-2. `WebFetch` extracted the verbatim requirement bullets, preferred qualifications, salary range, and a representative one-sentence scope quote from each candidate. Postings whose title turned out to carry a senior modifier or belong to a peer track on inspection were dropped (notably one Bloomberg role tagged `Senior Software Engineer - Artificial Intelligence` was excluded from frequency counting even though the surrounding JD matched, per the filter rules).
-3. Each accepted posting was tagged with the requirement keys it evidences, drawn from a fixed vocabulary aligned to the 12 planned modules. Emerging themes outside that vocabulary were tagged with a `candidate-` prefix and reviewed against the continuity-bias gate.
-4. Mapped every non-prerequisite requirement to (a) the role on our level ladder that should own it primarily and (b) the curriculum module that covers it.
-5. Applied the **ownership rule** — assign coverage to the lowest-level role that genuinely requires the skill; higher-level tracks link back rather than duplicate. See the sibling packets and `ownership_rule` block in [`.aicg/job-requirements.json`](.aicg/job-requirements.json) for the full delegation matrix.
-6. Ran the continuity-bias gate: no theme cleared ≥3 postings AND ≥30% frequency AND lacked incremental coverage in an existing module. [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json) is intentionally empty for this cycle.
+1. **2026-08 baseline** — Sourced ~60 candidate postings via `WebSearch` across ATS aggregators (`boards.greenhouse.io`, `jobs.lever.co`, `jobs.ashbyhq.com`, `*.myworkdayjobs.com`) plus direct careers pages, mixing all six accepted title variants against three company segments (frontier labs + applied-AI product cos, enterprise + verticals, hyperscalers + startups). 30 postings passed the filter (one Bloomberg role tagged `Senior Software Engineer - Artificial Intelligence` was excluded from frequency counting even though the surrounding JD matched, per the filter rules).
+2. **2026-09 fresh pass** — Re-swept the same aggregator set (extended to `Product AI Engineer` / `AI Product Engineer` variants explicitly per the packet). Sourced ~30 candidate URLs, hit ~15 with usable JD bodies (Ashby / OpenAI-careers / some Anthropic-syndicated URLs were blocked or JS-only for the fetcher and are logged for a browser-capable re-fetch next cycle), and accepted **6 fresh in-window postings** (`post-slice-d-01` … `post-slice-d-06`). Combined with the 30 retained postings from the 2026-08 pass (all still date-observed within 90 days), the sample is now 36.
+3. `WebFetch` extracted the verbatim requirement bullets, preferred qualifications, salary range, and a representative one-sentence scope quote from each accepted posting.
+4. Each accepted posting was tagged with the requirement keys it evidences, drawn from a fixed vocabulary aligned to the 12 planned modules. Emerging themes outside that vocabulary were tagged with a `candidate-` prefix and reviewed against the continuity-bias gate. Two new candidate themes were declared this cycle (`candidate-context-engineering`, `candidate-life-sciences-domain`); one prior candidate (`candidate-agent-observability`) was formalised in the emerging_candidates block; frequencies for all existing candidates were recomputed against the 36-posting sample.
+5. Mapped every non-prerequisite requirement to (a) the role on our level ladder that should own it primarily and (b) the curriculum module that covers it.
+6. Applied the **ownership rule** — assign coverage to the lowest-level role that genuinely requires the skill; higher-level tracks link back rather than duplicate. See the sibling packets and `ownership_rule` block in [`.aicg/job-requirements.json`](.aicg/job-requirements.json) for the full delegation matrix.
+7. Ran the continuity-bias gate: no theme cleared ≥3 postings AND ≥30% frequency AND lacked incremental coverage in an existing module. `candidate-customer-facing-advisory` cleared the frequency gate (33%) but is classified as role-shape / soft-skill (FDE variants), not a technical curriculum topic. [`.aicg/curriculum-plan-delta.json`](.aicg/curriculum-plan-delta.json) is intentionally empty for this cycle for the second consecutive pass.
 
 ## Requirement themes → curriculum ownership
 
-The table lists each requirement theme, its posting frequency this cycle (`n/30`), its planned owner per the level hierarchy, and the curriculum coverage path.
+The table lists each requirement theme, its posting frequency this cycle (`n/36`), its cycle-over-cycle trajectory (2026-08 → 2026-09), its planned owner per the level hierarchy, and the curriculum coverage path.
 
-| # | Theme | Freq (n/30) | Owner role | Coverage |
-|---|---|---|---|---|
-| 1 | Applied AI foundations & feature design: spec → LLM-feature architecture, provider / tier / shape choice, SLO mapping | 29/30 (97%) | `applied-ai-engineer` (this) | [`mod-101-applied-ai-foundations-and-feature-design`](lessons/mod-101-applied-ai-foundations-and-feature-design) |
-| 2 | Production prompting & structured outputs: prompt caching, JSON mode / function calling, constrained decoding, streaming, prompt versioning | 21/30 (70%) | `applied-ai-engineer` | [`mod-102-production-prompting-and-structured-outputs`](lessons/mod-102-production-prompting-and-structured-outputs) |
-| 3 | RAG integration in product: consuming a retriever design, citations / freshness / evidence UX, retrieval quality instrumentation | 12/30 (40%) | `applied-ai-engineer` | [`mod-103-rag-integration-in-product`](lessons/mod-103-rag-integration-in-product) |
-| 4 | Tool calling & orchestration at product altitude: JSON schemas, MCP servers (host + custom-server), LangGraph / Agents SDK graphs, token / step / cost budgets | 23/30 (77%) | `applied-ai-engineer` | [`mod-104-tool-calling-and-orchestration`](lessons/mod-104-tool-calling-and-orchestration) |
-| 5 | Shipping product agents: coding co-pilot / customer-experience / retrieval-with-actions / browsing / support shapes, memory, hand-offs, kill-switches | 26/30 (87%) | `applied-ai-engineer` | [`mod-105-shipping-product-agents`](lessons/mod-105-shipping-product-agents) |
-| 6 | Feature-side evaluation: offline suites, judge with bias controls, snapshot-replay, eval-gated CI, sampled online eval, per-feature dashboards | 18/30 (60%) | `applied-ai-engineer` | [`mod-106-feature-side-evaluation`](lessons/mod-106-feature-side-evaluation) |
-| 7 | Guardrails & safety on the surface: content moderation, prompt-injection defence, PII scrubbing, tool-abuse, OWASP LLM & Agentic Top 10 mapping | 4/30 (13%) | `applied-ai-engineer` | [`mod-107-guardrails-and-safety-on-the-surface`](lessons/mod-107-guardrails-and-safety-on-the-surface) |
-| 8 | Model routing & provider selection: gateway (LiteLLM / OpenRouter / Portkey), classifier-gated routing, fallbacks, self-host vs managed, multi-modal | 7/30 (23%) | `applied-ai-engineer` | [`mod-108-model-routing-and-provider-selection`](lessons/mod-108-model-routing-and-provider-selection) |
-| 9 | Cost & latency SLOs for LLM features: TTFT / TPOT / p50 / p95, prompt caching, batching, streaming UX budget, per-tenant cost | 4/30 (13%) | `applied-ai-engineer` | [`mod-109-cost-latency-slos-for-llm-features`](lessons/mod-109-cost-latency-slos-for-llm-features) |
-| 10 | Observability, feedback & incident response: OpenTelemetry GenAI / OpenInference, span-attribute schema, sampling, incident playbooks, user-feedback triage | 10/30 (33%) | `applied-ai-engineer` | [`mod-110-observability-feedback-and-incidents`](lessons/mod-110-observability-feedback-and-incidents) |
-| 11 | Shipping, experimenting & rollbacks: feature flags (LaunchDarkly / OpenFeature), canary / shadow, A/B, hot-rollback of a bad prompt, applied fine-tuning as a lever | 8/30 (27%) | `applied-ai-engineer` | [`mod-111-shipping-experimenting-and-rollbacks`](lessons/mod-111-shipping-experimenting-and-rollbacks) |
-| 12 | Multi-modal & voice features: vision, image / video, real-time voice, TTS / STT — as a product-integration pattern rolled into routing & agent shape | 3/30 (10%) | `applied-ai-engineer` | Merged into [`mod-108-model-routing-and-provider-selection`](lessons/mod-108-model-routing-and-provider-selection) and [`mod-105-shipping-product-agents`](lessons/mod-105-shipping-product-agents) |
-| 13 | Owning an applied-AI feature end-to-end: build-vs-buy across gateway / eval / agent SDK, incident-to-fixture loop, feature-card slice for governance | 28/30 (93%) | `applied-ai-engineer` | [`mod-112-owning-an-applied-ai-feature-end-to-end`](lessons/mod-112-owning-an-applied-ai-feature-end-to-end) |
+| # | Theme | Freq (n/36) | Δ vs 2026-08 | Owner role | Coverage |
+|---|---|---|---|---|---|
+| 1 | Applied AI foundations & feature design: spec → LLM-feature architecture, provider / tier / shape choice, SLO mapping | 35/36 (97%) | 97% → 97% | `applied-ai-engineer` (this) | [`mod-101-applied-ai-foundations-and-feature-design`](lessons/mod-101-applied-ai-foundations-and-feature-design) |
+| 2 | Production prompting & structured outputs: prompt caching, JSON mode / function calling, constrained decoding, streaming, prompt versioning | 25/36 (69%) | 70% → 69% | `applied-ai-engineer` | [`mod-102-production-prompting-and-structured-outputs`](lessons/mod-102-production-prompting-and-structured-outputs) |
+| 3 | RAG integration in product: consuming a retriever design, citations / freshness / evidence UX, retrieval quality instrumentation | 13/36 (36%) | 40% → 36% | `applied-ai-engineer` | [`mod-103-rag-integration-in-product`](lessons/mod-103-rag-integration-in-product) |
+| 4 | Tool calling & orchestration at product altitude: JSON schemas, MCP servers (host + custom-server), LangGraph / Agents SDK graphs, token / step / cost budgets | 25/36 (69%) | 77% → 69% | `applied-ai-engineer` | [`mod-104-tool-calling-and-orchestration`](lessons/mod-104-tool-calling-and-orchestration) |
+| 5 | Shipping product agents: coding co-pilot / customer-experience / retrieval-with-actions / browsing / support shapes, memory, hand-offs, kill-switches | 32/36 (89%) | 87% → 89% | `applied-ai-engineer` | [`mod-105-shipping-product-agents`](lessons/mod-105-shipping-product-agents) |
+| 6 | Feature-side evaluation: offline suites, judge with bias controls, snapshot-replay, eval-gated CI, sampled online eval, per-feature dashboards | 20/36 (56%) | 60% → 56% | `applied-ai-engineer` | [`mod-106-feature-side-evaluation`](lessons/mod-106-feature-side-evaluation) |
+| 7 | Guardrails & safety on the surface: content moderation, prompt-injection defence, PII scrubbing, tool-abuse, OWASP LLM & Agentic Top 10 mapping | 4/36 (11%) | 13% → 11% | `applied-ai-engineer` | [`mod-107-guardrails-and-safety-on-the-surface`](lessons/mod-107-guardrails-and-safety-on-the-surface) |
+| 8 | Model routing & provider selection: gateway (LiteLLM / OpenRouter / Portkey), classifier-gated routing, fallbacks, self-host vs managed, multi-modal | 7/36 (19%) | 23% → 19% | `applied-ai-engineer` | [`mod-108-model-routing-and-provider-selection`](lessons/mod-108-model-routing-and-provider-selection) |
+| 9 | Cost & latency SLOs for LLM features: TTFT / TPOT / p50 / p95, prompt caching, batching, streaming UX budget, per-tenant cost | 4/36 (11%) | 13% → 11% | `applied-ai-engineer` | [`mod-109-cost-latency-slos-for-llm-features`](lessons/mod-109-cost-latency-slos-for-llm-features) |
+| 10 | Observability, feedback & incident response: OpenTelemetry GenAI / OpenInference, span-attribute schema, sampling, incident playbooks, user-feedback triage | 11/36 (31%) | 33% → 31% | `applied-ai-engineer` | [`mod-110-observability-feedback-and-incidents`](lessons/mod-110-observability-feedback-and-incidents) |
+| 11 | Shipping, experimenting & rollbacks: feature flags (LaunchDarkly / OpenFeature), canary / shadow, A/B, hot-rollback of a bad prompt, applied fine-tuning as a lever | 8/36 (22%) | 27% → 22% | `applied-ai-engineer` | [`mod-111-shipping-experimenting-and-rollbacks`](lessons/mod-111-shipping-experimenting-and-rollbacks) |
+| 12 | Multi-modal & voice features: vision, image / video, real-time voice, TTS / STT — as a product-integration pattern rolled into routing & agent shape | 3/36 (8%) | 10% → 8% | `applied-ai-engineer` | Merged into [`mod-108-model-routing-and-provider-selection`](lessons/mod-108-model-routing-and-provider-selection) and [`mod-105-shipping-product-agents`](lessons/mod-105-shipping-product-agents) |
+| 13 | Owning an applied-AI feature end-to-end: build-vs-buy across gateway / eval / agent SDK, incident-to-fixture loop, feature-card slice for governance | 34/36 (94%) | 93% → 94% | `applied-ai-engineer` | [`mod-112-owning-an-applied-ai-feature-end-to-end`](lessons/mod-112-owning-an-applied-ai-feature-end-to-end) |
 | 14 | Engineering craft (Python, packaging, HTTP, testing, git, Docker) | n/a — prerequisite | `ai-infra-junior-engineer` (level 10) | Listed in [`PREREQUISITES.md`](PREREQUISITES.md); not re-taught |
 | 15 | Classical ML / PyTorch / sklearn / FastAPI packaging / MLflow | n/a — prerequisite | `ml-engineer` (level 20) | Listed in [`PREREQUISITES.md`](PREREQUISITES.md); not re-taught |
 | 16 | First-time LLM app construction (basic prompting, first chain, first tool call) | n/a — prerequisite | `llm-application-developer` (level 25) | Listed in [`PREREQUISITES.md`](PREREQUISITES.md); not re-taught — this curriculum picks up at production-integration altitude |
@@ -79,20 +89,25 @@ The table lists each requirement theme, its posting frequency this cycle (`n/30`
 
 ### Emerging candidate themes (below continuity-bias gate, monitoring)
 
-Themes surfaced during this cycle's requirement tagging that do NOT meet the ≥30% frequency gate but are worth tracking next cycle. All are already covered incrementally in the existing curriculum — no new content is proposed.
+Themes surfaced during requirement tagging that do NOT meet the ≥30% frequency gate but are worth tracking next cycle. All are already covered incrementally in the existing curriculum — no new content is proposed.
 
-| Candidate theme | Freq (n/30) | Where existing curriculum already covers it |
-|---|---|---|
-| Hosted fine-tuning as an applied lever (SFT for style / format / small distillation) | 6/30 (20%) | mod-111 already lists hosted fine-tuning as an applied lever; deeper SFT / PEFT / RLHF / DPO methodology deferred to `fine-tuning-engineer` |
-| MCP server authoring (not just consuming vendor servers) | 3/30 (10%) | mod-104 chapter 03 covers hosts, servers, transports, and writing a custom host directly against the specification |
-| Voice / conversational AI (TTS, STT, contact-center integration) | 3/30 (10%) | mod-108 covers voice as a routing decision; mod-105 covers voice agents as an agent shape |
-| Full-stack shipping across frontend + backend + LLM layer | 6/30 (20%) | mod-112 owns feature-lifecycle ownership; the full-stack skill itself is upstream engineering craft (`ai-infra-junior-engineer`) |
+| Candidate theme | Freq (n/36) | Δ vs 2026-08 | Where existing curriculum already covers it |
+|---|---|---|---|
+| Hosted fine-tuning as an applied lever (SFT for style / format / small distillation) | 6/36 (17%) | 20% → 17% | mod-111 already lists hosted fine-tuning as an applied lever; deeper SFT / PEFT / RLHF / DPO methodology deferred to `fine-tuning-engineer` |
+| MCP server authoring (not just consuming vendor servers) | 4/36 (11%) | 10% → 11% | mod-104 chapter 03 covers hosts, servers, transports, and writing a custom host directly against the specification (Monte Carlo added `Building and maintaining MCP servers` this cycle) |
+| Voice / conversational AI (TTS, STT, contact-center integration) | 3/36 (8%) | 10% → 8% | mod-108 covers voice as a routing decision; mod-105 covers voice agents as an agent shape |
+| Full-stack shipping across frontend + backend + LLM layer | 8/36 (22%) | 20% → 22% | mod-112 owns feature-lifecycle ownership; the full-stack skill itself is upstream engineering craft (`ai-infra-junior-engineer`) — Cognition and Clera add fresh Python/TypeScript/React and NestJS+React evidence |
+| Named `context engineering` as a distinct skill | 3/36 (8%) | new theme this cycle (Anthropic postings use `prompting, context engineering, and agent architectures` as a fixed phrase) | mod-102 already covers context-window assembly, prompt caching, and per-request budgets; monitor for a rename or a first-class chapter promotion if frequency rises further |
+| Named agent observability / eval-in-production | 2/36 (6%) | new callout this cycle (Monte Carlo posting is a strong evidence point) | mod-106 covers sampled online eval + judge-drift monitor; mod-110 covers span-attribute schema for tool calls and trajectories |
+| Life-sciences / biomedical vertical (genomics, drug discovery) | 1/36 (3%) | new theme this cycle (Anthropic Beneficial Deployments) | Not directly covered — vertical-domain expertise sits outside the technical curriculum. Watch for 2+ additional postings next cycle before noting in PREREQUISITES.md as a domain-specialisation on-ramp |
 
-If any of these clears the gate next cycle, the delta should either extend the referenced module with an exercise or split out a dedicated module — do NOT duplicate what already exists.
+Candidate `candidate-customer-facing-advisory` (FDE / Solutions-Engineer / workshop-facilitator shape) rose from 30% to **33%** across the two cycles (12/36 postings now, driven by three Anthropic FDE-flavoured postings this cycle in Tokyo, Life Sciences, and Munich). This is the first candidate to clear the ≥30% frequency gate. Verdict remains **at-gate-but-out-of-scope-for-technical-curriculum** — it is a role-shape / soft-skill theme concentrated in FDE variants of the role, not a technical curriculum topic. If a future cycle wants to teach it, the right home is a role-shape addendum in `PREREQUISITES.md` (career on-ramp), not a new module in this track.
+
+If any technical candidate clears the gate next cycle, the delta should either extend the referenced module with an exercise or split out a dedicated module — do NOT duplicate what already exists.
 
 ## Posting evidence
 
-30 in-window postings sampled between 2026-05-05 and 2026-08-05. Full verbatim requirement bullets, preferred qualifications, salary ranges, and requirement-key tags are in [`.aicg/job-requirements.json → postings`](.aicg/job-requirements.json).
+36 in-window postings — the 30 sampled between 2026-05-05 and 2026-08-05 (all still date-observed within the 90-day window ending 2026-09-05) plus 6 freshly sampled between 2026-08-06 and 2026-09-05. Full verbatim requirement bullets, preferred qualifications, salary ranges, and requirement-key tags are in [`.aicg/job-requirements.json → postings`](.aicg/job-requirements.json).
 
 | # | Employer | Title | Location | Date observed | Post ID |
 |---|---|---|---|---|---|
@@ -126,30 +141,38 @@ If any of these clears the gate next cycle, the delta should either extend the r
 | 28 | Appian | Applied AI Engineer | McLean, VA | 2026-08-05 | `post-slice-c-08` |
 | 29 | commercetools | AI Engineer | Munich, DE (Hybrid) / Berlin / Boston / Durham / London / Valencia | 2026-08-05 | `post-slice-c-09` |
 | 30 | Cargomatic | AI Engineer – Agentic Automation | Remote | 2026-08-05 | `post-slice-c-10` |
+| 31 | Cognition | Product Engineer | San Francisco, CA / New York City, NY | 2026-09-05 | `post-slice-d-01` |
+| 32 | Clera | Applied AI Engineer – AI & Automation | Berlin, DE (on-site) | 2026-09-05 | `post-slice-d-02` |
+| 33 | Monte Carlo | Applied AI Engineer | Remote (Americas) | 2026-09-05 | `post-slice-d-03` |
+| 34 | Anthropic | Applied AI Engineer | Tokyo, JP | 2026-09-05 | `post-slice-d-04` |
+| 35 | Anthropic | Applied AI Engineer, Beneficial Deployments (Life Sciences) | San Francisco, CA / New York City, NY | 2026-09-05 | `post-slice-d-05` |
+| 36 | Anthropic | Applied AI Engineer, Enterprise | Munich, DE | 2026-09-05 | `post-slice-d-06` |
 
 ### Top skills by frequency (this cycle)
 
-The top-10 skills across the 30 sampled postings, in descending order:
+The top-10 skills across the 36 sampled postings, in descending order (with cycle trajectory):
 
-1. **Applied AI foundations & feature design** — 97%
-2. **Owning an applied-AI feature end-to-end** — 93%
-3. **Shipping product-embedded agents** — 87%
-4. **Tool calling & orchestration (JSON schemas, MCP, LangGraph / Agents SDK)** — 77%
-5. **Production prompting & structured outputs** — 70%
-6. **Feature-side evaluation (offline / online, eval-gated CI, judge design)** — 60%
-7. **RAG integration at the product surface** — 40%
-8. **Observability, feedback & incident response** — 33%
-9. **Shipping, experimenting & rollbacks (feature flags, canary, A/B, rollback)** — 27%
-10. **Model routing & provider selection (gateway, classifier-routing, fallbacks)** — 23%
+1. **Applied AI foundations & feature design** — 97% (97% → 97%)
+2. **Owning an applied-AI feature end-to-end** — 94% (93% → 94%)
+3. **Shipping product-embedded agents** — 89% (87% → 89%)
+4. **Tool calling & orchestration (JSON schemas, MCP, LangGraph / Agents SDK)** — 69% (77% → 69%)
+5. **Production prompting & structured outputs** — 69% (70% → 69%)
+6. **Feature-side evaluation (offline / online, eval-gated CI, judge design)** — 56% (60% → 56%)
+7. **RAG integration at the product surface** — 36% (40% → 36%)
+8. **Customer-facing advisory / FDE role shape** — 33% (30% → 33%) *(role-shape theme, not a technical topic — retained out of curriculum scope; see emerging candidates table)*
+9. **Observability, feedback & incident response** — 31% (33% → 31%)
+10. **Shipping, experimenting & rollbacks (feature flags, canary, A/B, rollback)** — 22% (27% → 22%)
 
 ### Skills expected but under-represented this cycle
 
 Some themes that the module plan invested in showed up less frequently than the module hours suggest. This is a monitoring signal, not a demotion signal — postings under-index on operational concerns (guardrails, cost / latency SLOs, multi-modal) because those requirements live in the SLO / on-call side of the role that JDs rarely enumerate line-by-line.
 
-- **Guardrails & safety on the surface** — 13% (mod-107 is 14 hours). Posting-language proxies (`safety`, `guardrails`, `prompt injection`, `PII`) are present in postings like GitLab, SpaceX, Hasbro, and Cargomatic but rarely called out as a top-line required skill. Retain mod-107 at current shape; watch for the theme to move up as OWASP LLM Top 10 & Agentic Top 10 adoption spreads.
-- **Cost & latency SLOs for LLM features** — 13% (mod-109 is 12 hours). Notion, Zapier, GitLab, and SpaceX name it explicitly; most postings assume it. Retain mod-109 at current shape.
-- **Multi-modal & voice features** — 10% (merged into mod-108 + mod-105). Google Cloud FDE, Cresta, and Hasbro cited it; consistent with the current merged-coverage decision.
-- **Applied fine-tuning as a lever** — 20% as a candidate theme (mod-111 covers it inline). Frequency is higher than expected but still below the gate; not worth splitting into a dedicated module this cycle.
+- **Guardrails & safety on the surface** — 11%, down from 13% (mod-107 is 14 hours). Posting-language proxies (`safety`, `guardrails`, `prompt injection`, `PII`) are present in postings like GitLab, SpaceX, Hasbro, and Cargomatic but rarely called out as a top-line required skill. Retain mod-107 at current shape; watch for the theme to move up as OWASP LLM Top 10 & Agentic Top 10 adoption spreads.
+- **Cost & latency SLOs for LLM features** — 11%, down from 13% (mod-109 is 12 hours). Notion, Zapier, GitLab, and SpaceX name it explicitly; most postings assume it. Retain mod-109 at current shape.
+- **Multi-modal & voice features** — 8%, down from 10% (merged into mod-108 + mod-105). Google Cloud FDE, Cresta, and Hasbro cited it; consistent with the current merged-coverage decision.
+- **Model routing & provider selection** — 19%, down from 23% (mod-108 is 12 hours). None of the 6 fresh postings named a specific gateway; a broader dip. Second cycle below the 30% gate — retain but watch; if the trajectory continues into a third cycle, consider tighter integration of routing into mod-101 rather than a stand-alone module.
+- **Shipping, experimenting & rollbacks** — 22%, down from 27% (mod-111 is 13 hours). Second cycle below the 30% gate. Retain (feature-flag / rollout maturity is table-stakes and typically assumed rather than enumerated); if the trajectory continues into a third cycle, revisit module scope.
+- **Applied fine-tuning as a lever** — 17% as a candidate theme, down from 20% (mod-111 covers it inline). Still below the gate; still not worth splitting into a dedicated module.
 
 ## Ownership map — quick reference
 
