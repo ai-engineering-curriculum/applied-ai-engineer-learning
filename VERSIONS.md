@@ -8,4 +8,3 @@
 | (planned) | TBD | Lessons drafted for mod-105 → mod-108 (product agents + eval + guardrails + routing). |
 | (planned) | TBD | Lessons drafted for mod-109 → mod-112 (cost/latency + observability + shipping + ownership). |
 | (planned) | TBD | Project READMEs drafted: 101 vertical product agent capstone, 102 eval- and guardrail-hardened release, 103 applied-AI feature platform slice. |
-| (planned) | TBD | First cohort run; rubric and pacing feedback folded back into `.aicg/curriculum-plan.json`. |
