@@ -1,7 +1,7 @@
 # Applied AI Engineer Curriculum
 
 <!-- aicg:orientation:start -->
-> **Start here:** [Module 00: Your Relationship to the Model](lessons/00-your-relationship-to-the-model/README.md). Where this role sits relative to the model, what it owns, and who it works with across the five curricula.
+> **Start here:** [Module 00: Your Relationship to the Model](lessons/00-your-relationship-to-the-model/README.md). Where this role sits relative to the model, what it owns, and who it works with across the sibling curricula.
 <!-- aicg:orientation:end -->
 
 **Role level:** 30 (deep specialist — peer to `agentic-ai-engineer` and `ai-eval-engineer` at the same level; one level above the build-altitude peer `llm-application-developer` at level 25; peer to `senior-ml-engineer` at the same level on the ML Engineering ladder)
