@@ -20,7 +20,7 @@ By the end you should be able to:
 
 - You have read [chapter 05](../05-refusal-calibration-and-owasp-mapping.md).
 - You have completed at least two of exercises 01-04 (so you have real guardrails to map to).
-- Access to the current OWASP Top 10 for Large Language Model Applications (`https://owasp.org/www-project-top-10-for-large-language-model-applications/`) and the OWASP Agentic AI project material.<!-- needs-research: pin current URLs and titles; both projects have evolved. -->
+- Access to the current [OWASP Top 10 for Large Language Model Applications (2025 revision)](https://genai.owasp.org/llm-top-10/) (the legacy `https://owasp.org/www-project-top-10-for-large-language-model-applications/` project page still resolves and points at the current content) and the [OWASP Top 10 for Agentic Applications 2026](https://genai.owasp.org/initiatives/agentic-security-initiative/) under the Agentic Security Initiative.
 - The surface's org chart — who the trust-and-safety, product, security, and privacy owners are.
 
 ## Problem statement
