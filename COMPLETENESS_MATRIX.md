@@ -2,22 +2,22 @@
 
 AI Engineering Curriculum · Level 30 · [learning](https://github.com/ai-engineering-curriculum/applied-ai-engineer-learning) · [solutions](https://github.com/ai-engineering-curriculum/applied-ai-engineer-solutions)
 
-_Generated 2026-11-03 by `aicg org completeness`._
+_Generated 2026-11-08 by `aicg org completeness`._
 
-**Overall: 50%**
+**Overall: 57%**
 
 | | Progress | Count |
 |---|---|---|
 | Learning | `██████████` 100% | 12/12 modules complete |
-| Solutions | `░░░░░░░░░░` 0% | 0/58 exercises solved |
+| Solutions | `█░░░░░░░░░` 14% | 8/58 exercises solved |
 
 ## Modules
 
 | Module | Status | Words | Chapters | Exercises | Quiz | Solutions |
 |---|---|---|---|---|---|---|
-| `mod-101-applied-ai-foundations-and-feature-design` | ✅ Complete | 15,721 | 5 | 4 | — | 0/4 |
+| `mod-101-applied-ai-foundations-and-feature-design` | ✅ Complete | 15,721 | 5 | 4 | — | 4/4 |
 | `mod-102-production-prompting-and-structured-outputs` | ✅ Complete | 21,252 | 5 | 5 | — | 0/5 |
-| `mod-103-rag-integration-in-product` | ✅ Complete | 21,715 | 5 | 4 | — | 0/4 |
+| `mod-103-rag-integration-in-product` | ✅ Complete | 21,715 | 5 | 4 | — | 4/4 |
 | `mod-104-tool-calling-and-orchestration` | ✅ Complete | 28,399 | 5 | 5 | — | 0/5 |
 | `mod-105-shipping-product-agents` | ✅ Complete | 31,740 | 5 | 5 | — | 0/5 |
 | `mod-106-feature-side-evaluation` | ✅ Complete | 24,852 | 5 | 5 | — | 0/5 |
