@@ -128,7 +128,7 @@ Under `tests/`, at minimum:
 - **Turn on or off?** State the decision. Reference the compliance surface (GDPR, CCPA, the company's DPA with the provider).
 - **If off, why?** Which of your rights operations breaks if the provider persists user data on its side?
 - **If on, how do you fulfil the erasure right?** Name the concrete provider API call, its SLA, and how it composes with your `delete_user` pipeline.
-- **What changes if you're on Anthropic, OpenAI, and Google?** Two sentences per provider on the current published retention posture. Cite the docs; do not guess.<!-- needs-research: link the current pages from Anthropic, OpenAI, and Google on data-usage / retention for API traffic. -->
+- **What changes if you're on Anthropic, OpenAI, and Google?** Two sentences per provider on the current published retention posture. Cite the docs; do not guess. Starting points: Anthropic's [API and data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention) and [Is my data used for model training?](https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training); OpenAI's [How we use your data](https://developers.openai.com/api/docs/guides/your-data); Google's [AI Studio / Gemini API terms](https://aistudio.google.com/docs/terms).
 
 ## Starter guidance
 

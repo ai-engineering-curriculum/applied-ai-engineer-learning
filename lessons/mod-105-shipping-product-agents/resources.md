@@ -6,7 +6,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 - **Anthropic — Building effective AI agents** (engineering blog) — the "workflow vs. agent" framing that shapes when a shipped surface should be an agent at all. `https://www.anthropic.com/engineering/building-effective-agents`.
 - **Anthropic — Engineering blog index** — recurring essays on tool use, MCP, Claude Agent SDK, and Claude Code. `https://www.anthropic.com/engineering`.
-- **OpenAI — A practical guide to building agents** (whitepaper) — OpenAI's own applied-vs-research framing. `https://cdn.openai.com/business-guides/practical-guide-to-building-agents.pdf`. <!-- needs-research: confirm current stable URL — OpenAI moves whitepapers between blog and docs. -->
+- **OpenAI — A practical guide to building agents** (whitepaper) — OpenAI's own applied-vs-research framing. `https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf` (also linked from the web version at `https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/`).
 - **OpenAI — Building agents (cookbook / guides)** — worked examples across function calling, Responses API, and the Agents SDK. `https://cookbook.openai.com/`.
 - **Simon Willison — LLMs and agents tags** — practitioner reference for shipped-agent failure modes, provider changes, and prompt-injection field notes. `https://simonwillison.net/tags/llms/`, `https://simonwillison.net/tags/agents/`.
 - **Chip Huyen — *AI Engineering* (book)** — engineering-side framing for applied LLM systems. `https://huyenchip.com/`.
@@ -16,30 +16,30 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### Shape A (coding co-pilot)
 
-- **Cursor — Documentation** — canonical entry point for Cursor's tier ladder (tab / chat / edit / Composer / Agent / Background Agents). `https://docs.cursor.com/`. <!-- needs-research: pin the current tier names — Cursor renames features materially between releases. -->
+- **Cursor — Documentation** — canonical entry point for Cursor's feature set (Tab, Chat, Composer, Plan Mode, Agent, Cloud Agents). `https://docs.cursor.com/` and `https://cursor.com/features`.
 - **Cursor — Changelog** — the surface-level record of what shipped when, referenced when you need to date a design claim. `https://cursor.com/changelog`.
 - **GitHub — Copilot documentation** — canonical entry point for Copilot's inline / chat / workspace surfaces. `https://docs.github.com/en/copilot`.
-- **GitHub — Copilot Workspace** — the task-decomposition surface and its relationship to Copilot Coding Agent. `https://githubnext.com/projects/copilot-workspace/`. <!-- needs-research: confirm URL; Workspace has moved between GitHub Next and mainline docs. -->
-- **GitHub — Copilot coding agent (docs)** — the newer autonomous-tier surface layered above Workspace. `https://docs.github.com/en/copilot/using-github-copilot/coding-agent`. <!-- needs-research: confirm canonical URL and product name. -->
+- **GitHub — Copilot Workspace** — the original GitHub Next technical-preview page for the task-decomposition surface, whose approach has since been folded into the mainline Copilot coding agent. `https://githubnext.com/projects/copilot-workspace/`.
+- **GitHub — Copilot coding agent (docs)** — the newer autonomous-tier surface layered above Workspace. `https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent`.
 - **GitHub — Engineering blog on Copilot** — long-form writeups on Copilot's design decisions. `https://github.blog/ai-and-ml/github-copilot/`.
 
 ### Shape B (customer-experience agent)
 
 - **Sierra — Product overview** — canonical marketing + docs surface for the CX agent platform. `https://sierra.ai/`.
-- **Sierra — Agent OS / platform documentation** — the customer-facing docs for building a CX agent inside Sierra. `https://sierra.ai/platform`. <!-- needs-research: confirm section slug — Sierra has restructured the docs surface since public launch. -->
+- **Sierra — Agent OS / product documentation** — the customer-facing docs for building a CX agent inside Sierra. `https://sierra.ai/product` (with sub-sections for Agent Studio, Channels, Context Engine, Horizon, Insights, Explorer, and Trust and Reliability).
 - **Sierra — Blog and case studies** — Sonos, ADT, WW, SiriusXM, and other named deployments. `https://sierra.ai/blog`.
-- **Klarna — AI assistant announcement (Feb 2024)** — the "handles two-thirds of customer service chats" claim that anchors the shape's savings case. `https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/`. <!-- needs-research: confirm the current published metrics before quoting a specific number in a design review. -->
+- **Klarna — AI assistant announcement (Feb 2024)** — the "handles two-thirds of customer service chats" claim that anchors the shape's savings case. `https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/`. Treat the figure as a point-in-time announcement, not a current SLA — Klarna has since publicly discussed rebalancing toward human agents.
 
 ### Shape C (retrieval-with-actions)
 
 - **Notion — AI documentation** — Notion's assistant surface embedded in the workspace, with retrieval + write tools. `https://www.notion.so/help/notion-ai`.
-- **Glean — Agents documentation** — enterprise workspace-retrieval-with-actions positioning. `https://www.glean.com/product/agents`. <!-- needs-research: confirm canonical URL. -->
+- **Glean — Agents documentation** — enterprise workspace-retrieval-with-actions positioning. `https://www.glean.com/product/agents`.
 - **Salesforce — Agentforce** — the CRM-embedded retrieval-with-actions surface. `https://www.salesforce.com/agentforce/`.
 - **Microsoft — Copilot for Microsoft 365 documentation** — workspace-scoped retrieval + actions across the Office suite. `https://learn.microsoft.com/en-us/copilot/microsoft-365/`.
 
 ### Shape D (browsing agent)
 
-- **OpenAI — Operator (announcement and product page)** — the initial browsing-agent product. `https://openai.com/index/introducing-operator/`. <!-- needs-research: confirm current product URL; Operator has been repositioned as ChatGPT Agent. -->
+- **OpenAI — Operator (announcement)** — the initial browsing-agent product; its capabilities have since been consolidated into ChatGPT Agent (see next entry). `https://openai.com/index/introducing-operator/`.
 - **OpenAI — ChatGPT Agent** — the successor / consolidation of Operator into the main ChatGPT surface. `https://openai.com/index/introducing-chatgpt-agent/`. <!-- needs-research: confirm URL and product name. -->
 - **Anthropic — Computer use** — the API-side capability for driving screens / DOM. `https://docs.anthropic.com/en/docs/build-with-claude/computer-use`. <!-- needs-research: confirm current URL after Anthropic's Agent SDK docs reorganisation. -->
 - **Anthropic — Claude for Chrome (research preview)** — the browser-extension surface for Claude computer-use. `https://www.anthropic.com/news/claude-for-chrome`. <!-- needs-research: confirm current URL and product name; this surface has evolved fast. -->
