@@ -5,11 +5,11 @@ Curated primary sources for the topics covered across the five chapters. Provide
 ## Cross-cutting framing (all chapters)
 
 - **Anthropic — Building effective AI agents** (engineering blog) — the "workflow vs. agent" framing that informs which surfaces need which eval shape. `https://www.anthropic.com/engineering/building-effective-agents`.
-- **OpenAI — A practical guide to building agents** (whitepaper) — includes the applied engineer's evaluation section. `https://cdn.openai.com/business-guides/practical-guide-to-building-agents.pdf`. <!-- needs-research: confirm current stable URL. -->
+- **OpenAI — A practical guide to building agents** (whitepaper) — includes the applied engineer's evaluation section. `https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf`.
 - **Chip Huyen — *AI Engineering* (book)** — the "evaluation-driven development" chapter is the closest published statement of this module's discipline. `https://huyenchip.com/`.
 - **Eugene Yan — Evals patterns and practitioner writeups** — long-form field notes on LLM eval design. `https://eugeneyan.com/writing/`.
 - **Hamel Husain — Your AI Product Needs Evals** — the widely-cited practitioner post that maps to this module's "eval as CI concern" framing. `https://hamel.dev/blog/posts/evals/`.
-- **Shreya Shankar et al. — Who Validates the Validators?** — practitioner + academic study on LLM-as-judge calibration and drift in shipped systems. `https://arxiv.org/abs/2404.12272`. <!-- needs-research: confirm current arxiv version. -->
+- **Shreya Shankar et al. — Who Validates the Validators?** — practitioner + academic study on LLM-as-judge calibration and drift in shipped systems. `https://arxiv.org/abs/2404.12272`.
 - **Simon Willison — Evals tag** — practitioner reference for eval failure modes, provider changes, and judge behaviour. `https://simonwillison.net/tags/evals/`.
 
 ## Chapter 01 — Offline eval suites a PR can run
@@ -20,13 +20,13 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **Wang et al. — *Large Language Models are not Fair Evaluators*** — early paper documenting position bias in pairwise judge settings. `https://arxiv.org/abs/2305.17926`.
 - **Dubois et al. — *Length-Controlled AlpacaEval*** — the canonical treatment of length / verbosity bias and how to control for it. `https://arxiv.org/abs/2404.04475`.
 - **Panickssery et al. — *LLM Evaluators Recognize and Favor Their Own Generations*** — self-preference bias in judge models. `https://arxiv.org/abs/2404.13076`.
-- **Zeng et al. — *Evaluating Large Language Models at Evaluating Instruction Following*** — a broad look at judge reliability. `https://arxiv.org/abs/2310.07641`. <!-- needs-research: confirm current arxiv URL. -->
-- **Anthropic — Reducing bias and improving safety in Claude's outputs** — provider-side guidance on judge design and bias handling. `https://www.anthropic.com/research`. <!-- needs-research: pin the specific post that discusses judge bias mitigations. -->
+- **Zeng et al. — *Evaluating Large Language Models at Evaluating Instruction Following*** — a broad look at judge reliability; introduces the LLMBar meta-evaluation benchmark. `https://arxiv.org/abs/2310.07641`.
+- **Anthropic — Research publications index** — provider-side research posts on model behaviour and safety, including judge-adjacent material on bias and evaluation. `https://www.anthropic.com/research`.
 
 ### Rubric grading and structured evaluation
 
 - **G-Eval — Liu et al., *G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment*** — the rubric-with-chain-of-thought judge pattern that many rubric harnesses derive from. `https://arxiv.org/abs/2303.16634`.
-- **DeepEval — G-Eval metric documentation** — the practitioner implementation of the pattern. `https://docs.confident-ai.com/docs/metrics-llm-evals`. <!-- needs-research: confirm current URL. -->
+- **DeepEval — G-Eval metric documentation** — the practitioner implementation of the pattern. `https://deepeval.com/docs/metrics-llm-evals`.
 - **Braintrust — Autoevals library** — a small library of common rubric / judge scorers, useful as reference implementations. `https://github.com/braintrustdata/autoevals`.
 
 ### Programmatic correctness (code, SQL, JSON, tool state)
@@ -39,8 +39,8 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### RAG triad (context / groundedness / answer relevance)
 
-- **TruLens — RAG triad documentation** — one of the earliest canonical formulations of the three-metric decomposition. `https://www.trulens.org/getting_started/core_concepts/rag_triad/`. <!-- needs-research: confirm current URL. -->
-- **Arize Phoenix — RAG evaluation guide** — Phoenix's parallel formulation, with worked examples. `https://arize.com/docs/phoenix/evaluation/llm-evals/rag-evaluation`. <!-- needs-research: confirm URL after Phoenix docs reorg. -->
+- **TruLens — RAG triad documentation** — one of the earliest canonical formulations of the three-metric decomposition (context relevance, groundedness, answer relevance). `https://www.trulens.org/getting_started/core_concepts/rag_triad/`.
+- **Arize Phoenix — RAG evaluation cookbook** — Phoenix's parallel formulation, with worked examples. `https://arize.com/docs/phoenix/cookbook/evaluation/evaluate-rag`.
 - **Ragas — Documentation** — an OSS eval library organised around faithfulness, answer relevancy, and context precision / recall. `https://docs.ragas.io/`.
 - **Es et al. — *RAGAS: Automated Evaluation of Retrieval Augmented Generation*** — the Ragas paper, with the metric definitions. `https://arxiv.org/abs/2309.15217`.
 
@@ -49,30 +49,30 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **OWASP — Top 10 for LLM Applications** — the canonical taxonomy for injection, sensitive-info disclosure, insecure output handling, excessive agency, etc. `https://owasp.org/www-project-top-10-for-large-language-model-applications/`.
 - **MITRE ATLAS** — adversarial-technique catalogue for ML systems, including LLM-integrated ones. `https://atlas.mitre.org/`.
 - **NIST AI 600-1 — Generative AI Profile** — GenAI-specific companion to the RMF; useful for framing which safety categories a surface must cover. `https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf`.
-- **Anthropic — Prompt injection and jailbreaking research** — provider-side writeups on adversarial-prompt handling. `https://www.anthropic.com/research`. <!-- needs-research: pin the specific injection / jailbreak posts. -->
+- **Anthropic — Constitutional Classifiers** — provider-side research on defending against universal jailbreaks and prompt-injection attempts. `https://www.anthropic.com/research/constitutional-classifiers`.
 - **Simon Willison — Prompt injection tag** — practitioner field notes on new injection variants and their failure modes. `https://simonwillison.net/tags/prompt-injection/`.
 
 ### Pre-registration and evaluation discipline
 
 - **Center for Open Science — Preregistration** — the general-science discipline of pre-registering hypotheses and thresholds, transplanted into ML eval by this chapter. `https://www.cos.io/initiatives/prereg`.
 - **Google — Rules of Machine Learning** — includes rules on eval discipline that transfer cleanly to LLM-eval. `https://developers.google.com/machine-learning/guides/rules-of-ml`.
-- **Anthropic — Model card format and evaluation reporting** — a practitioner reference for what a released model / feature's eval report should contain. `https://docs.anthropic.com/en/docs/resources/model-card`. <!-- needs-research: confirm URL. -->
+- **Anthropic — Model cards and system cards** — a practitioner reference for what a released model / feature's eval report should contain. `https://platform.claude.com/docs/en/resources/overview`.
 
 ## Chapter 02 — Trace snapshots as regression fixtures
 
 ### Provider dated / pinned model IDs
 
-- **Anthropic — Models overview** — dated model IDs (e.g. `claude-opus-4-1-20250805`) and the alias-vs-pinned contract. `https://docs.anthropic.com/en/docs/about-claude/models`. <!-- needs-research: confirm URL and the current pinning contract wording. -->
+- **Anthropic — Models overview** — model IDs and the alias-vs-pinned-snapshot contract ("every Claude model ID is a pinned snapshot, including the dateless IDs used from the 4.6 generation on"). `https://platform.claude.com/docs/en/about-claude/models`.
 - **OpenAI — Models reference** — snapshot IDs and the moving-alias behaviour behind `gpt-4o`, `gpt-4.1`, etc. `https://platform.openai.com/docs/models`.
-- **Google — Gemini models** — dated model IDs and version discipline. `https://ai.google.dev/gemini-api/docs/models/gemini`. <!-- needs-research: confirm URL. -->
-- **Azure OpenAI — Model versioning** — Microsoft's take on pin-vs-alias behaviour on Azure. `https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/model-versions`. <!-- needs-research: confirm URL. -->
+- **Google — Gemini models** — dated model IDs and the stable / preview / latest / experimental version patterns. `https://aistudio.google.com/docs/models`.
+- **Azure OpenAI — Model versioning** — Microsoft's take on pin-vs-alias behaviour on Azure (now under Microsoft Foundry). `https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/model-versions`.
 
 ### Trace / observability substrates the snapshot pipeline sits on
 
-- **OpenTelemetry — GenAI semantic conventions** — the emerging standard for LLM span attributes referenced across the module. `https://opentelemetry.io/docs/specs/semconv/gen-ai/`. <!-- needs-research: confirm URL as the spec moves out of experimental. -->
+- **OpenTelemetry — GenAI semantic conventions** — the emerging standard for LLM span attributes referenced across the module; moved out of the main semconv tree into its own repository. `https://github.com/open-telemetry/semantic-conventions-genai`.
 - **OpenInference — Semantic conventions** — Phoenix / Arize's parallel spec that shipped ahead of the OTel one, with a broader tool-call surface. `https://github.com/Arize-ai/openinference/tree/main/spec`.
 - **Langfuse — Tracing documentation** — an OSS observability substrate that captures the lineage fields this chapter names. `https://langfuse.com/docs/tracing`.
-- **LangSmith — Tracing documentation** — LangChain's equivalent, tightly integrated with LangGraph. `https://docs.smith.langchain.com/observability`. <!-- needs-research: confirm URL. -->
+- **LangSmith — Observability documentation** — LangChain's equivalent, tightly integrated with LangGraph. `https://docs.langchain.com/langsmith/observability`.
 - **Braintrust — Tracing documentation** — Braintrust's trace + experiment substrate. `https://www.braintrust.dev/docs/guides/tracing`. <!-- needs-research: confirm URL. -->
 
 ### PII detection and redaction

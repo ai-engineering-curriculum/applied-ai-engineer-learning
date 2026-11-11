@@ -18,7 +18,7 @@ Not every surface needs every mode; every surface needs to have made the decisio
 
 **The mandatory controls.** Two biases are documented enough that ignoring them is malpractice:
 
-- **Position bias.** In pairwise comparisons ("is A or B the better answer?") LLM judges systematically prefer the response shown first. The MT-Bench and Chatbot Arena teams documented this early and it has been replicated across judge models.<!-- needs-research: cite Zheng et al., 2023 "Judging LLM-as-a-Judge" and any follow-ups that quantify position bias across current Claude / GPT-4 / Gemini judges. --> Mitigation: run every comparison twice with the order swapped and only count agreements as decisive.
+- **Position bias.** In pairwise comparisons ("is A or B the better answer?") LLM judges systematically prefer the response shown first. Zheng et al. (*Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena*, NeurIPS 2023) documented this early alongside verbosity and self-enhancement biases, and the effect has been replicated across judge models in subsequent work (see `resources.md`). Mitigation: run every comparison twice with the order swapped and only count agreements as decisive.
 - **Length bias / verbosity bias.** Judges consistently rate longer answers higher, independent of quality. Mitigation options: penalise length in the rubric ("prefer the shorter answer when quality is comparable"), truncate all candidates to the same length before judging, or report the length distribution alongside the score so a reviewer can see when a "quality win" is really a "length win."
 
 Other controls worth naming without dwelling on: self-preference (a judge prefers its own model family's outputs), reasoning-chain bias (judges over-weight verbose reasoning), and refusal bias (judges reward refusals over hard answers). Peer-role material — see `resources.md` for the primary citations — but the applied engineer should at least *know these exist* before signing off on a judge configuration.
@@ -43,7 +43,7 @@ Other controls worth naming without dwelling on: self-preference (a judge prefer
 
 ### Mode 4 — RAG triad (context / answer / question)
 
-**Use it for.** Any RAG-in-product surface. The triad — from the TruLens / Arize framing, now widely reproduced — decomposes RAG quality into three independent judgements:<!-- needs-research: pin the canonical TruLens / Arize framing of the RAG triad; the term "RAG triad" and its exact three-metric decomposition have variants. -->
+**Use it for.** Any RAG-in-product surface. The triad — formulated in TruLens's "RAG triad" core-concept docs as *context relevance*, *groundedness*, and *answer relevance*, and reproduced with adjacent names (Faithfulness, Retrieval Relevance, Hallucination) in Arize Phoenix and Ragas — decomposes RAG quality into three independent judgements:
 
 - **Context relevance.** Given the user's question, are the retrieved chunks actually relevant to it?
 - **Groundedness (faithfulness).** Given the retrieved chunks, is the generated answer supported by them — or is it hallucinated / drifting?

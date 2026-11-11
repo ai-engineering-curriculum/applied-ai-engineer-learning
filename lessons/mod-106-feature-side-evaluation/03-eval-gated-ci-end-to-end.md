@@ -35,7 +35,7 @@ Six runners are named in the module's learning objectives. Each is credible; non
 
 ### Promptfoo
 
-**What it is.** An open-source, YAML-driven test runner for prompts, RAG pipelines, and agents. Ships as a CLI (`promptfoo eval`) and a self-hosted web viewer. Assertions include exact match, contains, JSON validity, JavaScript / Python callbacks, LLM-graded rubrics, factuality checks, and cost / latency thresholds.<!-- needs-research: confirm the current Promptfoo assertion catalogue and its GitHub Action integration URL against the live docs. -->
+**What it is.** An open-source, YAML-driven test runner for prompts, RAG pipelines, and agents. Ships as a CLI (`promptfoo eval`) and a self-hosted web viewer. Assertions include deterministic checks (equals, contains, regex, is-json, is-sql, JavaScript / Python / webhook callbacks, latency, cost) and model-assisted checks (llm-rubric, g-eval, factuality, answer-relevance, context-faithfulness). The `promptfoo/promptfoo-action` GitHub Action posts a summary comment on each PR.
 
 **Where it fits.** The right first tool for teams that want the offline suite in a repo, versioned, runnable locally and in CI, with zero managed infrastructure. Its config file *is* the pre-registration file from chapter 01. Good default for prompt-heavy surfaces.
 
@@ -78,7 +78,7 @@ sharing:
 
 ### DeepEval
 
-**What it is.** A pytest-first eval library. Test cases are Python objects (`LLMTestCase(input=..., actual_output=..., expected_output=...)`); metrics are classes that implement `.measure(test_case)`. A DeepEval test file is a `pytest` test file — you run it with `pytest tests/evals/` and CI treats a failing metric as a failing test. Also ships integrations with tracing tools and its own hosted `Confident AI` dashboard.<!-- needs-research: confirm DeepEval's current metric catalogue (G-Eval, Faithfulness, AnswerRelevancy, ContextualRelevancy, Hallucination, Bias, Toxicity, custom judges) and the current pytest hook / dashboard surface. -->
+**What it is.** A pytest-first eval library. Test cases are Python objects (`LLMTestCase(input=..., actual_output=..., expected_output=...)`); metrics are classes that implement `.measure(test_case)`. A DeepEval test file is a `pytest` test file — you run it with `pytest tests/evals/` and CI treats a failing metric as a failing test. The metric catalogue covers G-Eval, Faithfulness, Answer Relevancy, Contextual Relevancy, Hallucination, Bias, Toxicity, and custom judges; it also ships integrations with tracing tools and its own hosted `Confident AI` dashboard.
 
 **Where it fits.** The right choice for teams whose engineering culture is *"if it's not in pytest, it's not tested."* An eval that lives next to unit tests, runs on the same command, and shows up in the same coverage report is an eval that will actually be maintained.
 
@@ -122,7 +122,7 @@ def test_support_agent(snapshot):
 
 ### Braintrust
 
-**What it is.** A hosted eval-and-trace platform designed around "experiments" — a named run of a suite against a candidate configuration, with per-example scores, aggregate metrics, side-by-side comparison of experiments, and a diff-friendly PR view. Ships an SDK (`braintrust.Eval(...)`) and a GitHub Action that comments the diff on the PR.<!-- needs-research: confirm the current Braintrust SDK surface (`Eval`, `wrap_openai`, custom scorers) and the exact GitHub Action name. -->
+**What it is.** A hosted eval-and-trace platform designed around "experiments" — a named run of a suite against a candidate configuration, with per-example scores, aggregate metrics, side-by-side comparison of experiments, and a diff-friendly PR view. Ships an SDK (`braintrust.Eval(...)` with custom scorers and provider wrappers) and the `braintrustdata/eval-action` GitHub Action, which comments the baseline-vs-candidate diff on the PR.
 
 **Where it fits.** The right choice when the team wants managed infrastructure, first-class diff UX between experiments (candidate vs. baseline), and a shared dashboard for PMs and reviewers. Its opinionation on "experiments" maps directly onto the chapter 01 discipline: the suite version is the experiment name, the PR is the run, the diff is the review artefact.
 
@@ -156,25 +156,25 @@ Eval(
 
 ### Langfuse
 
-**What it is.** An open-source LLM observability platform (self-hostable, also hosted) with tracing, prompt management, dataset management, and an eval runner. Traces are the primary object; evals attach to trace batches. Ships SDKs across languages and integrates with LangChain, LlamaIndex, and the OpenAI / Anthropic SDKs.<!-- needs-research: confirm Langfuse's current dataset + evaluator surface and its CI integration story. -->
+**What it is.** An open-source LLM observability platform (self-hostable, also hosted) with tracing, prompt management, dataset management, and an eval runner. Traces are the primary object; evals attach to trace batches, and Langfuse Datasets provide a structured-experiment surface for CI-driven runs. Ships SDKs across languages and integrates with LangChain, LlamaIndex, and the OpenAI / Anthropic SDKs.
 
 **Where it fits.** The right choice for teams that already run Langfuse for production tracing. The offline eval runs against the same "dataset" abstraction that the production traces populate — chapter 02's snapshots literally *are* Langfuse dataset items — and the diff between production quality and PR-candidate quality is legible in a single UI.
 
 ### Arize Phoenix
 
-**What it is.** An open-source LLM observability and eval framework from Arize. Emphasises OpenInference / OpenTelemetry-native trace collection, a strong RAG-triad implementation (Phoenix originated much of the "RAG triad" framing along with TruLens), and Jupyter-notebook-friendly eval workflows.<!-- needs-research: confirm Phoenix's current OpenInference semantic conventions and the current RAG-triad evaluator names. -->
+**What it is.** An open-source LLM observability and eval framework from Arize. Emphasises OpenInference / OpenTelemetry-native trace collection, a strong catalogue of pre-built RAG evaluators (Faithfulness, Retrieval Relevance, Hallucination, QA Correctness — the RAG-triad-adjacent metrics), and Jupyter-notebook-friendly eval workflows.
 
 **Where it fits.** The right choice when the surface is RAG-heavy and OpenTelemetry-native is a hard constraint. Phoenix's trace shape maps cleanly to the emerging OpenTelemetry GenAI semantic conventions (mod-110), which future-proofs the observability substrate.
 
 ### Weights & Biases Weave
 
-**What it is.** W&B's LLM-eval-and-trace surface. Reuses the broader W&B experiment-tracking metaphor: an `Evaluation` is versioned, its results are logged as artefacts, and the model / prompt config are first-class W&B objects. Strong story for teams already using W&B for classical ML.<!-- needs-research: confirm current Weave `Evaluation` API surface, scorer conventions, and CI integration. -->
+**What it is.** W&B's LLM-eval-and-trace surface. Reuses the broader W&B experiment-tracking metaphor: an `Evaluation` object pairs a dataset with scoring functions (each taking an `output` plus dataset fields and returning a scores dict), its results are logged as artefacts, and the model / prompt config are first-class W&B objects. Strong story for teams already using W&B for classical ML.
 
 **Where it fits.** The right choice for teams whose ML org is already on W&B. Reuses the same permissions, artifact store, and dashboards. Good bridge for cross-role handoff to the peer eval-engineering role (both roles are looking at the same W&B project).
 
 ### LangSmith
 
-**What it is.** LangChain's hosted trace + eval surface, tightly integrated with LangGraph. Datasets, experiments, playgrounds, and a `RunEvaluator` interface that runs custom scorers on trace batches. First-class support for graph-shaped runs (which matter for LangGraph agents).<!-- needs-research: confirm LangSmith's current experiment / dataset / evaluator surface and the CI integration path. -->
+**What it is.** LangChain's hosted trace + eval surface, tightly integrated with LangGraph. Datasets, experiments, playgrounds, and evaluator interfaces that run custom scorers on trace batches; the eval and observability docs now live under `docs.langchain.com/langsmith/`. First-class support for graph-shaped runs (which matter for LangGraph agents).
 
 **Where it fits.** The default when the stack is already LangGraph. The overhead of a separate observability surface is high; LangSmith's per-node span breakdown is the diagnostic tool that catches "which node in the graph regressed?" — the question chapter 02's snapshots ask, mapped to LangGraph's abstractions.
 
