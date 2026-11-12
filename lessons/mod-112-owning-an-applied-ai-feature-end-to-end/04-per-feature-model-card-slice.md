@@ -2,7 +2,7 @@
 
 ## Why a feature card, not just a model card
 
-Model cards were introduced by Mitchell et al. in 2019 as a way to document the intended use, evaluation, and limitations of a *model*.<!-- needs-research: verify the canonical Model Cards for Model Reporting citation (Mitchell, Wu, Zaldivar, Barnes, Vasserman, Hutchinson, Spitzer, Raji, Gebru — FAT* 2019) and its DOI. --> Since then the industry has generalised the pattern: dataset cards, system cards, use-case cards, and various governance-adjacent variants. The common thread is a *structured evidence document* about an AI artefact, at a specific altitude, aimed at a specific reviewer.
+Model cards were introduced by Mitchell et al. in "Model Cards for Model Reporting" (FAT* 2019; DOI [10.1145/3287560.3287596](https://doi.org/10.1145/3287560.3287596)) as a way to document the intended use, evaluation, and limitations of a *model*. Since then the industry has generalised the pattern: dataset cards, system cards, use-case cards, and various governance-adjacent variants. The common thread is a *structured evidence document* about an AI artefact, at a specific altitude, aimed at a specific reviewer.
 
 For the applied-AI engineer, the artefact is *the shipped feature* — not the underlying model, not the platform, not the org. The reviewers are internal governance-family peer roles (`ai-governance-analyst`, `ai-evaluation-engineer`, `ai-risk-engineer`), an internal AI risk committee, and — if the feature falls under EU AI Act obligations — potentially an external auditor. The card those reviewers need is narrower than a full model card (the model card belongs to whoever trained the model) and broader than a spec (a spec does not compose evidence).
 
@@ -219,7 +219,7 @@ A card that has not been re-composed in six months is a stale card. A stale card
 ## The card's relationship to system cards and model cards
 
 - The **feature card** is *this document* — the applied engineer's slice, per shipped feature.
-- The **model card** belongs to whoever trained (or, for hosted models, distributes) the underlying model. OpenAI publishes model cards / system cards for GPT-4o, GPT-5, o1, etc.; Anthropic publishes system cards / model cards for Claude models. The applied engineer's job is to *cite* these, not to author them.<!-- needs-research: verify the specific naming — OpenAI calls their newer artefacts "system cards" or "GPT-4 system card"; Anthropic calls theirs "Claude ... system card"; the terminology has shifted. -->
+- The **model card** belongs to whoever trained (or, for hosted models, distributes) the underlying model. Both OpenAI and Anthropic currently publish per-model artefacts under the "system card" label (e.g., Anthropic's Claude Opus / Sonnet system cards; OpenAI's GPT-series system cards), with "model card" sometimes used interchangeably for narrower per-model documentation. The applied engineer's job is to *cite* these, not to author them.
 - The **system card** is at the org / product-line altitude — a document about the composed system that hosts many features. Usually authored by the `ai-governance-analyst` or a security-team lead, drawing on the feature cards.
 
 The applied engineer's card is the one that most needs to be a habit, because there are many features and the org has one system card. The scale is different; the shape is chosen to match.

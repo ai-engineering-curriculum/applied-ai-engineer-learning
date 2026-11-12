@@ -34,7 +34,7 @@ A working user-problem statement names four things:
 
 The last bullet is where most drafts flinch. If the applied engineer cannot describe what solved looks like *for the user*, the feature is being built for the org's roadmap, not for the user, and the success metric in field 2 will be a proxy for a proxy.
 
-The reference-book source here is *Working Backwards* (Bryar & Carr) and Amazon's PR/FAQ discipline<!-- needs-research: verify the current canonical citation for the Working Backwards PR/FAQ discipline and its most-cited public description. --> — the same "who is the user, what is the pain, what does solved look like" pass that Amazon runs before any code. LLM features do not get a pass on this; the user still has a task, and the AI is still a tool inside it.
+The reference-book source here is *Working Backwards: Insights, Stories, and Secrets from Inside Amazon* (Bryar & Carr, 2021) and Amazon's PR/FAQ discipline — the same "who is the user, what is the pain, what does solved look like" pass that Amazon runs before any code. LLM features do not get a pass on this; the user still has a task, and the AI is still a tool inside it.
 
 ## Field 2 — The success metric
 
