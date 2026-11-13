@@ -21,22 +21,22 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 - **OpenAI — Moderation guide** — `omni-moderation-latest` and the current category taxonomy (`harassment`, `harassment/threatening`, `hate`, `hate/threatening`, `illicit`, `illicit/violent`, `self-harm`, `self-harm/intent`, `self-harm/instructions`, `sexual`, `sexual/minors`, `violence`, `violence/graphic`), with a `category_applied_input_types` field indicating per-category whether the flag came from a text or image input. `https://platform.openai.com/docs/guides/moderation` (redirects to the current host at `https://developers.openai.com/api/docs/guides/moderation`).
 - **OpenAI — Safety best practices** — the surface-level pattern guide OpenAI publishes alongside the endpoint. `https://platform.openai.com/docs/guides/safety-best-practices` (redirects to the current host at `https://developers.openai.com/api/docs/guides/safety-best-practices`).
-- **Anthropic — Content moderation with Claude** — Claude-native pattern for input / output classification, with per-category scoring examples. `https://docs.anthropic.com/en/docs/about-claude/use-case-guides/content-moderation`. <!-- needs-research: confirm current URL after Anthropic docs restructuring. -->
+- **Anthropic — Content moderation with Claude** — Claude-native pattern for input / output classification, with per-category scoring examples. `https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation` (the legacy `https://docs.anthropic.com/en/docs/about-claude/use-case-guides/content-moderation` URL still redirects here).
 - **Anthropic — Usage policies** — the policy document Claude's own safety filters are aligned to; the applied engineer's surface-level policy usually starts from this shape. `https://www.anthropic.com/legal/aup`.
-- **Google — Gemini safety settings and safety ratings** — the `safetyRatings` response fields and `safetySettings` request fields, per category and threshold. `https://ai.google.dev/gemini-api/docs/safety-settings`. <!-- needs-research: confirm URL. -->
-- **Google — Gemini responsible AI safety filters** — the deeper policy documentation behind the categories. `https://ai.google.dev/gemini-api/docs/safety-guidance`. <!-- needs-research: confirm URL. -->
+- **Google — Gemini safety settings and safety ratings** — the `safetyRatings` response fields and `safetySettings` request fields, per category and threshold. `https://aistudio.google.com/docs/safety-settings` (the legacy `https://ai.google.dev/gemini-api/docs/safety-settings` URL still redirects here).
+- **Google — Gemini responsible AI safety filters** — the deeper policy documentation behind the categories. `https://aistudio.google.com/docs/safety-guidance` (the legacy `https://ai.google.dev/gemini-api/docs/safety-guidance` URL still redirects here).
 - **AWS — Bedrock Guardrails documentation** — first-class guardrail API with content filters, denied topics, sensitive info filters, and word filters. `https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html`.
-- **Azure — AI Content Safety documentation** — standalone content-safety SDK with text / image / groundedness / prompt-shield / protected-material APIs. `https://learn.microsoft.com/en-us/azure/ai-services/content-safety/`. <!-- needs-research: confirm URL and current API surface list. -->
+- **Azure — AI Content Safety documentation** — standalone content-safety SDK with text / image moderation, groundedness detection, Prompt Shields, protected-material detection, and custom-category APIs. `https://learn.microsoft.com/en-us/azure/ai-services/content-safety/`.
 
 ### Classifier guardrails (open and hosted)
 
-- **Meta — Llama Guard 3** — the reference small-parameter safety classifier used by the two-layer split in this chapter. Model card includes the hazard taxonomy. `https://huggingface.co/meta-llama/Llama-Guard-3-8B`. <!-- needs-research: confirm current version — Llama Guard 4 was announced; pin latest stable. -->
-- **Meta — Llama Guard 4** — successor / multimodal variant, if applicable to your surface. `https://huggingface.co/meta-llama/Llama-Guard-4-12B`. <!-- needs-research: confirm URL and current model ID. -->
-- **Meta — Prompt Guard** — small classifier specifically for prompt-injection / jailbreak detection referenced by chapter 02's Layer 1. `https://huggingface.co/meta-llama/Prompt-Guard-86M`. <!-- needs-research: confirm current version and model ID. -->
+- **Meta — Llama Guard 3** — the reference small-parameter safety classifier used by the two-layer split in this chapter (8B parameters, released July 2024, 14 hazard categories aligned to the MLCommons taxonomy). Model card includes the hazard taxonomy. `https://huggingface.co/meta-llama/Llama-Guard-3-8B`. The 12B multimodal successor, Llama Guard 4, is covered below.
+- **Meta — Llama Guard 4** — 12B natively multimodal successor pruned from Llama 4 Scout; same MLCommons S1–S14 hazard taxonomy, now with image inputs. `https://huggingface.co/meta-llama/Llama-Guard-4-12B`.
+- **Meta — Prompt Guard** — small classifier (86M backbone parameters, mDeBERTa-v3-base, 512-token context, eight-language coverage) specifically for prompt-injection / jailbreak detection referenced by chapter 02's Layer 1. `https://huggingface.co/meta-llama/Prompt-Guard-86M`.
 - **Meta — Purple Llama project** — the umbrella for Llama Guard, Prompt Guard, CyberSecEval, and CodeShield. `https://github.com/meta-llama/PurpleLlama`.
-- **IBM — Granite Guardian** — an alternative small-parameter safety classifier family with a documented category set. `https://huggingface.co/ibm-granite/granite-guardian-3.0-8b`. <!-- needs-research: confirm current model ID and version. -->
+- **IBM — Granite Guardian** — an alternative small-parameter safety classifier family with a documented category set; the current release is Granite Guardian 3.3 8B. `https://huggingface.co/ibm-granite/granite-guardian-3.3-8b`.
 - **ProtectAI — LLM Guard** — a scanner framework combining regex, ML, and classifier scanners for input and output moderation, PII, and injection. `https://llm-guard.com/`.
-- **NVIDIA — NeMo Guardrails** — a rails / policy framework that composes classifier + regex + LLM-based checks around agent flows. `https://docs.nvidia.com/nemo/guardrails/`. <!-- needs-research: confirm URL after NVIDIA docs restructuring. -->
+- **NVIDIA — NeMo Guardrails** — a rails / policy framework that composes classifier + regex + LLM-based checks around agent flows. `https://docs.nvidia.com/nemo/guardrails/`.
 - **Guardrails AI — Hub** — a catalogue of validators (many of them classifier-backed) applied to LLM outputs. `https://hub.guardrailsai.com/`.
 
 ### Red-team corpora and hazard taxonomies
@@ -44,15 +44,15 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **Gehman et al. — *RealToxicityPrompts*** — the canonical toxicity-elicitation prompt corpus for FP/FN evaluation of moderation. `https://arxiv.org/abs/2009.11462`, `https://allenai.org/data/real-toxicity-prompts`.
 - **Parrish et al. — *BBQ: A Hand-Built Bias Benchmark for Question Answering*** — the canonical bias-fixture set for the "does the moderator over-block minoritised groups?" false-positive audit. `https://arxiv.org/abs/2110.08193`.
 - **Zou et al. — *Universal and Transferable Adversarial Attacks on Aligned Language Models* (AdvBench)** — the AdvBench harmful-behaviour and harmful-string corpora, widely reused as jailbreak fixtures. `https://arxiv.org/abs/2307.15043`, `https://github.com/llm-attacks/llm-attacks`.
-- **MLCommons — AILuminate benchmark** — the hazard-taxonomy-driven safety benchmark that many current classifier releases align to. `https://mlcommons.org/benchmarks/ai-safety/`. <!-- needs-research: confirm current URL and version — the benchmark is versioning quickly. -->
-- **AI2 — WildGuardMix / WildGuard** — a broader safety fixture set covering harmful requests, benign refusals, and jailbreaks; useful for the benign-decoy panel. `https://huggingface.co/datasets/allenai/wildguardmix`. <!-- needs-research: confirm URL and current version. -->
+- **MLCommons — AILuminate benchmark** — the hazard-taxonomy-driven safety benchmark that many current classifier releases align to; current release is AILuminate v1.0 (13 hazard categories, five-point grading scale). `https://ailuminate.mlcommons.org/benchmarks/`.
+- **AI2 — WildGuardMix / WildGuard** — a broader safety fixture set (WildGuardTrain's ~86.8k training items plus WildGuardTest's ~1.7k evaluation items) covering harmful requests, benign refusals, and jailbreaks; useful for the benign-decoy panel. `https://huggingface.co/datasets/allenai/wildguardmix`.
 - **Anthropic — Sample red-teaming datasets (HH-RLHF companion)** — foundational corpus for harmful-request evaluation. `https://github.com/anthropics/hh-rlhf`.
 
 ### Streaming and retract-on-flag patterns
 
-- **OpenAI Agents SDK — Guardrails documentation** — the input / output guardrail primitives referenced in the streaming section (Pattern C, retract-on-flag). `https://openai.github.io/openai-agents-python/guardrails/`. <!-- needs-research: confirm URL and current semantics — the SDK is still stabilising. -->
+- **OpenAI Agents SDK — Guardrails documentation** — the input / output / tool guardrail primitives and tripwire-exception model referenced in the streaming section (Pattern C, retract-on-flag). `https://openai.github.io/openai-agents-python/guardrails/`.
 - **Anthropic — Streaming messages** — the streaming API surface that a chapter-01 buffer / boundary / retract pattern is layered on top of. `https://docs.anthropic.com/en/api/messages-streaming`.
-- **Google — Gemini streaming responses** — the parallel provider surface. `https://ai.google.dev/gemini-api/docs/text-generation#stream`. <!-- needs-research: confirm URL. -->
+- **Google — Gemini streaming responses** — the parallel provider surface. `https://aistudio.google.com/docs/text-generation` (the legacy `https://ai.google.dev/gemini-api/docs/text-generation` URL still redirects here).
 
 ## Chapter 02 — Prompt injection defence at the surface
 
@@ -61,8 +61,8 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **Simon Willison — *Prompt injection attacks against GPT-3*** — the canonical 2022 post that named the class of attack. `https://simonwillison.net/2022/Sep/12/prompt-injection/`.
 - **Simon Willison — Prompt injection tag** — ongoing field notes on new variants and provider responses. `https://simonwillison.net/tags/prompt-injection/`.
 - **Greshake et al. — *Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection*** — the foundational indirect-injection paper the retrieval-side layer is designed against. `https://arxiv.org/abs/2302.12173`.
-- **OWASP LLM01 — Prompt Injection** — the canonical taxonomy entry the mapping runbook connects findings to. `https://genai.owasp.org/llmrisk/llm01-prompt-injection/`. <!-- needs-research: pin the current version's entry code and URL. -->
-- **OWASP LLM05 — Insecure Output Handling** — the entry the Layer 3 content-type-safe rendering discipline maps to. `https://genai.owasp.org/llmrisk/llm05-insecure-output-handling/`. <!-- needs-research: confirm current entry number — the numbering has shifted across revisions. -->
+- **OWASP LLM01:2025 — Prompt Injection** — the canonical taxonomy entry the mapping runbook connects findings to. `https://genai.owasp.org/llmrisk/llm01-prompt-injection/`.
+- **OWASP LLM05:2025 — Improper Output Handling** (renamed from "Insecure Output Handling" in the 2023 edition) — the entry the Layer 3 content-type-safe rendering discipline maps to. `https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/`.
 
 ### Benchmarks and eval harnesses
 
@@ -70,21 +70,21 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **Zhan et al. — *InjecAgent: Benchmarking Indirect Prompt Injections in Tool-Integrated Large Language Model Agents*** — the sibling benchmark for indirect injection through tool results. `https://arxiv.org/abs/2403.02691`, `https://github.com/uiuc-kang-lab/InjecAgent`.
 - **Toyer et al. — *Tensor Trust: Interpretable Prompt Injection Attacks from an Online Game*** — the crowdsourced attack-corpus paper that supplies the "attackers reliably beat system-prompt-alone defences" evidence. `https://arxiv.org/abs/2311.01011`, `https://tensortrust.ai/`.
 - **Schulhoff et al. — *Ignore This Title and HackAPrompt* (EMNLP 2023)** — the HackAPrompt competition and corpus, another canonical adversarial dataset. `https://arxiv.org/abs/2311.16119`, `https://www.hackaprompt.com/`.
-- **Rebuff** — an open-source prompt-injection detection framework combining heuristics, vector similarity, an LLM check, and a canary-token trap. `https://github.com/protectai/rebuff`. <!-- needs-research: confirm the project is still maintained. -->
+- **Rebuff** — an open-source prompt-injection detection framework combining heuristics, vector similarity, an LLM check, and a canary-token trap; the repository was archived read-only on 2025-05-16, so treat it as a reference design rather than a maintained dependency. `https://github.com/protectai/rebuff`.
 
 ### Provider-side injection guidance
 
-- **Anthropic — Mitigating jailbreaks and prompt injection** — Claude-native guidance on system-prompt discipline and distrust markers. `https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks`. <!-- needs-research: confirm URL. -->
-- **Anthropic — System prompts** — reference for role-separation and system-prompt best practice. `https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts`. <!-- needs-research: confirm URL. -->
-- **OpenAI — Prompt injection defence (cookbook)** — worked examples of segregation markers and defensive prompting. `https://cookbook.openai.com/examples/how_to_use_guardrails`. <!-- needs-research: confirm current URL and article — the cookbook restructures often. -->
-- **Google — Gemini prompt-injection guidance** — provider-side safety-guidance URLs on protecting the model from adversarial inputs. `https://ai.google.dev/gemini-api/docs/safety-guidance#prompt_injection`. <!-- needs-research: confirm URL. -->
-- **Microsoft — Prompt Shields (Azure AI Content Safety)** — a hosted detector for user-prompt and document-prompt injection. `https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection`. <!-- needs-research: confirm URL and current product name. -->
+- **Anthropic — Mitigating jailbreaks and prompt injection** — Claude-native guidance on system-prompt discipline and distrust markers. `https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks` (the legacy `https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks` URL still redirects here).
+- **Anthropic — Prompting best practices** — reference for role-separation and system-prompt best practice; the previous standalone "system prompts" page has been folded into this consolidated prompt-engineering guide. `https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices`.
+- **OpenAI — "How to use guardrails" (cookbook)** — worked examples of input / output guardrails including prompt-injection detection. `https://developers.openai.com/cookbook/examples/how_to_use_guardrails` (the legacy `https://cookbook.openai.com/examples/how_to_use_guardrails` URL still redirects here).
+- **Google — Gemini safety and factuality guidance** — provider-side safety-guidance on protecting the model from adversarial inputs (no dedicated prompt-injection subpage; the applicable material sits inside the general safety guidance). `https://aistudio.google.com/docs/safety-guidance`.
+- **Microsoft — Prompt Shields (Azure AI Content Safety)** — a hosted detector for user-prompt and document-prompt injection (previously named "Jailbreak risk detection"). `https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection`.
 
 ### Structured-output enforcement (Layer 3)
 
 - **OpenAI — Structured Outputs guide** — the `strict: true` schema-constrained decoding surface. `https://platform.openai.com/docs/guides/structured-outputs`.
-- **Anthropic — Tool use with `input_schema`** — schema-constrained tool arguments as the structured-output escape-hatch control. `https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview`. <!-- needs-research: confirm URL after Anthropic tool-use docs reorganisation. -->
-- **Google — Gemini `responseSchema` / `responseMimeType`** — Gemini's schema-constrained decoding. `https://ai.google.dev/gemini-api/docs/structured-output`. <!-- needs-research: confirm URL. -->
+- **Anthropic — Tool use with `input_schema`** — schema-constrained tool arguments as the structured-output escape-hatch control. `https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview` (the legacy `https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview` URL still redirects here).
+- **Google — Gemini `responseSchema` / `responseMimeType`** — Gemini's schema-constrained decoding. `https://aistudio.google.com/docs/structured-output` (the legacy `https://ai.google.dev/gemini-api/docs/structured-output` URL still redirects here).
 - **Instructor (jxnl/instructor)** — the popular OSS Python library layering Pydantic-validated structured output over multiple providers. `https://python.useinstructor.com/`.
 
 ## Chapter 03 — PII and secret scrubbing across the stack
@@ -92,7 +92,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 ### PII detection
 
 - **Microsoft Presidio — Documentation** — the reference OSS PII detector combining NER + recognisers + anonymiser. `https://microsoft.github.io/presidio/`.
-- **Microsoft Presidio — Supported entities and language support** — the coverage matrix chapter 03 references for the "non-English recall degrades" caveat. `https://microsoft.github.io/presidio/supported_entities/`, `https://microsoft.github.io/presidio/analyzer/languages/`. <!-- needs-research: confirm URLs. -->
+- **Microsoft Presidio — Supported entities and language support** — the coverage matrix chapter 03 references for the "non-English recall degrades" caveat. The docs have moved to the community Data Privacy Stack site at `https://data-privacy-stack.github.io/presidio/supported_entities/` and `https://data-privacy-stack.github.io/presidio/analyzer/multi_language_support/` (the legacy `microsoft.github.io/presidio/...` URLs redirect here).
 - **Microsoft Presidio — Anonymizer custom operators** — the reference for building the stable typed-placeholder / tokenisation scheme. `https://microsoft.github.io/presidio/anonymizer/`.
 - **Google Cloud — Sensitive Data Protection (formerly Cloud DLP)** — the hosted PII / DLP surface referenced as a cloud-DLP alternative. `https://cloud.google.com/sensitive-data-protection/docs`.
 - **AWS — Comprehend PII detection** — hosted alternative on AWS. `https://docs.aws.amazon.com/comprehend/latest/dg/pii.html`.
@@ -104,7 +104,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **AWS Labs — `git-secrets`** — the original pre-commit secret scanner; still a useful reference for provider-key prefix patterns. `https://github.com/awslabs/git-secrets`.
 - **Trufflesecurity — TruffleHog** — high-recall secret scanner with verification against provider APIs. `https://github.com/trufflesecurity/trufflehog`.
 - **GitHub — Secret scanning documentation** — the canonical list of provider secret patterns GitHub scans for, useful as a starting regex catalogue. `https://docs.github.com/en/code-security/secret-scanning/introduction/about-secret-scanning`.
-- **GitHub — Secret scanning partner program (patterns list)** — the maintained provider-pattern catalogue. `https://docs.github.com/en/code-security/secret-scanning/introduction/supported-secret-scanning-patterns`. <!-- needs-research: confirm URL. -->
+- **GitHub — Secret scanning partner program (patterns list)** — the maintained provider-pattern catalogue. `https://docs.github.com/en/code-security/secret-scanning/supported-secret-scanning-patterns`.
 
 ### Tracing SDKs and redaction hooks
 
