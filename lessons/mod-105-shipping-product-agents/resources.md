@@ -40,38 +40,38 @@ Curated primary sources for the topics covered across the five chapters. Provide
 ### Shape D (browsing agent)
 
 - **OpenAI — Operator (announcement)** — the initial browsing-agent product; its capabilities have since been consolidated into ChatGPT Agent (see next entry). `https://openai.com/index/introducing-operator/`.
-- **OpenAI — ChatGPT Agent** — the successor / consolidation of Operator into the main ChatGPT surface. `https://openai.com/index/introducing-chatgpt-agent/`. <!-- needs-research: confirm URL and product name. -->
-- **Anthropic — Computer use** — the API-side capability for driving screens / DOM. `https://docs.anthropic.com/en/docs/build-with-claude/computer-use`. <!-- needs-research: confirm current URL after Anthropic's Agent SDK docs reorganisation. -->
-- **Anthropic — Claude for Chrome (research preview)** — the browser-extension surface for Claude computer-use. `https://www.anthropic.com/news/claude-for-chrome`. <!-- needs-research: confirm current URL and product name; this surface has evolved fast. -->
+- **OpenAI — ChatGPT agent** — the successor / consolidation of Operator into the main ChatGPT surface. `https://openai.com/index/introducing-chatgpt-agent/`.
+- **Anthropic — Computer use tool** — the API-side capability for driving screens / DOM. `https://platform.claude.com/docs/en/build-with-claude/computer-use`.
+- **Anthropic — Piloting Claude in Chrome (research preview)** — the browser-extension surface for Claude computer-use. `https://claude.com/blog/claude-for-chrome`.
 
 ### Shape E (sales / support / ops assistant)
 
 - **Harvey — Product documentation and blog** — professional-user surface for legal work. `https://www.harvey.ai/`, `https://www.harvey.ai/blog`.
 - **Gong — Product documentation** — sales-side agent-assist reference. `https://www.gong.io/`.
-- **Zendesk — AI agents / Agent Copilot** — CX-side agent-assist for support reps. `https://www.zendesk.com/service/ai/`. <!-- needs-research: confirm slug — Zendesk renames the AI product line periodically. -->
+- **Zendesk — AI agents and Copilot** — CX-side agent-assist for support reps. `https://www.zendesk.com/service/ai/`.
 - **Datadog — Bits AI** — engineering-ops agent-assist reference. `https://www.datadoghq.com/product/bits-ai/`.
 
 ### Applied vs. agentic split framing
 
-- **Chip Huyen — *Agents* essay** — the framing on what applied engineering owns vs. what agent-engine work owns. `https://huyenchip.com/2025/01/07/agents.html`. <!-- needs-research: confirm slug / URL. -->
+- **Chip Huyen — *Agents* essay** — the framing on what applied engineering owns vs. what agent-engine work owns. `https://huyenchip.com/2025/01/07/agents.html`.
 - **Anthropic — Building effective AI agents** — the "workflow vs. agent" distinction underneath the applied/agentic split. `https://www.anthropic.com/engineering/building-effective-agents`.
 
 ## Chapter 02 — Memory system with retention and PII policy
 
 ### Provider-side memory features
 
-- **OpenAI — Memory in ChatGPT** — user-facing memory surface and controls. `https://help.openai.com/en/articles/8590148-memory-faq`. <!-- needs-research: confirm current URL and section names. -->
-- **OpenAI — Data controls / data retention** — the platform-level retention posture for API traffic. `https://platform.openai.com/docs/models/how-we-use-your-data`. <!-- needs-research: confirm current URL; OpenAI's retention pages move often. -->
-- **Anthropic — Data usage and retention (Trust Center)** — Anthropic's published stance on Console vs. API data. `https://trust.anthropic.com/`. <!-- needs-research: confirm URL for the retention-specific page. -->
-- **Anthropic — Projects and memory in Claude.ai** — the consumer product's project-scoped memory surface. `https://support.anthropic.com/en/articles/9945760-using-projects`. <!-- needs-research: confirm URL and product name. -->
-- **Google — Gemini Apps privacy and memory** — consumer product retention posture. `https://support.google.com/gemini/answer/13594961`. <!-- needs-research: confirm URL. -->
+- **OpenAI — Memory in ChatGPT (Memory FAQ)** — user-facing memory surface and controls. `https://help.openai.com/en/articles/8590148-memory-faq`.
+- **OpenAI — Data controls in the OpenAI platform** — the platform-level retention posture for API traffic. `https://developers.openai.com/api/docs/guides/your-data`.
+- **Anthropic — Trust Center** — Anthropic's published stance on Console vs. API data; browse to the data-handling resources for the retention specifics. `https://trust.anthropic.com/`.
+- **Anthropic — Projects in Claude.ai** — the consumer product's project-scoped memory surface. `https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects`.
+- **Google — Gemini Apps Privacy Hub** — consumer product retention posture and memory controls. `https://support.google.com/gemini/answer/13594961`.
 
 ### Data-subject rights (regulatory floor)
 
 - **GDPR — Regulation (EU) 2016/679** — the source text with the four data-subject rights (Articles 15, 16, 17, 20) and the special-category-data list (Article 9). `https://eur-lex.europa.eu/eli/reg/2016/679/oj`.
-- **European Data Protection Board — Guidelines on the right of access (Guidelines 01/2022)** — the operational read of Article 15. `https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-012022-data-subject-rights-right-access_en`. <!-- needs-research: confirm current URL and version. -->
+- **European Data Protection Board — Guidelines 01/2022 on data subject rights – Right of access (v2.1, final)** — the operational read of Article 15. `https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-012022-data-subject-rights-right-access_en`.
 - **California — CCPA / CPRA** — the California statute and its regulator's guidance. `https://oag.ca.gov/privacy/ccpa`.
-- **LGPD (Brazil) — English overview from IAPP** — practitioner reference for the Brazilian law. `https://iapp.org/resources/article/lgpd-english-translation/`. <!-- needs-research: confirm URL. -->
+- **LGPD (Brazil) — Lei Geral de Proteção de Dados** — Brazil's general data-protection law; the IAPP maintains an English translation reachable from its resource library at `https://iapp.org/resources/`.
 - **HIPAA — HHS overview** — the regulatory frame most relevant if the memory holds health data. `https://www.hhs.gov/hipaa/index.html`.
 
 ### Storage substrates and typed schemas
@@ -85,11 +85,11 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### Retrieval on memory
 
-- **LangGraph — Long-term memory patterns** — the framework's canonical patterns for user / workspace memory. `https://langchain-ai.github.io/langgraph/concepts/memory/`. <!-- needs-research: confirm URL / section. -->
+- **LangChain / LangGraph — Memory overview** — the framework's canonical patterns for short- and long-term agent memory. `https://docs.langchain.com/oss/python/concepts/memory`.
 - **LangGraph — Checkpointers reference** — the session-layer store. `https://langchain-ai.github.io/langgraph/reference/checkpoints/`.
-- **OpenAI Agents SDK — Sessions** — the framework's session-layer primitive. `https://openai.github.io/openai-agents-python/sessions/`. <!-- needs-research: confirm URL. -->
-- **`mem0`** — an open-source memory library specifically for LLM apps. `https://docs.mem0.ai/`. <!-- needs-research: confirm URL and canonical name. -->
-- **`Zep`** — an open-source memory + retrieval store for LLM apps. `https://docs.getzep.com/`. <!-- needs-research: confirm URL. -->
+- **OpenAI Agents SDK — Sessions** — the framework's session-layer primitive. `https://openai.github.io/openai-agents-python/sessions/`.
+- **Mem0** — an open-source memory library specifically for LLM apps. `https://docs.mem0.ai/`.
+- **Zep** — a memory + retrieval store for LLM apps. `https://help.getzep.com/`.
 
 ### Vector stores (context, for the retrieval side of memory)
 
@@ -103,16 +103,16 @@ Curated primary sources for the topics covered across the five chapters. Provide
 ### Runtime signals and human-in-the-loop primitives
 
 - **LangGraph — Human-in-the-loop docs** — the canonical `interrupt` / `Command` pattern for approval / rejection. `https://langchain-ai.github.io/langgraph/how-tos/#human-in-the-loop`.
-- **LangGraph — Streaming** — how the runtime exposes step events to the UI. `https://langchain-ai.github.io/langgraph/how-tos/streaming/`. <!-- needs-research: confirm URL. -->
+- **LangGraph — Streaming** — how the runtime exposes step events to the UI. `https://docs.langchain.com/oss/python/langgraph/streaming`.
 - **OpenAI Agents SDK — Handoffs and Guardrails** — the framework's HITL primitives. `https://openai.github.io/openai-agents-python/handoffs/`, `https://openai.github.io/openai-agents-python/guardrails/`.
-- **Anthropic — Claude Agent SDK Hooks** — `PreToolUse` / `PostToolUse` as the confirmation-gate surface. `https://docs.anthropic.com/en/docs/agents-and-tools/agent-sdk/hooks`. <!-- needs-research: confirm URL and hook names. -->
+- **Anthropic — Claude Agent SDK Hooks** — `PreToolUse` / `PostToolUse` as the confirmation-gate surface. `https://code.claude.com/docs/en/agent-sdk/hooks`.
 - **Anthropic — Building effective AI agents (checkpoint / interrupt sections)** — the framing on when to pause an agent. `https://www.anthropic.com/engineering/building-effective-agents`.
 
 ### Progress, cancel, undo, resume UX
 
 - **Nielsen Norman Group — Response times: the 3 important limits** — the classic UX reference on progress and latency. `https://www.nngroup.com/articles/response-times-3-important-limits/`.
-- **Nielsen Norman Group — Progress indicators** — when and how to show progress. `https://www.nngroup.com/articles/progress-indicators/`. <!-- needs-research: confirm slug. -->
-- **W3C — Waiting for content to appear (WCAG guidance)** — accessibility side of long-running operations. `https://www.w3.org/WAI/tips/writing/#help-users-understand-what-they-are-doing`. <!-- needs-research: confirm exact URL for the relevant WCAG tip. -->
+- **Nielsen Norman Group — Progress Indicators Make a Slow System Less Insufferable** — when and how to show progress. `https://www.nngroup.com/articles/progress-indicators/`.
+- **W3C — Understanding WCAG 2.2, SC 4.1.3 Status Messages** — accessibility side of long-running operations, i.e. announcing progress/wait states to assistive technology without moving focus. `https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html`.
 
 ### Kill switch / operational safety
 
@@ -125,7 +125,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### Confirmation UX for high-blast-radius writes
 
-- **Anthropic — Claude tool-use security considerations** — the "confirm before execute" framing in the provider docs. `https://docs.anthropic.com/en/docs/build-with-claude/tool-use#security-considerations`. <!-- needs-research: confirm URL and section anchor. -->
+- **Anthropic — Mitigate jailbreaks and prompt injections** — the "confirm before execute" framing in the provider docs, including guidance on untrusted tool content. `https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks`.
 - **Stripe — Confirmation intents (Payment Intents)** — a real production example of "propose → confirm → execute" for a high-blast-radius action. `https://docs.stripe.com/payments/payment-intents`.
 
 ## Chapter 04 — Eval suites from benchmark shapes
@@ -134,7 +134,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 - **Sierra Research — *τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains*** — the original paper (Yao et al., 2024). `https://arxiv.org/abs/2406.12045`.
 - **`sierra-research/tau-bench`** — the reference implementation, `retail` and `airline` domains, user simulator, and scoring. `https://github.com/sierra-research/tau-bench`.
-- **Sierra — τ² and successor work** — the follow-on benchmark iterating on τ-bench. `https://sierra.ai/blog/tau2-benchmark`. <!-- needs-research: confirm URL and current version. -->
+- **Sierra — τ²-bench: evaluating conversational agents in a dual-control environment** — the follow-on benchmark iterating on τ-bench. `https://sierra.ai/resources/research/tau-squared-bench`.
 
 ### SWE-bench and SWE-bench Verified
 
