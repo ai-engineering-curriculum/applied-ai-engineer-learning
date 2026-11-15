@@ -73,7 +73,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **OpenInference — Semantic conventions** — Phoenix / Arize's parallel spec that shipped ahead of the OTel one, with a broader tool-call surface. `https://github.com/Arize-ai/openinference/tree/main/spec`.
 - **Langfuse — Tracing documentation** — an OSS observability substrate that captures the lineage fields this chapter names. `https://langfuse.com/docs/tracing`.
 - **LangSmith — Observability documentation** — LangChain's equivalent, tightly integrated with LangGraph. `https://docs.langchain.com/langsmith/observability`.
-- **Braintrust — Tracing documentation** — Braintrust's trace + experiment substrate. `https://www.braintrust.dev/docs/guides/tracing`. <!-- needs-research: confirm URL. -->
+- **Braintrust — Tracing documentation** — Braintrust's trace + experiment substrate. `https://docs.braintrust.dev/guides/tracing`.
 
 ### PII detection and redaction
 
@@ -81,7 +81,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **Google Cloud — Sensitive Data Protection (Cloud DLP)** — hosted PII detection with strong regex + ML surfaces. `https://cloud.google.com/sensitive-data-protection/docs`.
 - **AWS — Comprehend PII detection** — hosted alternative. `https://docs.aws.amazon.com/comprehend/latest/dg/pii.html`.
 - **Azure — AI Language PII detection** — Microsoft-hosted alternative. `https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview`.
-- **`llm-guard` — PII scanner** — an OSS library specifically for LLM-input and output PII scrubbing. `https://llm-guard.com/input_scanners/anonymize/`. <!-- needs-research: confirm URL. -->
+- **`llm-guard` — PII scanner** — an OSS library specifically for LLM-input and output PII scrubbing. `https://llm-guard.com/input_scanners/anonymize/`.
 - **`presidio-anonymizer` — Custom operators** — reference for building the stable typed-placeholder scheme this chapter names. `https://microsoft.github.io/presidio/anonymizer/`.
 
 ### Data-subject rights (the deletion cascade)
@@ -89,11 +89,11 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **GDPR — Regulation (EU) 2016/679** — Articles 15 (access) and 17 (erasure) are the ones the deletion-cascade contract implements. `https://eur-lex.europa.eu/eli/reg/2016/679/oj`.
 - **California — CCPA / CPRA** — the California statute for equivalent user-deletion rights. `https://oag.ca.gov/privacy/ccpa`.
 - **HIPAA — HHS overview** — the regulatory frame most relevant to special-category (health) data referenced in the snapshot-never default. `https://www.hhs.gov/hipaa/index.html`.
-- **PCI DSS v4.0** — the payment-card standard relevant to any surface where a snapshot could include a card number. `https://www.pcisecuritystandards.org/document_library/`. <!-- needs-research: confirm current version URL. -->
+- **PCI DSS v4.0.1** — the payment-card standard relevant to any surface where a snapshot could include a card number. `https://www.pcisecuritystandards.org/document_library/`.
 
 ### Fixture design and versioning
 
-- **Google — Testing on the Toilet: Fixtures** — background reference for fixture-set discipline transplanted to eval. `https://testing.googleblog.com/`. <!-- needs-research: pin a specific post. -->
+- **Google — Testing on the Toilet: Cleanly Create Test Data** — background reference for fixture-set discipline transplanted to eval. `https://testing.googleblog.com/2018/02/testing-on-toilet-cleanly-create-test.html`.
 - **Jest / Vitest — Snapshot testing** — the software-testing sibling of trace-snapshot regression, useful for framing. `https://jestjs.io/docs/snapshot-testing`, `https://vitest.dev/guide/snapshot.html`.
 - **DVC — Data Version Control** — the OSS tool for versioning datasets / fixture sets alongside code. `https://dvc.org/doc`.
 - **Git LFS** — the low-tech alternative for versioning large fixture blobs. `https://git-lfs.com/`.
@@ -103,55 +103,55 @@ Curated primary sources for the topics covered across the five chapters. Provide
 ### Promptfoo
 
 - **Promptfoo — Documentation** — the canonical entry point. `https://www.promptfoo.dev/docs/intro/`.
-- **Promptfoo — Assertions reference** — the full assertion catalogue (exact match, contains, JSON validity, Python / JavaScript callbacks, LLM-graded rubrics, factuality, cost / latency thresholds). `https://www.promptfoo.dev/docs/configuration/expected-outputs/`. <!-- needs-research: confirm URL and section slug. -->
-- **Promptfoo — GitHub Action** — the CI integration used in the chapter's example. `https://www.promptfoo.dev/docs/integrations/github-action/`. <!-- needs-research: confirm URL. -->
+- **Promptfoo — Assertions reference** — the full assertion catalogue (exact match, contains, JSON validity, Python / JavaScript callbacks, LLM-graded rubrics, factuality, cost / latency thresholds). `https://www.promptfoo.dev/docs/configuration/expected-outputs/`.
+- **Promptfoo — GitHub Action** — the CI integration used in the chapter's example. `https://www.promptfoo.dev/docs/integrations/github-action/`.
 - **`promptfoo/promptfoo`** — reference repository. `https://github.com/promptfoo/promptfoo`.
 
 ### DeepEval
 
-- **DeepEval — Documentation** — the pytest-first eval library. `https://docs.confident-ai.com/`. <!-- needs-research: confirm URL — the docs domain has moved. -->
-- **DeepEval — Metrics reference** — G-Eval, Faithfulness, AnswerRelevancy, ContextualRelevancy, Hallucination, Bias, Toxicity, custom judges. `https://docs.confident-ai.com/docs/metrics-introduction`. <!-- needs-research: confirm URL. -->
+- **DeepEval — Documentation** — the pytest-first eval library. `https://deepeval.com/`.
+- **DeepEval — Metrics reference** — G-Eval, Faithfulness, AnswerRelevancy, ContextualRelevancy, Hallucination, Bias, Toxicity, custom judges. `https://deepeval.com/docs/metrics-introduction`.
 - **`confident-ai/deepeval`** — reference repository. `https://github.com/confident-ai/deepeval`.
 - **Confident AI — Hosted dashboard** — the managed surface pairing with the OSS library. `https://www.confident-ai.com/`.
 
 ### Braintrust
 
 - **Braintrust — Documentation** — the hosted eval + trace platform. `https://www.braintrust.dev/docs/start/`.
-- **Braintrust — Eval API reference** — `Eval(...)`, scorers, experiments. `https://www.braintrust.dev/docs/reference/api/Eval`. <!-- needs-research: confirm URL. -->
-- **Braintrust — GitHub Action** — the CI integration for the diff-comment view. `https://www.braintrust.dev/docs/guides/ci`. <!-- needs-research: confirm URL. -->
+- **Braintrust — Eval API reference** — `Eval(...)`, scorers, experiments. `https://docs.braintrust.dev/reference/api/Eval`.
+- **Braintrust — GitHub Action** — the CI integration for the diff-comment view. `https://docs.braintrust.dev/evaluate/run-in-ci`.
 - **`braintrustdata/braintrust-proxy`** — the OSS proxy used to instrument arbitrary providers for Braintrust. `https://github.com/braintrustdata/braintrust-proxy`.
 
 ### Langfuse
 
 - **Langfuse — Documentation** — the OSS observability + eval platform. `https://langfuse.com/docs`.
-- **Langfuse — Datasets and evaluations** — the eval-runner surface. `https://langfuse.com/docs/datasets/overview`. <!-- needs-research: confirm URL. -->
+- **Langfuse — Datasets and evaluations** — the eval-runner surface. `https://langfuse.com/docs/datasets/overview`.
 - **Langfuse — Prompt management** — the versioned-prompt surface referenced in the chapter. `https://langfuse.com/docs/prompts/get-started`.
 - **`langfuse/langfuse`** — reference repository. `https://github.com/langfuse/langfuse`.
 
 ### Arize Phoenix
 
 - **Arize Phoenix — Documentation** — the OSS observability + eval framework from Arize. `https://arize.com/docs/phoenix/`.
-- **Phoenix — Evals module** — the eval-runner surface, with strong RAG-triad tooling. `https://arize.com/docs/phoenix/evaluation/how-to-evals/running-pre-tested-evals`. <!-- needs-research: confirm URL. -->
-- **Phoenix — OpenInference tracing** — the OTel-native trace substrate. `https://arize.com/docs/phoenix/tracing/llm-traces`. <!-- needs-research: confirm URL. -->
+- **Phoenix — Evals module** — the eval-runner surface, with strong RAG-triad tooling. `https://arize.com/docs/phoenix/evaluation/how-to-evals/running-pre-tested-evals`.
+- **Phoenix — OpenInference tracing** — the OTel-native trace substrate. `https://arize.com/docs/phoenix/tracing/llm-traces`.
 - **`Arize-ai/phoenix`** — reference repository. `https://github.com/Arize-ai/phoenix`.
 
 ### Weights & Biases Weave
 
 - **Weights & Biases Weave — Documentation** — W&B's LLM-eval-and-trace surface. `https://weave-docs.wandb.ai/`.
-- **Weave — Evaluations reference** — the `Evaluation` API and scorer conventions. `https://weave-docs.wandb.ai/guides/core-types/evaluations`. <!-- needs-research: confirm URL. -->
+- **Weave — Evaluations reference** — the `Evaluation` API and scorer conventions. `https://docs.wandb.ai/weave/guides/core-types/evaluations`.
 - **`wandb/weave`** — reference repository. `https://github.com/wandb/weave`.
 
 ### LangSmith
 
 - **LangSmith — Documentation** — LangChain's hosted trace + eval surface. `https://docs.smith.langchain.com/`.
-- **LangSmith — Datasets and experiments** — the eval-runner surface with first-class LangGraph integration. `https://docs.smith.langchain.com/evaluation`. <!-- needs-research: confirm URL. -->
-- **LangSmith — CI/CD integration guide** — the CI wiring path. `https://docs.smith.langchain.com/evaluation/how_to_guides/ci`. <!-- needs-research: confirm URL. -->
+- **LangSmith — Datasets and experiments** — the eval-runner surface with first-class LangGraph integration. `https://docs.langchain.com/langsmith/evaluation-concepts`.
+- **LangSmith — CI/CD integration guide** — the CI wiring path. `https://docs.langchain.com/langsmith/cicd-pipeline-example`.
 
 ### Runner-adjacent tools
 
 - **Inspect AI (UK AI Safety Institute)** — the evaluation framework the UK AISI publishes; useful comparison for the runner shape. `https://inspect.ai-safety-institute.org.uk/`.
 - **OpenAI Evals** — OpenAI's OSS eval framework, an early reference implementation of the config-driven eval-runner pattern. `https://github.com/openai/evals`.
-- **Anthropic — Evaluating prompts in the Console** — the Anthropic-native lightweight eval surface. `https://docs.anthropic.com/en/docs/test-and-evaluate/eval-tool`. <!-- needs-research: confirm URL. -->
+- **Anthropic — Evaluating prompts in the Console** — the Anthropic-native lightweight eval surface. `https://platform.claude.com/docs/en/test-and-evaluate/eval-tool`.
 
 ### GitHub Actions / CI substrate
 
@@ -162,29 +162,29 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### Judge-cost discipline and caching
 
-- **Anthropic — Prompt caching** — provider-side caching that reduces judge cost on repeated evaluations. `https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching`. <!-- needs-research: confirm URL. -->
+- **Anthropic — Prompt caching** — provider-side caching that reduces judge cost on repeated evaluations. `https://platform.claude.com/docs/en/build-with-claude/prompt-caching`.
 - **OpenAI — Prompt caching** — OpenAI's equivalent. `https://platform.openai.com/docs/guides/prompt-caching`.
-- **Google — Context caching for Gemini** — Google's equivalent. `https://ai.google.dev/gemini-api/docs/caching`. <!-- needs-research: confirm URL. -->
+- **Google — Context caching for Gemini** — Google's equivalent. `https://aistudio.google.com/docs/caching`.
 
 ## Chapter 04 — Sampled online eval loop with judge-drift monitor
 
 ### Online / production evaluation frameworks
 
-- **Braintrust — Online scoring documentation** — the hosted-runner path for live-traffic scoring. `https://www.braintrust.dev/docs/guides/online-scoring`. <!-- needs-research: confirm URL. -->
-- **Langfuse — Online evaluations documentation** — the OSS-runner path. `https://langfuse.com/docs/scores/model-based-evals`. <!-- needs-research: confirm URL. -->
-- **LangSmith — Online evaluators** — the hosted equivalent. `https://docs.smith.langchain.com/observability/how_to_guides/online_evaluations`. <!-- needs-research: confirm URL. -->
-- **Arize Phoenix — Online evaluation** — Phoenix's approach to live scoring. `https://arize.com/docs/phoenix/evaluation/concepts-evals/llm-as-a-judge`. <!-- needs-research: confirm URL. -->
+- **Braintrust — Online scoring documentation** — the hosted-runner path for live-traffic scoring. `https://docs.braintrust.dev/evaluate/score-online`.
+- **Langfuse — Online evaluations documentation** — the OSS-runner path. `https://langfuse.com/docs/evaluation/get-started/online`.
+- **LangSmith — Online evaluators** — the hosted equivalent. `https://docs.langchain.com/langsmith/online-evaluations`.
+- **Arize Phoenix — Online evaluation** — Phoenix's approach to live scoring. `https://arize.com/docs/phoenix/evaluation/concepts-evals/llm-as-a-judge`.
 
 ### Sampling and stratification
 
-- **Alex Strick van Linschoten — Sampling for LLM evaluation** — practitioner writeup on stratified sampling for online eval. `https://mlops.systems/posts/2024-06-16-sampling-for-llm-evaluation.html`. <!-- needs-research: confirm URL and date. -->
+- **Alex Strick van Linschoten — Blog** — practitioner writeups on LLM evaluation methodology, including sampling and dataset-design notes relevant to online eval. `https://alexstrick.com/`.
 - **Google SRE Workbook — Monitoring** — background reference on sampling design for high-volume signals; the intuition transfers to eval sampling. `https://sre.google/workbook/monitoring/`.
 
 ### Judge drift, calibration, and re-baselining
 
 - **Zheng et al. — *Judging LLM-as-a-Judge*** (re-cited) — the calibration-panel discipline traces back to Section 4 on human agreement. `https://arxiv.org/abs/2306.05685`.
 - **Shankar et al. — *Who Validates the Validators?*** (re-cited) — a working reference for the applied-engineer's calibration-panel workflow. `https://arxiv.org/abs/2404.12272`.
-- **Anthropic — Model deprecation policy** — the provider-side contract for how long a pinned judge model stays available. `https://docs.anthropic.com/en/docs/resources/model-deprecations`. <!-- needs-research: confirm URL. -->
+- **Anthropic — Model deprecation policy** — the provider-side contract for how long a pinned judge model stays available. `https://platform.claude.com/docs/en/about-claude/model-deprecations`.
 - **OpenAI — Deprecations** — the parallel contract for OpenAI-hosted judge models. `https://platform.openai.com/docs/deprecations`.
 - **Google — Gemini model deprecations** — the parallel contract for Google-hosted judge models. `https://ai.google.dev/gemini-api/docs/models/deprecations`. <!-- needs-research: confirm URL. -->
 - **Hamel Husain — LLM Eval Cookbook: judge drift section** — practitioner notes on judge upgrades. `https://hamel.dev/blog/posts/evals/`. <!-- needs-research: pin the specific post that covers judge drift. -->
