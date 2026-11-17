@@ -103,7 +103,7 @@ The Act includes obligations on providers of general-purpose AI models (GPAI) �
 
 ## ISO/IEC 42001 — AI management system
 
-**ISO/IEC 42001:2023** is the international standard for AI management systems (AIMS).<!-- needs-research: confirm ISO/IEC 42001's publication date (2023) and current amendment status. --> It is structured like other ISO management-system standards (27001 for information security, 9001 for quality) — an AIMS is the org's management framework for its AI work, with a set of controls in Annex A.
+**ISO/IEC 42001:2023** (first edition, published 18 December 2023; no amendments or corrigenda issued through 2026) is the international standard for AI management systems (AIMS). It is structured like other ISO management-system standards (27001 for information security, 9001 for quality) — an AIMS is the org's management framework for its AI work, with a set of controls in Annex A.
 
 The applied engineer is not the *owner* of the org's AIMS; that belongs to the person leading the org's ISO 42001 certification (usually a Governance-family lead or a compliance function). What the applied engineer owes the AIMS is **evidence at the feature altitude that satisfies the applicable Annex A controls**.
 
@@ -116,7 +116,7 @@ The Annex A controls that a feature-level applied engineer's substrates most dir
 - **A.9 — AI system life cycle.** The design, development, deployment, and decommissioning discipline — the flag layer and rollback SLA from [mod-111](../mod-111-shipping-experimenting-and-rollbacks/README.md), the eval-gated CI from [mod-106](../mod-106-feature-side-evaluation/README.md), the feature-card cadence.
 - **A.10 — Data for AI systems.** The data-flow paragraph, the PII scrubbing, the residency envelope.
 
-The applied engineer's mapping deliverable is a table with one row per applicable Annex A control, the substrate that provides the evidence, and the last time the substrate was validated.<!-- needs-research: verify the specific ISO/IEC 42001 Annex A control numbering and titles from the current published standard; the labels above are directional descriptions, not verbatim from the standard, and should be reconciled against the standard before external audit. -->
+The applied engineer's mapping deliverable is a table with one row per applicable Annex A control, the substrate that provides the evidence, and the last time the substrate was validated. The control numbers and labels used above are directional shorthand for the six Annex A objective families most likely to touch a feature's substrates; ISO/IEC 42001:2023's Annex A control objectives run A.2 through A.10 and include additional families (information for interested parties, use of AI systems, third-party relationships) that the applied engineer should reconcile against the published standard before any external audit.
 
 ```markdown
 ## ISO/IEC 42001 Annex A mapping (v0.1)

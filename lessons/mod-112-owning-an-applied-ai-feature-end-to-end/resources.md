@@ -6,7 +6,7 @@ Primary-source references — official standards, canonical papers, provider doc
 
 ### Product-management and design canon
 
-- **Bryar & Carr — *Working Backwards: Insights, Stories, and Secrets from Inside Amazon* (2021)** — the canonical description of Amazon's PR/FAQ discipline and the "start from the user's problem, work backwards" method the six-field charter descends from. <!-- needs-research: verify the current canonical citation and publisher URL for the Working Backwards book. --> <https://www.workingbackwards.com/>
+- **Bryar & Carr — *Working Backwards: Insights, Stories, and Secrets from Inside Amazon* (St. Martin's Press, 2021; ISBN 9781250267597)** — the canonical description of Amazon's PR/FAQ discipline and the "start from the user's problem, work backwards" method the six-field charter descends from. <https://www.workingbackwards.com/>
 - **Amazon — leadership principles ("Customer Obsession," "Insist on the Highest Standards")** — the operating principles that pair with PR/FAQ; useful when framing the user-problem field for reviewers unfamiliar with the vocabulary. <https://www.amazon.jobs/en/principles>
 - **Marty Cagan — *Inspired: How to Create Tech Products Customers Love* (2nd ed., 2017)** — the "user problem vs solution shape" distinction chapter 01's Field 1 formalises. <https://www.svpg.com/inspired-how-to-create-products-customers-love/>
 - **Teresa Torres — *Continuous Discovery Habits* (2021)** — the discovery framing behind the "what does 'solved' look like *for the user*" bullet in the user-problem field. <https://www.producttalk.org/continuous-discovery-habits/>
@@ -58,38 +58,38 @@ Primary-source references — official standards, canonical papers, provider doc
 
 ### Gateway options
 
-- **LiteLLM — documentation** — open-source Python SDK + proxy speaking the OpenAI API shape across 100+ providers; the reference OSS gateway option. <!-- needs-research: verify LiteLLM's current provider count and the state of its managed offering at publication time. --> <https://docs.litellm.ai/>
+- **LiteLLM — documentation** — open-source Python SDK + proxy speaking the OpenAI API shape across 100+ providers; the reference OSS gateway option, with a commercial enterprise tier for teams. <https://docs.litellm.ai/>
 - **LiteLLM — GitHub repository** — source, examples, provider adapter catalogue. <https://github.com/BerriAI/litellm>
-- **OpenRouter — documentation** — hosted routing service with per-request auto-fallback; the reference hosted-gateway option for prototypes. <!-- needs-research: verify OpenRouter's fallback semantics and current pricing model at publication time. --> <https://openrouter.ai/docs>
-- **Portkey — documentation** — commercial gateway with observability, guardrail hooks, per-tenant budgets, and audit logs. <!-- needs-research: verify Portkey's current feature set and pricing structure at publication time. --> <https://portkey.ai/docs>
+- **OpenRouter — documentation** — hosted routing service with per-request auto-fallback and pass-through, pay-as-you-go provider pricing (fees apply on credit purchases, not per token); the reference hosted-gateway option for prototypes. <https://openrouter.ai/docs>
+- **Portkey — documentation** — AI gateway (open-source gateway core plus a commercial managed platform) with observability, guardrail hooks, per-tenant budgets, and audit logs. <https://portkey.ai/docs>
 - **AWS Bedrock — documentation** — AWS-hosted access to a curated multi-provider model catalogue plus routing / guardrails / knowledge-base services. <https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html>
-- **AWS Bedrock — supported foundation models** — the current model catalogue for the AWS-native gateway option. <!-- needs-research: verify the current provider list at publication time — the catalogue has expanded through 2024–2026. --> <https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html>
-- **Google Vertex AI Model Garden** — GCP's model catalogue (Gemini, Claude on Vertex, Llama, Mistral, and others). <!-- needs-research: verify the Model Garden's third-party model list at publication time. --> <https://cloud.google.com/model-garden>
-- **Microsoft Azure AI Foundry — documentation** — Microsoft's umbrella-branded evolution of Azure AI Studio + Azure OpenAI Service, covering OpenAI plus third-party models plus evaluation. <!-- needs-research: verify the current Azure AI Foundry naming and product boundaries at publication time. --> <https://learn.microsoft.com/en-us/azure/ai-foundry/>
+- **AWS Bedrock — supported foundation models** — the current model catalogue for the AWS-native gateway option (expanded through 2024–2026 to cover a broad multi-provider set including Anthropic, Meta, Mistral, Cohere, AI21, Stability, OpenAI, xAI, DeepSeek, Qwen, and others; consult the live model-cards page for the authoritative list). <https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html>
+- **Google Vertex AI Model Garden** — GCP's model catalogue (Gemini and Gemma first-party; Llama, Claude on Vertex, Mistral, and other third-party / open-weights models via partner integrations and Hugging Face Hub). <https://cloud.google.com/model-garden>
+- **Microsoft Foundry (formerly Azure AI Foundry) — documentation** — Microsoft's umbrella-branded evolution of Azure AI Studio + Azure OpenAI Service, covering OpenAI plus third-party Foundry Models, the Foundry Agent Service, and native observability / evaluation. <https://learn.microsoft.com/en-us/azure/ai-foundry/>
 - **OpenAI — API reference (client shape reference)** — the OpenAI API shape every serious gateway speaks; the "call the gateway through an OpenAI-shaped client" exit-door discipline. <https://platform.openai.com/docs/api-reference/introduction>
 
 ### Eval platform options
 
-- **Braintrust — documentation** — commercial evaluation platform (fixtures, judge library, dataset management, CI integration). <!-- needs-research: verify Braintrust's current product boundaries at publication time. --> <https://www.braintrust.dev/docs>
-- **Weights & Biases Weave — documentation** — W&B's LLM-focused subproduct (trace logging, evals, dataset management). <!-- needs-research: verify Weave's positioning vs core W&B experiment tracking at publication time. --> <https://weave-docs.wandb.ai/>
-- **Langfuse — documentation** — open-source (self-hostable) LLM tracing + eval + prompt management, with a managed cloud tier. <!-- needs-research: verify Langfuse's current OSS licensing and the boundary between managed vs self-hosted at publication time. --> <https://langfuse.com/docs>
-- **Arize Phoenix — documentation** — open-source LLM observability + eval; OpenInference is Phoenix's native format. <!-- needs-research: verify Phoenix's feature set and its relationship to the paid Arize AX platform at publication time. --> <https://docs.arize.com/phoenix>
+- **Braintrust — documentation** — commercial observability + evaluation platform for agents and LLM applications (tracing, datasets, evals, CI integration). <https://www.braintrust.dev/docs>
+- **Weights & Biases Weave — documentation** — W&B's distinct LLM / agent observability and evaluation product (trace logging, LLM-judge evals, scorers), complementary to the core W&B experiment-tracking product. <https://weave-docs.wandb.ai/>
+- **Langfuse — documentation** — open-source (self-hostable) LLM tracing + eval + prompt management, with a Langfuse Cloud managed tier. <https://langfuse.com/docs>
+- **Arize Phoenix — documentation** — open-source LLM observability + eval (tracing, evals, datasets, prompt engineering); powered by OpenInference instrumentation over OpenTelemetry. The paid Arize AX platform is the managed-enterprise counterpart built on the same open standards. <https://docs.arize.com/phoenix>
 - **Promptfoo — documentation** — open-source CLI-first prompt / model / RAG eval tool for eval-gated CI on prompt changes. <https://www.promptfoo.dev/docs/intro/>
 - **DeepEval — documentation** — open-source Python-first eval framework with pytest-style assertions on LLM outputs. <https://docs.confident-ai.com/>
 - **OpenAI Evals — GitHub** — OpenAI's open-source evals framework; the historical reference and still a common baseline. <https://github.com/openai/evals>
 - **Google Vertex AI — Model Evaluation** — GCP-native eval product bundled with Vertex AI. <https://cloud.google.com/vertex-ai/generative-ai/docs/models/evaluation-overview>
-- **Azure AI Foundry — Evaluation** — Azure-native eval product bundled with AI Foundry. <!-- needs-research: verify the current URL and product name at publication time. --> <https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-approach-gen-ai>
+- **Microsoft Foundry — Observability (Evaluation)** — Microsoft Foundry's native evaluation capability, grouped with Monitoring and Tracing under the Observability concept area. <https://learn.microsoft.com/en-us/azure/foundry/concepts/observability>
 
 ### Agent SDK options
 
-- **OpenAI — Agents SDK documentation** — OpenAI's official multi-agent framework; successor / companion to the earlier Assistants API. <!-- needs-research: verify the current OpenAI Agents SDK naming and its relationship to the Assistants API at publication time. --> <https://openai.github.io/openai-agents-python/>
+- **OpenAI — Agents SDK documentation** — OpenAI's official multi-agent framework; a production-ready evolution of the earlier Swarm experiment. Distinct from the Assistants API, which has been sunset in favour of the Responses API as the primary chat / tool-use surface. <https://openai.github.io/openai-agents-python/>
 - **OpenAI — Agents SDK GitHub repository** — reference implementation and examples. <https://github.com/openai/openai-agents-python>
-- **Anthropic — Claude Agent SDK documentation** — Anthropic's official agent SDK with native Claude tool-use semantics and MCP integration. <!-- needs-research: verify the current Claude Agent SDK naming and version at publication time — Anthropic has iterated between "Claude SDK", "Claude Agent SDK", and "Claude Code SDK". --> <https://docs.claude.com/en/api/agent-sdk/overview>
+- **Anthropic — Claude Agent SDK documentation** — Anthropic's official agent SDK (renamed from the earlier "Claude Code SDK") with native Claude tool-use semantics, MCP integration, hooks, subagents, and sessions, in Python and TypeScript. <https://code.claude.com/docs/en/agent-sdk/overview>
 - **Anthropic — Model Context Protocol (MCP) specification** — the tool / resource / prompt protocol the Anthropic SDK integrates natively and other SDKs increasingly support. <https://modelcontextprotocol.io/specification>
-- **LangGraph — documentation** — LangChain's graph-based agent framework with explicit state machines, checkpointing, and human-in-the-loop primitives. <!-- needs-research: verify LangGraph's current major-version and API stability posture at publication time. --> <https://langchain-ai.github.io/langgraph/>
+- **LangGraph — documentation** — LangChain's graph-based agent framework with explicit state machines, checkpointing, and human-in-the-loop primitives; on a stable 1.x line (docs consolidated under docs.langchain.com). <https://docs.langchain.com/langgraph>
 - **LangGraph — GitHub repository** — source and reference examples. <https://github.com/langchain-ai/langgraph>
-- **Agno — documentation** — open-source multi-agent framework (formerly Phidata); focus on lean agent composition. <!-- needs-research: verify Agno's current positioning and its relationship to the Phidata brand at publication time. --> <https://docs.agno.com/>
-- **Microsoft Semantic Kernel — documentation** — Microsoft's agent SDK (.NET / Python / Java) with deep Azure AI Foundry integration. <!-- needs-research: verify the current SK vs AutoGen convergence story at publication time. --> <https://learn.microsoft.com/en-us/semantic-kernel/overview/>
+- **Agno — documentation** — open-source multi-agent framework and runtime (AgentOS), positioned as a "self-managing agent platform" with Python-first agent composition. <https://docs.agno.com/>
+- **Microsoft Semantic Kernel — documentation** — Microsoft's agent SDK (.NET / Python / Java), on a 1.x non-breaking-changes commitment, with first-class Microsoft Foundry integration. AutoGen is archived; the shared successor is the Microsoft Agent Framework. <https://learn.microsoft.com/en-us/semantic-kernel/overview/>
 - **Microsoft AutoGen — documentation** — Microsoft's research-oriented multi-agent framework; converging with Semantic Kernel. <https://microsoft.github.io/autogen/>
 
 ### Build-vs-buy and trade-off note methodology
@@ -110,9 +110,9 @@ Primary-source references — official standards, canonical papers, provider doc
 ### System cards and provider practice
 
 - **OpenAI — GPT-4 System Card (2023)** — the reference system-card artefact at the provider altitude, useful as a model for what the applied engineer's card is *not* (system card is provider-level; feature card is deployment-level). <https://cdn.openai.com/papers/gpt-4-system-card.pdf>
-- **OpenAI — GPT-4o System Card (2024)** — the follow-up system card. <!-- needs-research: verify the current-generation system card and its canonical URL at publication time; OpenAI publishes new system cards with each major model release. --> <https://openai.com/index/gpt-4o-system-card/>
-- **Anthropic — Claude model system cards** — Anthropic's system-card / model-card publications for the Claude family. <!-- needs-research: verify the current canonical URL for the Claude system card index at publication time. --> <https://www.anthropic.com/news>
-- **Google DeepMind — Gemini technical reports** — Google's provider-level model documentation. <!-- needs-research: verify the current Gemini technical report URL at publication time. --> <https://deepmind.google/technologies/gemini/>
+- **OpenAI — GPT-5 System Card (2025)** — the current-generation system card at publication; OpenAI publishes a new system card (and periodic addenda) with each major model release. <https://openai.com/index/gpt-5-system-card/>
+- **Anthropic — Claude model system cards (Transparency Hub)** — Anthropic's system-card / model-card publications for the Claude family, indexed on the Transparency Hub. <https://www.anthropic.com/transparency>
+- **Google DeepMind — Gemini 2.5 technical report (arXiv:2507.06261, 2025)** — Google's provider-level model documentation for the current Gemini family. <https://arxiv.org/abs/2507.06261>
 - **Meta — Llama model cards** — Meta's model-card artefacts for the Llama family; reference for open-weights documentation practice. <https://github.com/meta-llama/llama-models/tree/main/models>
 - **Partnership on AI — About ML Reference Documents** — cross-org documentation-standards project informing the feature-card discipline. <https://partnershiponai.org/workstream/about-ml/>
 
@@ -125,9 +125,9 @@ Primary-source references — official standards, canonical papers, provider doc
 
 ### RACI and org-design references
 
-- **Project Management Institute — *PMBOK Guide* (RACI chapters)** — the canonical statement of the Responsible / Accountable / Consulted / Informed matrix that the delegation contract's "who owns what" section formalises. <!-- needs-research: verify the current PMBOK Guide edition at publication time. --> <https://www.pmi.org/pmbok-guide-standards>
+- **Project Management Institute — *PMBOK Guide* (8th ed., 2025; RACI chapters)** — the canonical statement of the Responsible / Accountable / Consulted / Informed matrix that the delegation contract's "who owns what" section formalises. <https://www.pmi.org/pmbok-guide-standards>
 - **Google SRE Book — On-Call** — the on-call responsibility model; the reference for the "on-call counter-party" field in each contract. <https://sre.google/sre-book/being-on-call/>
-- **Google SRE Workbook — Working with Other Teams** — the cross-team collaboration chapter, primary source for the "written contract, not verbal agreement" discipline. <https://sre.google/workbook/> <!-- needs-research: verify the direct chapter URL if one exists in the Workbook TOC. -->
+- **Google SRE Workbook — SRE: Reaching Beyond Your Walls (chapter 19)** — the cross-team collaboration chapter; primary source for the "written contract, not verbal agreement" discipline between SRE and partner teams. <https://sre.google/workbook/reaching-beyond/>
 - **Team Topologies — Skelton & Pais (2019)** — the framework for defining team interaction modes ("collaboration," "X-as-a-service," "facilitating") that the peer-role delegation contracts operationalise. <https://teamtopologies.com/book>
 
 ### Peer-role tracks (link-outs for scope alignment)
