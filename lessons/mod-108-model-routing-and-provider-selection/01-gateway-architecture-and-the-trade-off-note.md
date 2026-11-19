@@ -17,7 +17,7 @@ There is no single right gateway. There are four canonical shapes, each optimisi
 
 ### Shape 1 — LiteLLM (self-hosted OSS proxy)
 
-LiteLLM is an open-source proxy and Python SDK that normalises 100+ provider APIs into an OpenAI-shape interface — one call, `litellm.completion(model="anthropic/claude-...", ...)`, works the same as `model="openai/gpt-..."` or `model="bedrock/..."`.<!-- needs-research: confirm current LiteLLM-supported provider count and whether "proxy" and "SDK" are still the two shipping modes. --> Run it as a library in-process, or deploy the LiteLLM proxy as a long-running HTTP server your services call.
+LiteLLM is an open-source proxy and Python SDK that normalises 100+ provider APIs into an OpenAI-shape interface — one call, `litellm.completion(model="anthropic/claude-...", ...)`, works the same as `model="openai/gpt-..."` or `model="bedrock/..."`. Run it as a library in-process, or deploy the LiteLLM proxy as a long-running HTTP server your services call.
 
 **What it optimises for.** Control and portability. You own the box, the config, the version, and the observability. Nothing about your traffic goes to a third-party control plane.
 
@@ -29,7 +29,7 @@ LiteLLM is an open-source proxy and Python SDK that normalises 100+ provider API
 
 ### Shape 2 — OpenRouter (managed marketplace)
 
-OpenRouter is a hosted API gateway with a single OpenAI-shape endpoint that fronts hundreds of models across dozens of providers. One API key, one bill, per-request routing by name (e.g. `openai/gpt-4o`, `anthropic/claude-3.5-sonnet`, `meta-llama/llama-3.1-405b-instruct`).<!-- needs-research: confirm current OpenRouter model catalogue size and the exact model-slug conventions. -->
+OpenRouter is a hosted API gateway with a single OpenAI-shape endpoint that fronts hundreds of models across dozens of providers. One API key, one bill, per-request routing by name using a `provider/model-slug` convention (e.g. `openai/gpt-4o`, `anthropic/claude-3.5-sonnet`, `meta-llama/llama-3.1-405b-instruct`).
 
 **What it optimises for.** Dev velocity and breadth of catalogue. Getting a new model onto your surface for an A/B is a config edit — the account, billing, and integration all already exist.
 
@@ -41,7 +41,7 @@ OpenRouter is a hosted API gateway with a single OpenAI-shape endpoint that fron
 
 ### Shape 3 — Portkey (managed gateway with guardrails / cache / fallback as first-class)
 
-Portkey is a hosted (also OSS-deployable) AI gateway that centres its product on **policy** — guardrails, semantic caching, fallbacks, load-balancing, retries, virtual keys per tenant — all configured through a control plane, not code.<!-- needs-research: confirm Portkey's current deployment shapes (managed vs self-hosted) and the current feature envelope. --> It sits between LiteLLM (roll-your-own policy) and OpenRouter (do it yourself entirely).
+Portkey is a hosted (also OSS-deployable under MIT licence; hybrid deploys are also supported) AI gateway that centres its product on **policy** — guardrails, semantic caching, fallbacks, load-balancing, retries, virtual keys per tenant — all configured through a control plane, not code. It sits between LiteLLM (roll-your-own policy) and OpenRouter (do it yourself entirely).
 
 **What it optimises for.** Policy density with low engineering overhead. You get a config surface for "route to A first, fall back to B on timeout, C on rate-limit, cache identical prompts for 24 hours, block outputs matching regex X" without writing the plumbing.
 
@@ -51,15 +51,15 @@ Portkey is a hosted (also OSS-deployable) AI gateway that centres its product on
 
 **When it fits.** Teams that want cache / fallback / guardrail policy without building it, and either accept the managed posture or are ready to run the self-hosted deploy.
 
-### Shape 4 — Hyperscaler-native (Bedrock, Vertex AI, Azure AI Foundry)
+### Shape 4 — Hyperscaler-native (Bedrock, Vertex AI, Microsoft Foundry)
 
-If your workload already lives in AWS, GCP, or Azure, the cloud vendor sells you a first-party gateway into models. **Amazon Bedrock** offers a unified API over Anthropic, Cohere, AI21, Meta, Mistral, Stability, Amazon Titan / Nova, and others, plus Bedrock Guardrails, Bedrock Knowledge Bases, Bedrock Agents. **Google Vertex AI** offers a unified API over Gemini, Anthropic (Claude on Vertex), Meta, Mistral, and open-weights on Model Garden. **Azure AI Foundry** (the successor to Azure OpenAI + Azure AI Studio) fronts OpenAI models plus a growing catalogue of partner models with the same Azure IAM, networking, and residency envelope.<!-- needs-research: confirm current provider catalogue on each hyperscaler; confirm Azure AI Foundry is the current umbrella name and the Azure OpenAI naming trajectory. -->
+If your workload already lives in AWS, GCP, or Azure, the cloud vendor sells you a first-party gateway into models. **Amazon Bedrock** offers a unified API over providers including Anthropic, Cohere, AI21, DeepSeek, Meta, Mistral, OpenAI, Stability, Amazon Titan / Nova, and others, plus Bedrock Guardrails, Bedrock Knowledge Bases, Bedrock Agents. **Google Vertex AI** offers a unified API over Gemini, Anthropic (Claude on Vertex), Meta, Mistral, and open-weights on Model Garden. **Microsoft Foundry** (Microsoft's rename of Azure AI Foundry, which was itself the successor to Azure OpenAI + Azure AI Studio) fronts OpenAI models plus a growing catalogue of partner models (Anthropic, Meta, Mistral, DeepSeek, Cohere, Phi) with the same Azure IAM, networking, and residency envelope.
 
 **What it optimises for.** Blast-radius, residency, and IAM alignment with the rest of your infrastructure. Prompts stay inside the same VPC, region, and account boundary as your database and your code. No new vendor onboarding, no new bill, no new SSO trust relationship.
 
 **Strengths.** Regional data residency guarantees baked into the platform. IAM, VPC endpoints, PrivateLink, and audit logging you already trust. Committed-use / provisioned-throughput pricing that can be cheaper than direct-provider pricing at scale. First-party guardrails and safety primitives (Bedrock Guardrails, Vertex safety filters, Azure AI Content Safety).
 
-**Limits.** Model availability lags — the newest model from any provider typically appears on the provider's own API weeks or months before it lands on the hyperscaler.<!-- needs-research: confirm current model-availability lag pattern; this is qualitatively true but has narrowed over time. --> Cross-hyperscaler multi-cloud requires a *second* gateway on top. The "unified" API is not portable — Bedrock Anthropic and Vertex Anthropic take different request shapes than the Anthropic-native API in some fields.
+**Limits.** Model availability lags — the newest model from any provider typically appears on the provider's own API before it lands on the hyperscaler, though the gap has narrowed over time and varies model-by-model. Cross-hyperscaler multi-cloud requires a *second* gateway on top. The "unified" API is not portable — Bedrock Anthropic and Vertex Anthropic take different request shapes than the Anthropic-native API in some fields.
 
 **When it fits.** Regulated industries, enterprise deployments already deep in one cloud, workloads where residency / IAM / audit trump model-of-the-month, and any surface where "the prompt must not leave our account" is a hard constraint.
 

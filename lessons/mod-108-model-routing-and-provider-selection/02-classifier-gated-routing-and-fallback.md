@@ -20,7 +20,7 @@ The three shapes that show up in the wild, in order of complexity:
 
 **Shape 1b — Classifier-gated routing.** A small, cheap model (a distilled encoder, a small LLM in JSON-mode, or even a rules-plus-embedding classifier) scores each request against a category or difficulty schema and picks a tier. Examples of what a classifier decides: *is this a factual question or a creative task; does it need retrieval; does it need code; is it likely to need multi-step reasoning; is it in-scope for our product at all.* The router then maps the classification to a route.
 
-**Shape 1c — Learned / bandit routing.** The router treats route selection as a bandit problem — offline logs of (features, chosen route, judged outcome, cost) train a policy that picks the cheapest route with acceptable quality. This is the RouteLLM / hybrid-LLM / cascade literature.<!-- needs-research: RouteLLM (Ong et al., 2024) is the canonical citation; confirm the current name and any successor benchmark. --> Powerful, worth it at large scale, but a lot of machinery for a first cut.
+**Shape 1c — Learned / bandit routing.** The router treats route selection as a bandit problem — offline logs of (features, chosen route, judged outcome, cost) train a policy that picks the cheapest route with acceptable quality. This is the RouteLLM / hybrid-LLM / cascade literature (see Ong et al., *RouteLLM: Learning to Route LLMs with Preference Data*, [arXiv:2406.18665](https://arxiv.org/abs/2406.18665), 2024). Powerful, worth it at large scale, but a lot of machinery for a first cut.
 
 For most applied surfaces, Shape 1a wins the first quarter, Shape 1b wins the second. Skip Shape 1c until the volume and metrics support it.
 
@@ -75,7 +75,7 @@ routes:
     max_cost_per_call_usd: 0.20
 ```
 
-The route table is the *only* place model names appear. Feature code says "give me a `mid` completion for this request" and never mentions a provider. The routes are pinned to dated model IDs (not `latest` aliases), so a provider alias flip does not silently shift your distribution.<!-- needs-research: illustrative model IDs above; the pattern of `-mini`, `-flash`, `-sonnet`, `-haiku` tiers is durable, but specific names should be updated at author time. -->
+The route table is the *only* place model names appear. Feature code says "give me a `mid` completion for this request" and never mentions a provider. The routes are pinned to dated model IDs (not `latest` aliases), so a provider alias flip does not silently shift your distribution. (The specific model names above are illustrative — the tiered `-mini`, `-flash`, `-sonnet`, `-haiku` pattern is durable, but refresh the exact SKUs against each provider's current catalogue.)
 
 ### Metrics that make a router honest
 
@@ -94,7 +94,7 @@ Classifier-gated routing gets the *first* attempt right most of the time. Qualit
 Four common gate shapes:
 
 - **Structural validity.** The completion is supposed to be JSON conforming to schema S. Parse and validate. If it does not validate, re-route (either same model with a repair prompt, or escalate). This is the cheapest and highest-value gate — it prevents downstream code from crashing on malformed structured outputs. Mod-102's structured-outputs discipline is where the validators live.
-- **Self-report confidence.** Ask the model, in the same response, for a confidence score against a rubric. Cheap, noisy, and useful only against a *threshold you calibrated on your own eval set*. Do not trust confidence scores in the abstract; calibrate them against labelled outcomes and re-calibrate periodically.<!-- needs-research: model self-report calibration is well-documented as unreliable in general but per-task tuning can help; be explicit that raw confidences are noisy. -->
+- **Self-report confidence.** Ask the model, in the same response, for a confidence score against a rubric. Raw model-reported confidences are noisy and generally miscalibrated; they become useful only against a *threshold you calibrated on your own eval set*. Do not trust confidence scores in the abstract; calibrate them against labelled outcomes and re-calibrate periodically.
 - **Judge-side check.** A second, small model (or a rules layer, or a retrieval-grounded checker) reviews the completion against a rubric. Judge on refusal-shape, on schema conformance, on factuality-against-retrieval, on tone. The judge is fast; the escalation is triggered only on judge-fail.
 - **Self-consistency / N-sampling.** Draw K samples, choose the most common (or the one the judge scores highest). Doubles-to-Ks the cost of that call; use sparingly for high-stakes turns.
 
@@ -137,7 +137,7 @@ Failure modes to plan for, in decreasing severity:
 - **Provider region 5xx / connection error.** Full stop.
 - **Rate limit (429) or capacity error (503) with retry-after.** Not down, but not serving *you* right now.
 - **Slow-loris tail latency**. Requests eventually succeed at P99 of 60 seconds. Your users perceive an outage.
-- **Model deprecation / removal**. The model ID silently returns "unknown model." Rare but has happened.<!-- needs-research: this has happened at multiple providers during model version transitions; be careful not to name specific incidents unless verified. -->
+- **Model deprecation / removal**. The model ID silently returns "unknown model." Rare, but it recurs during provider model-version transitions.
 - **Regional partition**. The provider works from us-east but not eu-west.
 
 ### The circuit-breaker skeleton
@@ -233,7 +233,7 @@ The state machine deliberately keeps escalation (axis 2) separate from fallback 
 - **The classifier that is the same model as the frontier.** Using GPT-4-class calls to decide which GPT-4-class calls to make. The classifier is often ≥ 20% of the cost of the frontier call it was supposed to save. Distil, use a small hosted classifier, or run a genuine rules layer for the obvious buckets.
 - **The escalation loop with no cap.** A misconfigured quality gate escalates every call. The bill triples overnight. Fix: `max_escalations` is a hard number, and an alert fires when *the population* escalation rate breaches baseline.
 - **The fallback that returns different shape.** Primary returns `{"tool_calls":[...]}`; the fallback returns `{"function_call":{...}}` because the shim was written for an older provider version. Downstream JSON parser crashes are the visible symptom; the routing decision that caused them is invisible. Contract tests (chapter 05) are the specific fix.
-- **The "temperature=0" reliability fantasy.** The router promises stable behaviour by pinning temperature=0. LLMs at temperature 0 are less variable, not deterministic — GPU non-determinism, batching effects, and provider re-tokenisation all leak in. Route on shape and cost, not on "the outputs will be identical."<!-- needs-research: temperature=0 non-determinism is well-documented; keep the framing as "less variable, not deterministic." -->
+- **The "temperature=0" reliability fantasy.** The router promises stable behaviour by pinning temperature=0. LLMs at temperature 0 are less variable, not deterministic — floating-point non-associativity, batch-shape-dependent reduction kernels on the GPU, and provider re-tokenisation all leak in. Route on shape and cost, not on "the outputs will be identical."
 - **The router with no dashboard.** Escalation rate, per-route cost, fallback fire rate, provider-outage minutes — none of these are on any screen. When the CEO asks "why did the bill double last week," the answer is a git-log-and-shrug.
 
 ## Summary

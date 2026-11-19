@@ -60,7 +60,7 @@ routes:
     max_e2e_p95_ms: 2000
 ```
 
-<!-- needs-research: the model / product names above are illustrative of the current shape of each modality market; verify exact SKUs and availability at author time before shipping this file to learners. -->
+The model / product names in the YAML above are illustrative of the current shape of each modality market; the specific SKUs shift quarter to quarter and should be refreshed against each provider's current catalogue before this configuration ships to a feature.
 
 Three properties. First, every route names an **output shape** so the fallback and the primary are commensurable (chapter 05 formalises this as a contract test). Second, `realtime.voice.conversation`'s fallback is a **composed route** — if the native realtime API is unavailable, the router builds an equivalent by chaining STT → text-LLM → TTS. The realtime experience degrades (higher end-to-end latency, no barge-in, no vocal-affect passthrough) but the feature still functions. Third, the **latency SLO is per-route** and *per-modality* — realtime voice's p95 is far tighter than long-form STT's.
 
@@ -70,13 +70,13 @@ Each modality has a set of things that trip teams new to it. What to know when r
 
 ### Vision
 
-- **"Vision-native LLM" vs "OCR-then-text-LLM"** are two different tools. Vision-native LLMs (GPT-4o, Claude with vision, Gemini) can *reason about* images, count objects, describe scenes, and answer open questions. Dedicated OCR / document-AI stacks (Azure Document Intelligence, Google Document AI, AWS Textract, self-hosted PaddleOCR / MinerU) *extract structured text* from documents with higher recall and legible bounding boxes. Route the request to the tool that fits the job — a "extract line items from this invoice PDF" prompt sent to a general vision LLM leaves recall on the table; a "does this photo contain a person?" prompt sent to a document-AI stack returns nothing useful.<!-- needs-research: confirm currently supported document-AI product names; MinerU is a valid recent OSS document parser. -->
-- **Image tokenisation is per-provider.** OpenAI, Anthropic, and Google each count image tokens differently, and each has resolution-preset knobs (`detail: low` / `high` on OpenAI, image-resize behaviours on Anthropic, thumbnail preprocessing on Gemini). A route that ignores the preset is either spending frontier tokens on preview thumbnails or feeding a full-resolution 24MP photo to a route that expected 1024×1024. Normalise resolution at the router seam.<!-- needs-research: current tokenisation semantics for images across the three providers. -->
+- **"Vision-native LLM" vs "OCR-then-text-LLM"** are two different tools. Vision-native LLMs (GPT-4o, Claude with vision, Gemini) can *reason about* images, count objects, describe scenes, and answer open questions. Dedicated OCR / document-AI stacks (Azure Document Intelligence, Google Document AI, AWS Textract on the cloud side; self-hosted PaddleOCR / MinerU / Docling on the OSS side) *extract structured text* from documents with higher recall and legible bounding boxes. Route the request to the tool that fits the job — a "extract line items from this invoice PDF" prompt sent to a general vision LLM leaves recall on the table; a "does this photo contain a person?" prompt sent to a document-AI stack returns nothing useful.
+- **Image tokenisation is per-provider.** OpenAI, Anthropic, and Google each count image tokens differently — OpenAI scales into 512×512 tiles at a flat per-tile token cost (with a `detail: low` flat-fee alternative), Anthropic charges by an area-based formula roughly `(width × height) / 750`, and Gemini tiles into 768×768 at a per-tile cost — and each has its own resolution-preset / resize behaviour. A route that ignores the preset is either spending frontier tokens on preview thumbnails or feeding a full-resolution 24MP photo to a route that expected 1024×1024. Normalise resolution at the router seam.
 - **Video is not "images"**. A 30-second clip at 30fps is 900 frames; sending all of them is prohibitive and unnecessary. The router should sample frames according to a policy (uniform, or shot-detection-driven) before handing to a vision LLM. Video-native models (Gemini's video input, dedicated video-understanding APIs) accept the media stream directly.
 
 ### Audio input (STT)
 
-- **Latency profiles diverge on short vs long clips.** Whisper-class models optimise for accuracy on multi-minute clips; realtime STT (Deepgram, Speechmatics, OpenAI realtime STT, Azure Speech) optimises for sub-second first-partial on streaming input. Choose the route to match the surface.<!-- needs-research: verify current product names / SKUs. -->
+- **Latency profiles diverge on short vs long clips.** Whisper-class models optimise for accuracy on multi-minute clips; realtime STT (Deepgram, Speechmatics, OpenAI realtime STT, Azure Speech, and newer entrants) optimises for sub-second first-partial on streaming input. Choose the route to match the surface.
 - **Diarization, timestamps, punctuation, and profanity-filter behaviour vary per provider.** The output shape a downstream consumer expects (e.g. `[{start, end, speaker, text}]`) has to be produced by every route on the fallback list or the fallback breaks the consumer.
 - **Language / accent coverage is uneven.** Whisper is strong on many languages; some providers are English-only or English-dominant. The route should pick by input language; the input language is often known from user metadata, not detected.
 - **PII in speech is a scrubbing problem, not a moderation problem.** Transcribed speech may contain the caller's phone number, address, or credit-card number spoken aloud. The scrubbing pipeline in mod-107 chapter 03 runs on transcript output before it lands in the LLM prompt or in traces.
@@ -89,18 +89,18 @@ Each modality has a set of things that trip teams new to it. What to know when r
 
 ### Image generation
 
-- **Prompt shape and safety filters vary sharply.** OpenAI's image model, Stability's SDXL, Black Forest Labs' Flux, Google's Imagen, and Amazon Titan / Nova each have different prompt idioms and different content-policy blocklists. A prompt that works on one may refuse on another; a prompt that produces X on one may produce Y on another.<!-- needs-research: verify current model SKUs at author time. -->
+- **Prompt shape and safety filters vary sharply.** OpenAI's GPT-Image family, Stability's SDXL, Black Forest Labs' Flux, Google's Imagen, and Amazon's Titan / Nova image models each have different prompt idioms and different content-policy blocklists. A prompt that works on one may refuse on another; a prompt that produces X on one may produce Y on another. (Specific SKU names shift; refresh the exact products against each provider's current catalogue.)
 - **Aspect ratio, resolution, seed, and negative-prompt support are uneven.** A fallback that ignores your requested aspect ratio silently reshapes the output. Contract tests (chapter 05) check this.
 - **Cost per image dwarfs cost per text call.** A single high-resolution image is often the cost of thousands of text tokens. A fallback that generates 4 candidates instead of 1 is a 4x cost hit.
 
 ### Video generation
 
-- **Long tail latency measured in *minutes*, not seconds.** Multi-second video generation is a background job, not an interactive call. Route these through your background-job substrate (queue, worker, callback / webhook), not through the chat request path.<!-- needs-research: this remains true across current video models. -->
+- **Long tail latency measured in *minutes*, not seconds.** Multi-second video generation is a background job, not an interactive call. Route these through your background-job substrate (queue, worker, callback / webhook), not through the chat request path.
 - **Content policies are strict and provider-specific.** Face generation, likeness handling, and copyrighted-character prohibitions differ across providers; the router does not paper over policy differences with a silent fallback.
 
 ### Realtime voice
 
-Realtime voice — OpenAI's Realtime API, Hume's Empathic Voice Interface (EVI), ElevenLabs' conversational AI, Vapi, Retell — collapses STT + LLM + TTS into a single duplex WebSocket / WebRTC stream with sub-second turn-taking, interruption (barge-in), and often vocal-affect passthrough.<!-- needs-research: verify current realtime-voice product landscape and their duplex-transport semantics. -->
+Realtime voice — OpenAI's Realtime API, ElevenLabs' conversational AI, Vapi, Retell, Cartesia, and similar products — collapses STT + LLM + TTS into a single duplex WebSocket / WebRTC stream with sub-second turn-taking, interruption (barge-in), and often vocal-affect passthrough. (Specific SKUs shift — e.g. Hume announced the sunset of its Empathic Voice Interface (EVI) APIs in late 2026 — so refresh the available products before locking a route table.)
 
 - **The latency budget is unforgiving.** A conversational surface degrades sharply past ~1s of turn-taking latency. The route's `max_e2e_p95_ms` should be enforced, not aspirational.
 - **The fallback path is a *composed* route.** As shown in the yaml above, when the native realtime API is unavailable, the router falls back to STT → text-LLM → TTS — accepting the latency hit and the loss of barge-in as a graceful degradation, not a full outage.
@@ -161,7 +161,7 @@ A quick reference — orders of magnitude, not benchmarks. Actual numbers depend
 | Video gen             | Per second/clip   | Minutes                     | Background job; not in chat path.              |
 | Realtime voice        | Session-minutes   | End-to-end < 1s             | Duplex transport; composed fallback.           |
 
-<!-- needs-research: this table is qualitative; before quoting any number to a user, cite a current provider price page or an internal baseline. -->
+The table above is qualitative; before quoting any specific number — cost per call, SLO budget, resolution multiplier — cite a current provider price page or an internal baseline rather than treating the shape as the source of truth.
 
 Two consequences for the router:
 

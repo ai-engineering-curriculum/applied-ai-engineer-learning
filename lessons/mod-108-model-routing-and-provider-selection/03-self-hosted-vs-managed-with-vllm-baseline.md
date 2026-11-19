@@ -34,7 +34,7 @@ Both are user-visible. **TTFT** (time-to-first-token) is dominated by network pa
 Two applied-engineer lessons:
 
 - **Self-hosting only wins tail latency if you overprovision.** A self-hosted replica that runs at 90% utilisation has queue tail latency that dominates any wire-latency saving. If the reason you want to self-host is tail latency, budget for the idle capacity. If you cannot, do not sell the decision on tail latency.
-- **TTFT and TPOT trade differently against batching.** Continuous batching (vLLM, TGI, SGLang all do it in some form) improves throughput at some cost to TTFT for the head-of-batch request.<!-- needs-research: this is qualitatively true across servers; specifics vary by version and scheduler. --> Route decisions that require chat-perceptible TTFT need explicit measurement, not folklore.
+- **TTFT and TPOT trade differently against batching.** Continuous batching (vLLM, TGI, SGLang all do it in some form) improves throughput at some cost to TTFT for in-flight requests; the exact shape depends on server version and scheduler. Route decisions that require chat-perceptible TTFT need explicit measurement, not folklore.
 
 ### Axis 3 — Control (model choice, weights, versioning, quantisation)
 
@@ -42,20 +42,20 @@ Self-hosting is the only path to *model versions you control*. Concrete implicat
 
 - You can pin an exact checkpoint and be certain no upstream update ever changes behaviour under you. This matters most for surfaces where behavioural stability is a compliance requirement, or where every model change requires a formal re-evaluation.
 - You can run **fine-tuned or continued-pretrained variants** of open-weights models — LoRA adapters, DPO / ORPO tunes, task-specific fine-tunes — without needing them to be first-party-supported by a provider.
-- You can pick your **quantisation**. INT8 / INT4 / FP8 / AWQ / GPTQ / FP4 quantised weights let you run a larger nominal parameter count on a given GPU; the quality tradeoff is measurable and needs its own eval.<!-- needs-research: current quantisation formats and their support across vLLM/TGI/SGLang. -->
+- You can pick your **quantisation**. INT8 / INT4 / FP8 / AWQ / GPTQ quantised weights let you run a larger nominal parameter count on a given GPU; the quality tradeoff is measurable and needs its own eval. Support varies by server and GPU generation — e.g. vLLM ships AWQ/GPTQ/FP8/INT4/INT8 kernels but with different hardware-architecture requirements per format.
 - You can serve *speculative decoding* or *prefix-caching* configurations that a managed API does not expose.
 
 Control has a mirror-image cost: everything becomes your job. Model deprecation, security patches for the inference server, GPU driver updates, upstream weight-license changes — all your on-call.
 
 ### Axis 4 — Residency and blast-radius posture
 
-For any prompt-carrying data with regulatory constraints (HIPAA, GDPR, PCI, GLBA, DoD IL5, EU AI Act residency requirements, and any private-cloud commitment your enterprise customers have signed), the question "where does the byte physically live during inference" has one answer that satisfies auditors: *inside our own boundary*. Managed APIs have improved here (hyperscaler-native Bedrock / Vertex / Foundry stay inside your account; provider zero-retention offerings exist on OpenAI, Anthropic, and Google's enterprise tiers)<!-- needs-research: confirm current zero-retention / no-training options at each frontier provider. --> — but **owning the box** removes an entire class of trust question.
+For any prompt-carrying data with regulatory constraints (HIPAA, GDPR, PCI, GLBA, DoD IL5, EU AI Act residency requirements, and any private-cloud commitment your enterprise customers have signed), the question "where does the byte physically live during inference" has one answer that satisfies auditors: *inside our own boundary*. Managed APIs have improved here (hyperscaler-native Bedrock / Vertex / Foundry stay inside your account; provider zero-retention and no-training offerings exist on OpenAI, Anthropic, and Google's enterprise tiers, though usually behind an application process and with carve-outs for abuse-monitoring logs) — but **owning the box** removes an entire class of trust question.
 
 The applied engineer's contribution here is not to *make* the residency decision (privacy-engineer and data-security-engineer own that) — it is to *represent* the residency constraint in the trade-off doc so the infra decision serves the compliance envelope, and to flag it early so infra is not surprised at ship time.
 
 ### Axis 5 — Feature velocity
 
-Managed APIs are the only path to *the current frontier model this week*. Open-weights ecosystem lag is real: the highest-performing open-weights instruct model on any given benchmark is usually a version or two behind the best-performing frontier closed model.<!-- needs-research: characterise this qualitatively rather than pin a specific gap — the ecosystem moves and the gap has been narrowing. --> If your surface *requires* the frontier — because your product's quality bar is only met by it — the answer is managed for that route, at least for now.
+Managed APIs are the only path to *the current frontier model this week*. Open-weights ecosystem lag is real but has narrowed: open-weights instruct models are competitive with (and on some tasks matched to) the best closed frontier models, while the gap remains most visible on complex multi-step reasoning, agentic tool-use, and advanced multimodal. If your surface *requires* the frontier — because your product's quality bar is only met by it — the answer is managed for that route, at least for now.
 
 Feature velocity also cuts the other way: shipping a new fine-tune of an open-weights model can be days for a self-hosted stack (deploy new weights, reload the server, run evals, cut over) and *impossible* for a managed one that does not offer fine-tuning of the model you care about.
 
@@ -63,9 +63,9 @@ Feature velocity also cuts the other way: shipping a new fine-tune of an open-we
 
 For self-hosting, three OSS inference servers cover most production deployments. The applied engineer does not need to become a server expert — but does need to know the shape and read the peer team's benchmark output.
 
-- **vLLM** — the most widely-deployed OSS inference server. PagedAttention KV-cache management, continuous batching, wide model-family support, an OpenAI-compatible HTTP server out of the box.<!-- needs-research: confirm vLLM remains the ecosystem leader in adoption and its current feature envelope. -->
-- **TGI (Text Generation Inference)** — Hugging Face's inference server. Tensor parallelism, quantisation support, similar OpenAI-shape HTTP endpoint. Good defaults; particularly common inside Hugging Face's own inference products.<!-- needs-research: confirm TGI's current version and any material feature envelope shifts. -->
-- **SGLang** — a newer entrant with a domain-specific frontend for structured outputs, prefix caching (RadixAttention), and constrained decoding. Strong for JSON-heavy, tool-heavy, structured-output-heavy workloads.<!-- needs-research: confirm SGLang's current standing and feature set; RadixAttention terminology should be verified. -->
+- **vLLM** — the most widely-deployed OSS inference server in 2026. PagedAttention KV-cache management, continuous batching, wide model-family support, an OpenAI-compatible HTTP server out of the box.
+- **TGI (Text Generation Inference)** — Hugging Face's inference server. Tensor parallelism, quantisation support, similar OpenAI-shape HTTP endpoint. Note that Hugging Face moved TGI to maintenance mode in March 2026 and directs new users to vLLM, SGLang, llama.cpp, or MLX; existing TGI deployments continue to work, but new builds should default to one of the others.
+- **SGLang** — originally the newer entrant, now the common choice alongside vLLM for high-concurrency serving. A domain-specific frontend for structured outputs, prefix caching via RadixAttention (KV cache organised as a radix tree indexed by token sequence, so shared prefixes reuse prior computation), and constrained decoding. Strong for JSON-heavy, tool-heavy, long-shared-prefix workloads.
 
 You do not need to pick all three. Pick one, run the peer team's baseline against your traffic shape, and only revisit the pick if a routing metric goes sideways.
 
