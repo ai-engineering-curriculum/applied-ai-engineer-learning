@@ -2,14 +2,14 @@
 
 AI Engineering Curriculum · Level 30 · [learning](https://github.com/ai-engineering-curriculum/applied-ai-engineer-learning) · [solutions](https://github.com/ai-engineering-curriculum/applied-ai-engineer-solutions)
 
-_Generated 2026-11-15 by `aicg org completeness`._
+_Generated 2026-11-22 by `aicg org completeness`._
 
-**Overall: 83%**
+**Overall: 96%**
 
 | | Progress | Count |
 |---|---|---|
 | Learning | `██████████` 100% | 12/12 modules complete |
-| Solutions | `███████░░░` 66% | 38/58 exercises solved |
+| Solutions | `█████████░` 91% | 53/58 exercises solved |
 
 ## Modules
 
@@ -22,11 +22,11 @@ _Generated 2026-11-15 by `aicg org completeness`._
 | `mod-105-shipping-product-agents` | ✅ Complete | 31,598 | 5 | 5 | — | 5/5 |
 | `mod-106-feature-side-evaluation` | ✅ Complete | 24,660 | 5 | 5 | — | 5/5 |
 | `mod-107-guardrails-and-safety-on-the-surface` | ✅ Complete | 27,876 | 5 | 5 | — | 5/5 |
-| `mod-108-model-routing-and-provider-selection` | ✅ Complete | 23,074 | 5 | 5 | — | 5/5 |
+| `mod-108-model-routing-and-provider-selection` | ✅ Complete | 23,038 | 5 | 5 | — | 5/5 |
 | `mod-109-cost-latency-slos-for-llm-features` | ✅ Complete | 22,361 | 5 | 5 | — | 5/5 |
-| `mod-110-observability-feedback-and-incidents` | ✅ Complete | 27,555 | 5 | 5 | — | 0/5 |
-| `mod-111-shipping-experimenting-and-rollbacks` | ✅ Complete | 26,911 | 5 | 5 | — | 0/5 |
-| `mod-112-owning-an-applied-ai-feature-end-to-end` | ✅ Complete | 35,049 | 6 | 5 | — | 0/5 |
+| `mod-110-observability-feedback-and-incidents` | ✅ Complete | 27,555 | 5 | 5 | — | 5/5 |
+| `mod-111-shipping-experimenting-and-rollbacks` | ✅ Complete | 26,911 | 5 | 5 | — | 5/5 |
+| `mod-112-owning-an-applied-ai-feature-end-to-end` | ✅ Complete | 34,957 | 6 | 5 | — | 5/5 |
 
 ## How this is calculated
 
