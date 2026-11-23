@@ -108,15 +108,15 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### Tracing SDKs and redaction hooks
 
-- **OpenTelemetry — GenAI semantic conventions** — the emerging standard span attributes (`gen_ai.prompt`, `gen_ai.completion`, etc.) the scrubber operates on. `https://opentelemetry.io/docs/specs/semconv/gen-ai/`. <!-- needs-research: confirm URL — the spec is moving out of experimental. -->
-- **OpenTelemetry — Span processors (SDK)** — the extension point the `ScrubbingSpanProcessor` sketch is built on. `https://opentelemetry.io/docs/languages/python/instrumentation/#creating-spans`. <!-- needs-research: pin the current SpanProcessor extension-point docs URL. -->
+- **OpenTelemetry — GenAI semantic conventions** — the emerging standard span attributes (`gen_ai.prompt`, `gen_ai.completion`, etc.) the scrubber operates on. The spec has been split into its own dedicated repository: `https://github.com/open-telemetry/semantic-conventions-genai` (the legacy `https://opentelemetry.io/docs/specs/semconv/gen-ai/` landing page still resolves and points at the new location).
+- **OpenTelemetry — Span processors (SDK)** — the `SpanProcessor` interface (with `on_start` / `on_end` hooks) the `ScrubbingSpanProcessor` sketch is built on. `https://opentelemetry-python.readthedocs.io/en/latest/sdk/trace.html`.
 - **OpenLLMetry (Traceloop)** — the popular OTel-conformant LLM tracing library, with redaction / masking hooks. `https://www.traceloop.com/openllmetry`, `https://github.com/traceloop/openllmetry`.
 - **OpenInference (Arize)** — the parallel semantic-convention spec for LLM traces, adopted by Phoenix. `https://github.com/Arize-ai/openinference/tree/main/spec`.
-- **Langfuse — Masking / redaction documentation** — the hosted-vendor's built-in redaction hooks for the trace-side scrubber. `https://langfuse.com/docs/tracing-features/masking`. <!-- needs-research: confirm URL. -->
-- **LangSmith — Sensitive data handling** — LangChain's guidance for masking traces before export. `https://docs.smith.langchain.com/observability/how_to_guides/masking`. <!-- needs-research: confirm URL. -->
-- **Arize Phoenix — Redaction** — Phoenix's redaction hooks. `https://arize.com/docs/phoenix/tracing/how-to-tracing/masking-span-attributes`. <!-- needs-research: confirm URL. -->
-- **Braintrust — Data privacy and redaction** — Braintrust's masking configuration. `https://www.braintrust.dev/docs/guides/traces/privacy`. <!-- needs-research: confirm URL. -->
-- **Weights & Biases Weave — Sensitive-data controls** — Weave's masking / opt-out settings. `https://weave-docs.wandb.ai/guides/tracking/redact-pii`. <!-- needs-research: confirm URL. -->
+- **Langfuse — Masking / redaction documentation** — the hosted-vendor's built-in redaction hooks for the trace-side scrubber. `https://langfuse.com/docs/observability/features/masking`.
+- **LangSmith — Sensitive data handling** — LangChain's guidance for masking traces before export. `https://docs.langchain.com/langsmith/mask-inputs-outputs` (the legacy `https://docs.smith.langchain.com/observability/how_to_guides/mask_inputs_outputs` URL redirects to the LangChain-consolidated docs host).
+- **Arize Phoenix — Redaction** — Phoenix's redaction hooks, exposed through OpenInference configuration-based masking. `https://arize.com/docs/phoenix/tracing/how-to-tracing/advanced/masking-span-attributes`.
+- **Braintrust — Data privacy and redaction** — Braintrust's SDK-side masking and span-customiser configuration for redacting sensitive data before upload. `https://docs.braintrust.dev/sdks/python/redact-sensitive-data` (TypeScript counterpart at `https://docs.braintrust.dev/sdks/typescript/redact-sensitive-data`).
+- **Weights & Biases Weave — Sensitive-data controls** — Weave's `redact_pii` and `REDACT_KEYS` masking options (client-side via Presidio) and organisation-level server-side redaction. `https://docs.wandb.ai/weave/guides/tracking/redact-pii`.
 
 ### Regulatory foundations (the compliance envelope)
 
@@ -124,16 +124,16 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **EDPB — Guidelines and opinions** — the European Data Protection Board's authoritative interpretation of GDPR clauses that matter to LLM surfaces. `https://www.edpb.europa.eu/our-work-tools/general-guidance_en`.
 - **California — CCPA / CPRA** — Californian data-subject rights that most US-facing surfaces are subject to. `https://oag.ca.gov/privacy/ccpa`, `https://cppa.ca.gov/regulations/`.
 - **US HHS — HIPAA overview** — the regulatory frame for PHI on any health-adjacent surface. `https://www.hhs.gov/hipaa/index.html`.
-- **PCI SSC — PCI DSS v4.0** — the payment-card standard for any surface where a card number could enter a prompt or trace. `https://www.pcisecuritystandards.org/document_library/`. <!-- needs-research: confirm current v4.x version. -->
+- **PCI SSC — PCI DSS v4.0.1** — the current payment-card standard (an errata revision of v4.0, active since 2024-06-11 and the only in-scope version since 2024-12-31) for any surface where a card number could enter a prompt or trace. `https://www.pcisecuritystandards.org/document_library/`.
 - **US FTC — GLBA privacy rules** — the financial-services counterpart. `https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act`.
 
 ### Provider retention and DSAR contracts
 
-- **Anthropic — Zero Data Retention** — the enterprise / commercial-endpoint contract that removes the provider-side retention leak point. `https://privacy.anthropic.com/en/articles/10440198-does-anthropic-offer-zero-data-retention-zdr`. <!-- needs-research: confirm URL. -->
+- **Anthropic — Zero Data Retention** — the enterprise / commercial-endpoint contract that removes the provider-side retention leak point. `https://privacy.claude.com/en/articles/10440198-does-anthropic-offer-zero-data-retention-zdr` (the legacy `privacy.anthropic.com` host redirects here).
 - **Anthropic — Privacy policy and data usage** — the general retention posture and DSAR contact path. `https://www.anthropic.com/legal/privacy`.
 - **OpenAI — Enterprise privacy and data controls** — the ZDR / retention-window contract on the OpenAI side. `https://openai.com/enterprise-privacy/`.
-- **OpenAI — API data usage policies** — how long non-enterprise API data is retained and for what purpose. `https://platform.openai.com/docs/models/how-we-use-your-data`. <!-- needs-research: confirm URL. -->
-- **Google — Gemini API data usage** — parallel documentation for Google-hosted models. `https://ai.google.dev/gemini-api/terms`. <!-- needs-research: confirm URL and the current data-usage clause. -->
+- **OpenAI — API data usage policies** — how long non-enterprise API data is retained and for what purpose (default 30-day abuse-monitoring retention; eligible customers can request ZDR or Modified Abuse Monitoring). `https://developers.openai.com/api/docs/guides/your-data` (the legacy `https://platform.openai.com/docs/models/how-we-use-your-data` URL redirects here).
+- **Google — Gemini API data usage** — parallel documentation for Google-hosted models; the paid-tier terms disclaim that prompts and responses are not used to improve products, while the unpaid-tier terms explicitly reserve the right for Google to use submitted content to train and improve products (and warn against submitting sensitive data). `https://aistudio.google.com/docs/terms` (the legacy `https://ai.google.dev/gemini-api/terms` URL redirects here).
 - **AWS Bedrock — Data protection** — the AWS-side contract for prompts and responses. `https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html`.
 - **Azure OpenAI — Data, privacy, and security** — the Microsoft-side contract. `https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy`.
 
@@ -141,15 +141,15 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### OWASP entries this chapter maps to
 
-- **OWASP LLM06 — Excessive Agency** — the primary entry chapter 04 addresses. `https://genai.owasp.org/llmrisk/llm06-excessive-agency/`. <!-- needs-research: confirm current entry code and URL — has been renumbered across revisions. -->
-- **OWASP LLM04 — Data and Model Poisoning** — adjacent entry the "hostile retrieval into tool call" injection path touches. `https://genai.owasp.org/llmrisk/llm04-data-and-model-poisoning/`. <!-- needs-research: confirm current entry code. -->
-- **OWASP LLM10 — Unbounded Consumption** — the entry the cost / rate caps address on the "resource-exhaustion" side of tool abuse. `https://genai.owasp.org/llmrisk/llm10-unbounded-consumption/`. <!-- needs-research: confirm current entry code and URL. -->
+- **OWASP LLM06:2025 — Excessive Agency** — the primary entry chapter 04 addresses (renumbered from LLM08 in the 2023 edition to LLM06 in the 2025 revision). `https://genai.owasp.org/llmrisk/llm062025-excessive-agency/`.
+- **OWASP LLM04:2025 — Data and Model Poisoning** — adjacent entry the "hostile retrieval into tool call" injection path touches. `https://genai.owasp.org/llmrisk/llm04-data-and-model-poisoning/`.
+- **OWASP LLM10:2025 — Unbounded Consumption** — the entry the cost / rate caps address on the "resource-exhaustion" side of tool abuse (expanded from the 2023 "Denial of Service" entry to cover economic / denial-of-wallet attacks and model-extraction alongside DoS). `https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/`.
 - **OWASP — Agentic AI Threats and Mitigations** (re-cited) — the companion taxonomy that decomposes tool-catalogue, memory-poisoning, and cascading-tool-failure risks the four guards address. `https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/`.
 
 ### MCP and tool-catalogue security
 
 - **Model Context Protocol — Specification** — the transport / boundary the tool-boundary isolation discipline operates on. `https://modelcontextprotocol.io/specification`.
-- **Model Context Protocol — Security best practices** — the MCP-native guidance for tool exposure, credential scoping, and confused-deputy avoidance. `https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices`. <!-- needs-research: confirm URL and current spec version. -->
+- **Model Context Protocol — Security best practices** — the MCP-native guidance for tool exposure, credential scoping, and confused-deputy avoidance. `https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices` (the earlier `2025-06-18` revision still resolves).
 - **Anthropic — Introducing the Model Context Protocol** — the launch post with the tool-boundary framing. `https://www.anthropic.com/news/model-context-protocol`.
 - **Simon Willison — MCP tag** — practitioner field notes on MCP-server security incidents. `https://simonwillison.net/tags/mcp/`.
 
@@ -162,24 +162,24 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 ### Identity, least privilege, and the auth boundary
 
-- **OAuth 2.1 (IETF draft)** — the consolidated OAuth 2.0 profile and the substrate the tool-credential rotation discipline sits on. `https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1`. <!-- needs-research: confirm current draft revision. -->
+- **OAuth 2.1 (IETF draft)** — the consolidated OAuth 2.0 profile and the substrate the tool-credential rotation discipline sits on; the current revision is `draft-ietf-oauth-v2-1-17` (published 2026-10-31). `https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1` (always resolves to the latest revision).
 - **NIST SP 800-53 — AC-6 Least Privilege** — the standards-body statement of the least-privilege discipline the chapter's Guard 4 assumes. `https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final`.
 - **AWS — IAM best practices** — the reference least-privilege catalogue for tool credentials on AWS-hosted infrastructure. `https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html`.
 - **Google Cloud — IAM best practices** — the parallel on GCP. `https://cloud.google.com/iam/docs/using-iam-securely`.
-- **OWASP — Confused deputy problem** — the classic auth-boundary failure the "tool credentials are not the model's credentials" discipline defends against. `https://owasp.org/www-community/vulnerabilities/Confused_Deputy_Problem`. <!-- needs-research: confirm URL. -->
+- **Confused deputy problem** — the classic auth-boundary failure the "tool credentials are not the model's credentials" discipline defends against; coined by Norm Hardy (1988) and catalogued in OWASP's Cornucopia attack taxonomy. `https://cornucopia.owasp.org/taxonomy/attacks/confused-deputy-attack` (canonical background at `https://en.wikipedia.org/wiki/Confused_deputy_problem`).
 
 ### Kill switches and feature flags
 
-- **LaunchDarkly — Kill switch documentation** — canonical vendor reference for the propagate-in-seconds pattern chapter 04 requires. `https://docs.launchdarkly.com/home/getting-started/use-cases#feature-management-with-kill-switches`. <!-- needs-research: confirm URL. -->
-- **Statsig — Feature gate documentation** — an alternative substrate with fast global propagation. `https://docs.statsig.com/feature-flags/overview`. <!-- needs-research: confirm URL. -->
+- **LaunchDarkly — Kill switch flags** — canonical vendor reference for the propagate-in-seconds pattern chapter 04 requires. `https://launchdarkly.com/docs/home/flags/killswitch`.
+- **Statsig — Feature gate documentation** — an alternative substrate with fast global propagation. `https://docs.statsig.com/feature-flags/overview`.
 - **Unleash — Feature toggles** — OSS alternative with self-hosted control. `https://docs.getunleash.io/`.
 - **Martin Fowler — *Feature Toggles (aka Feature Flags)*** — the canonical practitioner article on flag design, including the kill-switch class. `https://martinfowler.com/articles/feature-toggles.html`.
 
 ### Human-in-the-loop UX for confirmation gates
 
-- **Nielsen Norman Group — Preventing user errors (confirmation dialogs)** — the design literature the "render the actual arguments, not 'Send email?'" discipline derives from. `https://www.nngroup.com/articles/confirmation-dialog/`. <!-- needs-research: confirm URL. -->
-- **Anthropic — Human-in-the-loop in agents** — provider-side guidance on the pause-and-approve pattern for destructive tool calls. `https://www.anthropic.com/engineering/building-effective-agents#human-in-the-loop`. <!-- needs-research: confirm section anchor. -->
-- **OpenAI Agents SDK — Human-in-the-loop** — the SDK-side primitive for interruptible tool calls. `https://openai.github.io/openai-agents-python/human_in_the_loop/`. <!-- needs-research: confirm URL — SDK docs are stabilising. -->
+- **Nielsen Norman Group — Preventing user errors (confirmation dialogs)** — the design literature the "render the actual arguments, not 'Send email?'" discipline derives from. `https://www.nngroup.com/articles/confirmation-dialog/`.
+- **Anthropic — Human-in-the-loop in agents** — provider-side guidance (embedded in the "Agents" section of the broader effective-agents writeup) on the pause-and-approve pattern for destructive tool calls, framed as checkpoints where the agent pauses for human feedback. `https://www.anthropic.com/engineering/building-effective-agents`.
+- **OpenAI Agents SDK — Human-in-the-loop** — the SDK-side primitive for interruptible tool calls, with an approval flow that pauses the agent until a person approves or rejects sensitive tool calls. `https://openai.github.io/openai-agents-python/human_in_the_loop/`.
 
 ## Chapter 05 — Refusal calibration and the OWASP mapping runbook
 
@@ -188,14 +188,14 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **Anthropic — Usage policies** (re-cited) — a reference example of the "what the surface must never do" list at scale. `https://www.anthropic.com/legal/aup`.
 - **OpenAI — Usage policies** — the OpenAI-side parallel. `https://openai.com/policies/usage-policies/`.
 - **Google — Generative AI prohibited use policy** — the Google-side parallel. `https://policies.google.com/terms/generative-ai/use-policy`.
-- **Anthropic — Responsible Scaling Policy** — an example of a versioned safety-policy artefact with review cadence and named owners; useful shape for the surface-level equivalent. `https://www.anthropic.com/rsp`. <!-- needs-research: confirm current URL. -->
+- **Anthropic — Responsible Scaling Policy** — an example of a versioned safety-policy artefact with review cadence and named owners; useful shape for the surface-level equivalent. `https://www.anthropic.com/rsp`.
 
 ### Over-refusal and under-refusal evaluation
 
 - **Röttger et al. — *XSTest: A Test Suite for Identifying Exaggerated Safety Behaviours in Large Language Models*** — the canonical academic reference for over-refusal evaluation, and a working fixture set to seed the "obvious yes" panel from. `https://arxiv.org/abs/2308.01263`, `https://github.com/paul-rottger/xstest`.
-- **Cui et al. — *OR-Bench: An Over-Refusal Benchmark for Large Language Models*** — a broader over-refusal benchmark with per-category coverage. `https://arxiv.org/abs/2405.20947`, `https://huggingface.co/datasets/bench-llm/or-bench`. <!-- needs-research: confirm URL. -->
+- **Cui et al. — *OR-Bench: An Over-Refusal Benchmark for Large Language Models*** — a broader over-refusal benchmark with per-category coverage (or-bench-80k, or-bench-hard-1k, and or-bench-toxic subsets). `https://arxiv.org/abs/2405.20947`, `https://huggingface.co/datasets/bench-llm/or-bench`.
 - **AI2 — WildGuardMix / WildGuard** (re-cited) — includes benign-adversarial pairs useful for the "injection-shaped-but-legitimate" panel. `https://huggingface.co/datasets/allenai/wildguardmix`.
-- **Anthropic — Sycophancy and refusal-calibration research** — provider-side writeups on model-side refusal behaviour that surfaces the applied engineer calibrates around. `https://www.anthropic.com/research`. <!-- needs-research: pin specific posts on refusal / over-refusal calibration. -->
+- **Anthropic — *Building strong safety evaluations*** — the provider-side writeup that frames "appropriate response rate" rather than raw refusal rate as the evaluation target, and explicitly discusses the over-refusal of benign requests the applied engineer calibrates around. `https://www.anthropic.com/research/building-strong-safety-evaluations` (the Alignment Science team's broader body of work sits at `https://alignment.anthropic.com/`).
 
 ### OWASP mapping runbook substrate
 
