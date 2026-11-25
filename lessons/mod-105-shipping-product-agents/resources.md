@@ -142,7 +142,7 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **SWE-bench — Project site and leaderboard** — canonical entry point. `https://www.swebench.com/`.
 - **OpenAI — Introducing SWE-bench Verified** — the OpenAI + SWE-bench-team announcement of the Verified subset. `https://openai.com/index/introducing-swe-bench-verified/`.
 - **`princeton-nlp/SWE-bench`** — the reference repository with harness code and evaluation containers. `https://github.com/princeton-nlp/SWE-bench`.
-- **SWE-bench Multimodal / SWE-bench Live** — the follow-on variants. `https://www.swebench.com/multimodal.html`, `https://www.swebench.com/SWE-bench-Live/`. <!-- needs-research: confirm URLs. -->
+- **SWE-bench Multimodal / SWE-bench Live** — the follow-on variants. `https://www.swebench.com/multimodal.html`, `https://swe-bench-live.github.io/` (project + leaderboard; repo at `https://github.com/microsoft/SWE-bench-Live`).
 
 ### WebArena and VisualWebArena
 
@@ -150,21 +150,21 @@ Curated primary sources for the topics covered across the five chapters. Provide
 - **WebArena — Project site** — canonical entry point. `https://webarena.dev/`.
 - **`web-arena-x/webarena`** — the reference repository with the self-hosted realistic apps. `https://github.com/web-arena-x/webarena`.
 - **VisualWebArena — Koh et al.** — the multimodal extension. `https://arxiv.org/abs/2401.13649`, `https://jykoh.com/vwa`.
-- **WorkArena — ServiceNow research** — a related enterprise-web benchmark, useful comparison. `https://arxiv.org/abs/2403.07718`. <!-- needs-research: confirm current paper / URL. -->
+- **WorkArena — ServiceNow research** — a related enterprise-web benchmark, useful comparison. `https://arxiv.org/abs/2403.07718`.
 
 ### AgentDojo
 
 - **Debenedetti et al. — *AgentDojo: A Dynamic Environment to Evaluate Attacks and Defenses for LLM Agents*** — the original paper. `https://arxiv.org/abs/2406.13352`.
 - **`ethz-spylab/agentdojo`** — the reference implementation. `https://github.com/ethz-spylab/agentdojo`.
-- **AgentDojo — Project site** — canonical entry point. `https://agentdojo.spylab.ai/`. <!-- needs-research: confirm URL. -->
+- **AgentDojo — Project site** — canonical entry point. `https://agentdojo.spylab.ai/`.
 - **SPY Lab (ETH Zurich)** — the group that maintains the benchmark, plus adjacent work on agent robustness. `https://spylab.ai/`.
 
 ### Adjacent benchmarks worth knowing
 
 - **GAIA — General AI Assistants benchmark** — a related eval covering tool-using assistants. `https://arxiv.org/abs/2311.12983`, `https://huggingface.co/gaia-benchmark`.
 - **AgentBench** — a multi-task agent benchmark. `https://arxiv.org/abs/2308.03688`, `https://github.com/THUDM/AgentBench`.
-- **MLE-Bench** — OpenAI's benchmark for ML engineering agents. `https://arxiv.org/abs/2410.07095`, `https://github.com/openai/mle-bench`. <!-- needs-research: confirm current URL. -->
-- **Terminal-Bench / Mind2Web / VisualAgentBench** — additional context on browsing / terminal-agent shapes. `https://osu-nlp-group.github.io/Mind2Web/`. <!-- needs-research: pin URLs for each. -->
+- **MLE-Bench** — OpenAI's benchmark for ML engineering agents. `https://arxiv.org/abs/2410.07095`, `https://github.com/openai/mle-bench`.
+- **Terminal-Bench / Mind2Web / VisualAgentBench** — additional context on browsing / terminal-agent shapes. `https://www.tbench.ai/`, `https://osu-nlp-group.github.io/Mind2Web/`, `https://github.com/THUDM/VisualAgentBench` (paper `https://arxiv.org/abs/2408.06327`).
 
 ### Evaluation harnesses and LLM-as-judge discipline
 
@@ -180,39 +180,39 @@ Curated primary sources for the topics covered across the five chapters. Provide
 
 - **Cursor — Documentation** — canonical entry to the product surface. `https://docs.cursor.com/`.
 - **Cursor — Blog / changelog** — engineering-side writeups on Composer and Background Agents. `https://cursor.com/blog`, `https://cursor.com/changelog`.
-- **Aman Sanger, Michael Truell interviews** — founder-side product framing (Lex Fridman, Latent Space, etc.). Search current podcasts / talks for the most recent. <!-- needs-research: pin one or two current talks with URLs. -->
-- **Cursor — Enterprise / security posture** — where the tenancy and data controls live. `https://cursor.com/security`. <!-- needs-research: confirm URL. -->
+- **Aman Sanger, Michael Truell interviews** — founder-side product framing. See e.g. Lex Fridman Podcast #447, "Cursor Team: Future of Programming with AI" (Oct 2024) at `https://lexfridman.com/cursor-team-transcript/`; check current podcasts / talks for more recent appearances.
+- **Cursor — Enterprise / security posture** — where the tenancy and data controls live. `https://cursor.com/security`.
 
 ### GitHub Copilot Workspace and Coding Agent
 
 - **GitHub Next — Copilot Workspace** — the preview home for the task-decomposition surface. `https://githubnext.com/projects/copilot-workspace/`.
 - **GitHub — Copilot documentation** — the mainline docs surface. `https://docs.github.com/en/copilot`.
-- **GitHub — Copilot coding agent** — the newer autonomous-tier product. `https://docs.github.com/en/copilot/using-github-copilot/coding-agent`. <!-- needs-research: confirm URL and product name. -->
+- **GitHub — Copilot coding agent** — the newer autonomous-tier product (now also surfaced as "Copilot in the cloud"). `https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent`.
 - **GitHub — Copilot engineering blog** — long-form design writeups. `https://github.blog/ai-and-ml/github-copilot/`.
-- **GitHub — Copilot Business / Enterprise data controls** — the admin surface referenced in the chapter. `https://docs.github.com/en/enterprise-cloud@latest/copilot`. <!-- needs-research: confirm URL. -->
+- **GitHub — Copilot Business / Enterprise data controls** — the admin surface referenced in the chapter. `https://docs.github.com/en/enterprise-cloud@latest/copilot`.
 
 ### Sierra
 
 - **Sierra — Product site** — canonical entry point. `https://sierra.ai/`.
 - **Sierra — Blog and case studies** — Sonos, ADT, Weight Watchers, SiriusXM, Chubbies deployments. `https://sierra.ai/blog`.
-- **Sierra — Voice AI product** — the voice-mode CX agent surface. `https://sierra.ai/voice`. <!-- needs-research: confirm URL and product name. -->
-- **Sierra Research** — the research arm that published τ-bench and τ²-bench. `https://sierra.ai/research`. <!-- needs-research: confirm URL. -->
-- **Bret Taylor / Clay Bavor talks and interviews** — founder-side framing for Sierra's product bet. Search current podcasts / conference talks. <!-- needs-research: pin one or two current talks with URLs. -->
+- **Sierra — Voice** — the voice-mode CX agent surface. `https://sierra.ai/voice`.
+- **Sierra Research** — the research arm that published τ-bench and τ²-bench. `https://sierra.ai/resources/research`.
+- **Bret Taylor / Clay Bavor talks and interviews** — founder-side framing for Sierra's product bet. See e.g. Acquired, "How is AI Different Than Other Technology Waves? (With Bret Taylor and Clay Bavor)" (Aug 2025) at `https://www.acquired.fm/acq2-episodes/how-is-ai-different-than-other-technology-waves-with-bret-taylor-and-clay-bavor`, and the Stratechery interview with Bret Taylor on AI agents (Jun 2025) at `https://stratechery.com/2025/an-interview-with-sierra-founder-and-ceo-bret-taylor-about-ai-agents-and-tech-history-lessons/`.
 
 ### Harvey
 
 - **Harvey — Product site and blog** — canonical entry. `https://www.harvey.ai/`, `https://www.harvey.ai/blog`.
-- **Harvey — Engineering / research writeups** — model-routing and evaluation posts. `https://www.harvey.ai/blog/how-harvey-uses-multi-agent-systems`. <!-- needs-research: confirm URL — Harvey has renamed / republished a few posts. -->
-- **OpenAI — Harvey partnership announcement** — the initial public partnership. `https://openai.com/index/harvey/`. <!-- needs-research: confirm URL. -->
-- **Winston Weinberg interviews** — founder-side framing for the professional-user shape. Search current podcasts / conference talks. <!-- needs-research: pin one or two current talks with URLs. -->
+- **Harvey — Engineering / research writeups** — model-routing and evaluation posts. See the Harvey blog index at `https://www.harvey.ai/blog`, e.g. "Rebuilding Playbook Review as a Multi-Agent System" at `https://www.harvey.ai/blog/rebuilding-playbook-review-as-a-multi-agent-system`.
+- **OpenAI — Harvey partnership announcement** — the initial public partnership. `https://openai.com/index/harvey/`.
+- **Winston Weinberg interviews** — founder-side framing for the professional-user shape. See e.g. No Priors Ep. 101, "How Harvey AI is Changing the Legal Industry with Winston Weinberg" (Feb 2025) at `https://www.youtube.com/watch?v=0DDS8jWqEPg`.
 
 ### Other product-agent surfaces worth studying (context, not case-studied above)
 
 - **Perplexity — Product docs and blog** — retrieval-heavy assistant surface. `https://www.perplexity.ai/`.
-- **Devin (Cognition AI)** — long-running autonomous coding-agent surface; a Shape A "workspace tier" competitor. `https://www.cognition.ai/blog/introducing-devin`. <!-- needs-research: confirm URL. -->
-- **Replit Agent** — cloud-IDE-native coding agent. `https://docs.replit.com/replitai/agent`. <!-- needs-research: confirm URL. -->
+- **Devin (Cognition AI)** — long-running autonomous coding-agent surface; a Shape A "workspace tier" competitor. `https://cognition.com/blog/introducing-devin`.
+- **Replit Agent** — cloud-IDE-native coding agent. `https://docs.replit.com/replitai/agent`.
 - **Ada — Product site** — CX-agent platform competitor to Sierra. `https://www.ada.cx/`.
-- **Intercom — Fin AI Agent** — CX-agent product embedded in Intercom. `https://www.intercom.com/fin`. <!-- needs-research: confirm URL. -->
+- **Intercom — Fin AI Agent** — CX-agent product from Intercom, now at its own brand site. `https://fin.ai/`.
 - **Decagon — Product site** — CX-agent platform, useful comparative. `https://decagon.ai/`.
 - **Amazon — Q Business / Q Developer** — enterprise assistant + coding agent from AWS. `https://aws.amazon.com/q/`.
 
