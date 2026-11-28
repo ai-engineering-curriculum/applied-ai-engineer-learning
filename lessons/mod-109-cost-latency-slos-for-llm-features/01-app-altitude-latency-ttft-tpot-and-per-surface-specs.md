@@ -52,7 +52,7 @@ On agentic surfaces (mod-104, mod-105), the *end-to-end* latency of a turn is `T
 
 ## Instrumenting these numbers
 
-The vocabulary above only pays off when your telemetry actually emits it. The pattern is one span per request with a fixed attribute set, aligned with the OpenTelemetry GenAI semantic conventions so the mod-110 observability substrate can consume it without translation.<!-- needs-research: confirm current OTel GenAI semconv attribute names for TTFT / TPOT / tool round-trip — the spec is evolving and the exact keys may not have stabilised. -->
+The vocabulary above only pays off when your telemetry actually emits it. The pattern is one span per request with a fixed attribute set, aligned with the [OpenTelemetry GenAI semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) so the mod-110 observability substrate can consume it without translation. The GenAI conventions are at `Development` stability (the namespace moved to [its own repo](https://github.com/open-telemetry/semantic-conventions-genai) in 2026); TTFT and TPOT exist as the metrics `gen_ai.server.time_to_first_token` and `gen_ai.server.time_per_output_token`, and tool-call round-trip has no first-class attribute yet (derive from span timing). Expect further renames before the spec goes stable.
 
 ### The minimum span
 

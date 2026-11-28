@@ -2,7 +2,7 @@
 
 ## Why "batch" is a first-class shipping surface
 
-Provider batch APIs — OpenAI's `/v1/batches`, Anthropic's Message Batches API, Bedrock's batch inference jobs, Google Vertex AI's batch prediction — trade wall-clock time for money. You send a file of thousands (or millions) of requests, the provider schedules them against spare capacity over a window (currently up to 24 hours on the mainstream shapes), and the responses come back at roughly half the per-token cost of the same requests run synchronously.<!-- needs-research: confirm current published discount rates: OpenAI Batch is ~50% off standard Chat Completions pricing with a 24h SLA; Anthropic Message Batches is ~50% off with a 24h SLA; Bedrock batch inference and Vertex batch prediction each have their own envelopes. --> On workloads that qualify, this is the single largest cost win the applied-AI engineer can execute without changing the model or the prompt.
+Provider batch APIs — [OpenAI's `/v1/batches`](https://developers.openai.com/api/docs/guides/batch), [Anthropic's Message Batches](https://platform.claude.com/docs/en/build-with-claude/batch-processing), [Bedrock's batch inference jobs](https://docs.aws.amazon.com/bedrock/latest/userguide/batch-inference.html), [Google Vertex AI's batch prediction](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/multimodal/batch-prediction-gemini) — trade wall-clock time for money. You send a file of thousands (or millions) of requests, the provider schedules them against spare capacity over a window (up to 24 hours on the mainstream shapes), and the responses come back at roughly half the per-token cost of the same requests run synchronously (the canonical rate is 50% off; always verify against the current provider pricing page). On workloads that qualify, this is the single largest cost win the applied-AI engineer can execute without changing the model or the prompt.
 
 The trap: teams either never migrate anything to batch (because the online path is what they already know) or migrate the wrong things (a "background" workload that turns out to have a two-minute SLA nobody wrote down). The savings are real but they are gated on a *written eligibility rubric* — the deliverable of this chapter — and on a migration pattern that survives the case where the batch job fails, is late, or returns partial results.
 
@@ -12,7 +12,7 @@ Peer-role boundary: `ai-infra-performance` owns the deep serving-side scheduling
 
 ### OpenAI Batch API
 
-The reference shape. You upload a JSONL file where each line is a self-contained `{custom_id, method, url, body}` record, create a batch that references the file, and poll the batch object until it moves to `completed` (with an output file) or `failed`. Requests are billed at a discount (currently ~50%) versus the same synchronous endpoints, subject to a nominal 24-hour completion window.<!-- needs-research: confirm current OpenAI Batch supported endpoints (chat completions, embeddings, responses) and the exact discount / SLA. -->
+The reference shape. You upload a JSONL file where each line is a self-contained `{custom_id, method, url, body}` record, create a batch that references the file, and poll the batch object until it moves to `completed` (with an output file) or `failed`. [Requests are billed at 50% off the same synchronous endpoints, subject to a 24-hour completion window](https://developers.openai.com/api/docs/guides/batch); supported endpoints span Chat Completions, Responses, Embeddings, Completions, and Moderations.
 
 **What it optimises for.** Cost and simple orchestration. The API surface is minimal — upload, create, poll, download — and slots naturally into any cron-driven or event-driven job.
 
@@ -20,15 +20,15 @@ The reference shape. You upload a JSONL file where each line is a self-contained
 
 ### Anthropic Message Batches API
 
-Same shape, different envelope. A batch is a JSONL of `{custom_id, params}` records where `params` is a Messages API request. Same nominal 24-hour window, same ~50% discount versus the synchronous Messages API, same request-level partial-failure model.<!-- needs-research: confirm Anthropic Message Batches current pricing, request-count cap per batch, and total-token cap per batch. --> Supports Anthropic's tool use, vision, and prompt caching (though caching across batch requests works differently from the online path — verify current behaviour).
+Same shape, different envelope. A batch is a JSONL of `{custom_id, params}` records where `params` is a Messages API request. [Same 24-hour window, 50% discount versus the synchronous Messages API, and same request-level partial-failure model; the per-batch caps are 100,000 requests or 256 MB, whichever comes first](https://platform.claude.com/docs/en/build-with-claude/batch-processing). Supports Anthropic's tool use, vision, and prompt caching (though caching across batch requests works differently from the online path — verify current behaviour).
 
 ### AWS Bedrock batch inference
 
-Bedrock exposes batch inference jobs against a subset of hosted models. You stage input records in S3, create a `ModelInvocationJob` pointing at the input prefix and an output prefix, and Bedrock writes the results back to S3. Pricing and SLAs are per-model — Anthropic-on-Bedrock and Amazon Nova each publish their own batch envelope.<!-- needs-research: confirm current Bedrock batch-inference supported models and per-model discount envelope. --> IAM, region, encryption, and residency are inherited from your Bedrock configuration — the batch path stays inside your account boundary.
+[Bedrock exposes batch inference jobs against a subset of hosted models](https://docs.aws.amazon.com/bedrock/latest/userguide/batch-inference.html). You stage input records in S3, create a `ModelInvocationJob` pointing at the input prefix and an output prefix, and Bedrock writes the results back to S3. [Bedrock pricing](https://aws.amazon.com/bedrock/pricing/) publishes a flat 50%-off-on-demand envelope for batch across supported foundation models, but the exact model list is churny — check the [supported-models](https://docs.aws.amazon.com/bedrock/latest/userguide/batch-inference-supported.html) page per workload. IAM, region, encryption, and residency are inherited from your Bedrock configuration — the batch path stays inside your account boundary.
 
 ### Google Vertex AI batch prediction
 
-Vertex batch prediction takes a source (BigQuery table or GCS JSONL), a destination, and a model, and processes rows in a scheduled job. The Gemini models support batch prediction with a discount versus online prediction; older PaLM / non-Gemini models had different envelopes.<!-- needs-research: confirm current Vertex batch discount for Gemini models and any minimum job size. -->
+[Vertex batch prediction](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/multimodal/batch-prediction-gemini) takes a source (BigQuery table or GCS JSONL), a destination, and a model, and processes rows in a scheduled job. Gemini models support batch prediction at 50% off the online price; there is no hard minimum job size, but per-job fixed overhead means small runs are uneconomic — the docs recommend batching into job sizes well into the thousands. Batch is explicitly not a covered service under the Vertex SLA.
 
 ### The common substrate
 

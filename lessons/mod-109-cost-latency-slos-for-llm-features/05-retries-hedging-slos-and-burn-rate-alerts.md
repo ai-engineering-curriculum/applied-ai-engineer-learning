@@ -49,11 +49,11 @@ class RetryBudget:
 
 Every attempt to retry consults `can_retry` before sleeping. When the ratio is exhausted, the retry loop returns the original failure — the surface degrades, and the metric `retries_refused_total` is emitted for the alert (see burn-rate below).
 
-The Google SRE book's chapter on load balancing formalises this pattern; the same shape shows up in gRPC's retry policy and every mature provider gateway.<!-- needs-research: cite Google SRE Book chapter on retry budgets ("Handling Overload" / gRPC "A6 Client Retries" design). -->
+The Google SRE book's chapter on [handling overload](https://sre.google/sre-book/handling-overload/) formalises this pattern (per-request attempt caps and a per-client retry budget); the same shape shows up in [gRPC's "A6 Client Retries" design](https://github.com/grpc/proposal/blob/master/A6-client-retries.md) and every mature provider gateway.
 
 ## Hedged requests: pay ~20% more, cut the p99 tail
 
-When a single provider's tail latency is the constraint, **hedging** is the applied engineer's next lever. The pattern is elegantly summarised by Dean and Barroso: send a duplicate request after a short delay, take whichever returns first, cancel the loser.<!-- needs-research: cite Dean & Barroso, "The Tail at Scale," CACM 2013 — the canonical reference for hedging. -->
+When a single provider's tail latency is the constraint, **hedging** is the applied engineer's next lever. The pattern is elegantly summarised by Dean and Barroso in ["The Tail at Scale," CACM 56(2), 2013](https://research.google/pubs/the-tail-at-scale/): send a duplicate request after a short delay, take whichever returns first, cancel the loser.
 
 Concretely, for an LLM call with a target p95 TTFT of 1000 ms and a p99 that spikes past 3000 ms:
 
@@ -119,7 +119,7 @@ Error budget: 1% of 28-day request volume
 
 The error budget is a *quantity* — at 10M requests/28d, 1% budget = 100k allowed bad requests over the window. You spend it slowly (the normal state) or you spend it quickly (an incident). Alerting is on the *rate* of spend, not the absolute value.
 
-Google's SRE workbook chapter on SLOs is the canonical reference here; the shape below is a direct instantiation of the "multi-window, multi-burn-rate" pattern.<!-- needs-research: cite Google SRE Workbook, chapter 5 "Alerting on SLOs" — burn-rate multi-window multi-burn pattern. -->
+Google's SRE Workbook [chapter 5, "Alerting on SLOs"](https://sre.google/workbook/alerting-on-slos/), is the canonical reference here; the shape below is a direct instantiation of its "multi-window, multi-burn-rate" pattern.
 
 ## Burn-rate alerts
 
@@ -189,7 +189,7 @@ That artefact is the load-bearing deliverable of this chapter, and the pair to t
 
 ## Consuming MLPerf serving benchmarks
 
-MLPerf Inference is the industry-standard suite for serving benchmarks. MLCommons publishes results across scenarios (Server, Offline) with strict rules on model, dataset, and quality bar, so numbers across submitters are comparable.<!-- needs-research: confirm current MLPerf Inference version, scenarios (Server, Offline), and the language-model track (Llama-3-70B, GPT-J, Mixtral). -->
+[MLPerf Inference](https://mlcommons.org/benchmarks/inference-datacenter/) is the industry-standard suite for serving benchmarks. MLCommons publishes results across latency-bounded (Server) and throughput-bounded (Offline) scenarios with strict rules on model, dataset, and quality bar, so numbers across submitters are comparable. The language-model workloads rotate round-to-round (recent rounds have included Llama-family, GPT-J, and Mixtral tracks, plus newer workloads such as reasoning and RAG benchmarks) — check the [latest results announcement](https://mlcommons.org/benchmarks/inference-datacenter/) for the current roster before quoting specific numbers.
 
 **Who owns it in your org.**
 
